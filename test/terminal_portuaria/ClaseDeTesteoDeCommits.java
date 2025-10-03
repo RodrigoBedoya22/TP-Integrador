@@ -10,7 +10,7 @@ class ClaseDeTesteoDeCommits {
 	void test() {
 		//Exriban un comentario en la linea que les corresponde, para saber si se guardan los commits
 		
-		//Tomy: como anda la banda ?
+		//Tomy: como anda la banda 
 		
 		//Tiago: 
 	}
