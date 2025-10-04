@@ -8,11 +8,11 @@ class ClaseDeTesteoDeCommits {
 
 	@Test
 	void test() {
-		//Exriban un comentario en la linea que les corresponde, para saber si se guardan los commits
+		//Esriban un comentario en la linea que les corresponde, para saber si se guardan los commits
 		
 		//Tomy: como anda la banda 
 		
-		//Tiago: 
+		//Tiago: objetos 2 va a acabar con mi vida
 	}
 
 }
