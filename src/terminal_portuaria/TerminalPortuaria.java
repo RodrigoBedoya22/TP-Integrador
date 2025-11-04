@@ -9,20 +9,26 @@ public class TerminalPortuaria {
 	private String nombre;
 	private ArrayList<EmpresaNaviera> navieras;
 	
-	public TerminalPortuaria(String nombre, ArrayList<EmpresaNaviera> navieras) {
+	public TerminalPortuaria(String nombre) {
 		this.nombre = nombre;
-		this.navieras = navieras;
+		this.navieras = new ArrayList<EmpresaNaviera>();
 		
 	}
 
 	public String getNombre() {
 		
-		return nombre;
+		return this.nombre;
 	}
 
-	public ArrayList<EmpresaNaviera> navieras() {
+	public ArrayList<EmpresaNaviera> getNavieras() {
 		
-		return navieras;
+		return this.navieras;
+	}
+
+	public void agregarNaviera(EmpresaNaviera naviera) {
+		
+		this.navieras.add(naviera);
+		
 	}
 	
 }

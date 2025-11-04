@@ -1,35 +1,21 @@
 package terminal_portuaria;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.ArrayList;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import empresa_naviera.EmpresaNaviera;
+import static org.mockito.Mockito.*;
+import empresa_naviera.*;
+
 
 class TerminalPortuariaTest {
 
 	TerminalPortuaria terminal;
-	EmpresaNaviera empresaNaviera;
-	EmpresaNaviera empresaNaviera2;
-	EmpresaNaviera empresaNaviera3;
-	ArrayList<EmpresaNaviera> listaDeNavieras;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		
-		empresaNaviera = new EmpresaNaviera("Atlantis");
-		empresaNaviera2 = new EmpresaNaviera("Carilo");
-		empresaNaviera3 = new EmpresaNaviera("Mardel");
-		listaDeNavieras = new ArrayList<EmpresaNaviera>();
-		
-		listaDeNavieras.add(empresaNaviera);
-		listaDeNavieras.add(empresaNaviera2);
-		listaDeNavieras.add(empresaNaviera3);
-		
-		terminal = new TerminalPortuaria("ElAtlantico", listaDeNavieras);
+		terminal = new TerminalPortuaria("ElAtlantico");
 		
 	}
 
@@ -41,9 +27,17 @@ class TerminalPortuariaTest {
 	}
 	
 	@Test
-	void test002_UnaTerminalSabeCuantasEmpresasNavierasConoce() {
+	void test002_CuandoUnaTerminalAgregaUnaNuevaNaviera_SuListaDeNavierasAumenta() {
+
+		EmpresaNaviera naviera1 = mock(EmpresaNaviera.class);
+		EmpresaNaviera naviera2 = mock(EmpresaNaviera.class);
+		EmpresaNaviera naviera3 = mock(EmpresaNaviera.class);
 		
-		assertEquals(terminal.navieras().size(), 3);
+		terminal.agregarNaviera(naviera1);
+		terminal.agregarNaviera(naviera2);
+		terminal.agregarNaviera(naviera3);
+		
+		assertEquals(terminal.getNavieras().size(), 3);
 		
 	}
 

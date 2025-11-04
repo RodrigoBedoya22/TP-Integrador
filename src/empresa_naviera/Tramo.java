@@ -14,6 +14,7 @@ public class Tramo {
 	Double precio; 
 	
 	public Tramo(TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino, Date duracion, Double precio){
+		
 		this.terminalOrigen = terminalOrigen;
         this.terminalDestino = terminalDestino;
         this.duracion = duracion;
