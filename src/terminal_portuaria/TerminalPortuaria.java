@@ -14,7 +14,10 @@ public class TerminalPortuaria {
 		this.navieras = new ArrayList<EmpresaNaviera>();
 		
 	}
-
+	/**
+	 * Retorna el nombre de la terminal
+	 * @return String nombre, el nombre de la terminal
+	 */
 	public String getNombre() {
 		
 		return this.nombre;
