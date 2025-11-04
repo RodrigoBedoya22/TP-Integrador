@@ -10,7 +10,6 @@ public class TerminalPortuaria {
 	private ArrayList<EmpresaNaviera> navieras;
 	
 	public TerminalPortuaria(String nombre, ArrayList<EmpresaNaviera> navieras) {
-		
 		this.nombre = nombre;
 		this.navieras = navieras;
 		
