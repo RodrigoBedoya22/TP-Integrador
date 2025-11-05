@@ -16,7 +16,9 @@ class TerminalPortuariaTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		
-		terminal = new TerminalPortuaria("ElAtlantico");
+		Coordenada coordenada = new Coordenada(10.5, 20.7);
+		terminal = new TerminalPortuaria("ElAtlantico", coordenada);
+
 		
 	}
 
@@ -81,4 +83,12 @@ class TerminalPortuariaTest {
 		assertEquals(terminal.getEmpresasTransportistas().size(), 1);
 		
 	}
+	
+	@Test
+	void test006_CuandoUnaTerminalConoceSuCoordenada() {
+        assertEquals(10.5, terminal.getCoordenada().getX());
+        assertEquals(20.7, terminal.getCoordenada().getY());
+    }
+	
+
 }

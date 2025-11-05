@@ -8,11 +8,13 @@ import empresa_transportista.EmpresaTransportista;
 public class TerminalPortuaria {
 
 	private String nombre;
+	private Coordenada coordenada;
 	private ArrayList<EmpresaNaviera> navieras;
 	private ArrayList<EmpresaTransportista> empresasTransportistas;
 	
-	public TerminalPortuaria(String nombre) {
+	public TerminalPortuaria(String nombre, Coordenada coordenada) {
 		this.nombre = nombre;
+		this.coordenada = coordenada;
 		this.navieras = new ArrayList<EmpresaNaviera>();
 		this.empresasTransportistas = new ArrayList<EmpresaTransportista>();
 	}
@@ -72,6 +74,11 @@ public class TerminalPortuaria {
 			this.empresasTransportistas.add(empresaTransportista);
 		}
 		
+	}
+
+	public Coordenada getCoordenada() {
+		
+		return this.coordenada;
 	}
 	
 }
