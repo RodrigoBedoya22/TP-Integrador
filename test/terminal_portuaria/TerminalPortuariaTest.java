@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 import empresa_naviera.*;
+import empresa_transportista.Camion;
 import empresa_transportista.EmpresaTransportista;
 
 
@@ -89,6 +90,30 @@ class TerminalPortuariaTest {
         assertEquals(10.5, terminal.getCoordenada().getX());
         assertEquals(20.7, terminal.getCoordenada().getY());
     }
+	
+	@Test
+	void test007_CuandoUnaTerminalRegistraUnNuevoCamion_SuListaDeCamionesAumenta() {
+		
+		Camion camion1 = mock(Camion.class);
+		Camion camion2 = mock(Camion.class);
+		terminal.registrarCamion(camion1);
+		terminal.registrarCamion(camion2);
+	
+		assertEquals(terminal.getCamiones().size(), 2);
+		
+	}
+	
+	@Test
+	void test008_UnaTerminalNoPuedeAgregarAlMismoCamionDosVeces() {
+
+		Camion camion = mock(Camion.class);
+		terminal.registrarCamion(camion);
+		
+		assertThrows(IllegalArgumentException.class, () -> terminal.registrarCamion(camion));
+		
+		assertEquals(terminal.getCamiones().size(),1);
+		
+	}
 	
 
 }

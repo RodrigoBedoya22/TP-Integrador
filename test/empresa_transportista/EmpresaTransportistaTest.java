@@ -25,5 +25,21 @@ class EmpresaTransportistaTest {
 		assertEquals(empresaTransportista.getNombre(), "Jamiroquai");
 		
     }
+	
+	@Test
+	void test002_CuandoUnaEmpresaTransportistaAgregaUnNuevoChofer_SuListaDeChoferesAumenta() {
+
+		Chofer chofer1 = mock(Chofer.class);
+		Chofer chofer2 = mock(Chofer.class);
+		Chofer chofer3 = mock(Chofer.class);
+		Chofer chofer4 = mock(Chofer.class);
+		empresaTransportista.agregarChofer(chofer1);
+		empresaTransportista.agregarChofer(chofer2);
+		empresaTransportista.agregarChofer(chofer3);
+		empresaTransportista.agregarChofer(chofer4);
+	
+		assertEquals(empresaTransportista.getChoferes().size(), 4);
+		
+	}
 
 }

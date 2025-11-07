@@ -3,6 +3,7 @@ package terminal_portuaria;
 import java.util.ArrayList;
 
 import empresa_naviera.EmpresaNaviera;
+import empresa_transportista.Camion;
 import empresa_transportista.EmpresaTransportista;
 
 public class TerminalPortuaria {
@@ -11,12 +12,14 @@ public class TerminalPortuaria {
 	private Coordenada coordenada;
 	private ArrayList<EmpresaNaviera> navieras;
 	private ArrayList<EmpresaTransportista> empresasTransportistas;
+	private ArrayList<Camion> camiones;
 	
 	public TerminalPortuaria(String nombre, Coordenada coordenada) {
 		this.nombre = nombre;
 		this.coordenada = coordenada;
 		this.navieras = new ArrayList<EmpresaNaviera>();
 		this.empresasTransportistas = new ArrayList<EmpresaTransportista>();
+		this.camiones = new ArrayList<Camion>();
 	}
 	
 	/**
@@ -26,6 +29,15 @@ public class TerminalPortuaria {
 	public String getNombre() {
 		
 		return this.nombre;
+	}
+	
+	/**
+	 * Retorna la coordenada de la terminal
+	 * @return Coordenada coordenada, la coordenada de la terminal
+	 */
+    public Coordenada getCoordenada() {
+		
+		return this.coordenada;
 	}
 	
 	/**
@@ -44,6 +56,15 @@ public class TerminalPortuaria {
 	public ArrayList<EmpresaTransportista> getEmpresasTransportistas() {
 		
 		return this.empresasTransportistas;
+	}
+	
+	/**
+	 * Retorna los camiones registrados en la terminal
+	 * @return ArrayList<Camion> la lista de camiones registrados en la terminal
+	 */
+	public ArrayList<Camion> getCamiones() {
+			
+			return this.camiones;
 	}
 	
 	/**
@@ -76,9 +97,16 @@ public class TerminalPortuaria {
 		
 	}
 
-	public Coordenada getCoordenada() {
+
+	public void registrarCamion(Camion camion) {
 		
-		return this.coordenada;
+		if(this.getCamiones().contains(camion)){
+			throw new IllegalArgumentException("El camion ya se encuentra registrado en la lista de camiones en la terminal");
+		}
+		else {
+			this.camiones.add(camion);
+		}
+		
 	}
 	
 }
