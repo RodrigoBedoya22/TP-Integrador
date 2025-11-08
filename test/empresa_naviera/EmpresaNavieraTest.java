@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import buque.Buque;
+
 import static org.mockito.Mockito.*;
 
 class EmpresaNavieraTest {
@@ -59,5 +61,17 @@ class EmpresaNavieraTest {
         assertTrue(empresaNaviera.getCircuitos().contains(circuito2));
         assertTrue(empresaNaviera.getCircuitos().contains(circuito3));
     }	
+	
+	@Test
+	void test004_CuandoUnaEmpresaAgregaUnBuque_SuListaDeBuquesAumenta() {
+		
+		Buque buque1 = mock(Buque.class);
+		Buque buque2 = mock(Buque.class);
+		empresaNaviera.agregarBuque(buque1);
+		empresaNaviera.agregarBuque(buque2);
+		
+		assertEquals(empresaNaviera.getBuques().size(), 2);
+		
+	}
 
 }

@@ -2,18 +2,17 @@ package empresa_transportista;
 
 import java.util.ArrayList;
 
-// import java.util.ArrayList;
-
 
 public class EmpresaTransportista {
 	
 	private String nombre;
 	private ArrayList<Chofer> choferes;
+	private ArrayList<Camion> camiones;
 	
-    public EmpresaTransportista(String nombre) {
+    public EmpresaTransportista(String nombre, ArrayList<Camion> camiones) {
 		
 		this.nombre = nombre;
-		//this.camiones = new ArrayList<Camion>();
+		this.camiones = camiones;
 		this.choferes = new ArrayList<Chofer>();
 		
 	}
@@ -22,14 +21,20 @@ public class EmpresaTransportista {
 		return this.nombre;
 	}
 
+	public void agregarCamion(Camion camion) {
+		
+		this.camiones.add(camion);
+		
+	}
+	
 	public void agregarChofer(Chofer chofer) {
 		this.choferes.add(chofer);
 		
 	}
 
-	// public ArrayList<Camion> getCamiones() {
-	//	return camiones;
-	//}
+	public ArrayList<Camion> getCamiones() {
+		return camiones;
+	}
 
 	public ArrayList<Chofer> getChoferes() {
 	    return choferes;

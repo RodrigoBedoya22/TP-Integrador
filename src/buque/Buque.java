@@ -14,12 +14,17 @@ public class Buque {
 		this.estado= new OutOfBound();
 	}
 
+
 	public String getNombre() {
 		return this.nombre;
 	}
 	
 	public Coordenada getCoordenada() {
 		return this.coordenada;
+	}
+	
+	public void setCoordenada(Coordenada coordenada) {
+		this.coordenada = coordenada;
 	}
 
 	public EstadoBuque getEstado() {

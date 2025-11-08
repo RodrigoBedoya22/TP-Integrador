@@ -3,6 +3,8 @@ package empresa_transportista;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,11 +14,13 @@ import empresa_naviera.EmpresaNaviera;
 class EmpresaTransportistaTest {
 	
 	EmpresaTransportista empresaTransportista;
-
+	ArrayList<Camion> camiones;
+	
 	@BeforeEach
 	void setUp() throws Exception {
 		
-		empresaTransportista = new EmpresaTransportista("Jamiroquai");
+		camiones = new ArrayList<Camion>();
+		empresaTransportista = new EmpresaTransportista("Jamiroquai", camiones);
 	}
 
 	@Test
@@ -39,6 +43,20 @@ class EmpresaTransportistaTest {
 		empresaTransportista.agregarChofer(chofer4);
 	
 		assertEquals(empresaTransportista.getChoferes().size(), 4);
+		
+	}
+	
+	@Test
+	void test003_CuandoUnaEmpresaTransportistaAgregaUnCamion_SuListaDeCamionesAumenta() {
+
+		Camion camion1 = mock(Camion.class);
+		Camion camion2 = mock(Camion.class);
+		empresaTransportista.agregarCamion(camion2);
+		empresaTransportista.agregarCamion(camion1);
+		
+		assertEquals(empresaTransportista.getCamiones().size(), 2);
+		assertTrue(empresaTransportista.getCamiones().contains(camion1));
+		assertTrue(empresaTransportista.getCamiones().contains(camion2));
 		
 	}
 
