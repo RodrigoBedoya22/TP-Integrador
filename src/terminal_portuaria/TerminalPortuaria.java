@@ -14,6 +14,12 @@ public class TerminalPortuaria {
 	private ArrayList<EmpresaTransportista> empresasTransportistas;
 	private ArrayList<Camion> camiones;
 	
+	/**
+	 * Constructor de una termina portuaria
+	 * @param nombre - El nombre de la terminal
+	 * @param coordenada - La coordenada de la terminal
+	 * NOTA: Una terminal portuaria se isntancia con sus listas vacias.
+	 */
 	public TerminalPortuaria(String nombre, Coordenada coordenada) {
 		this.nombre = nombre;
 		this.coordenada = coordenada;
@@ -83,6 +89,16 @@ public class TerminalPortuaria {
 	}
 	
 	/**
+	 * Elimina una empresa naviera de la lista de navieras de la terminal.
+	 * @param naviera - La naviera a eliminar de la lista de navieras de la terminal.
+	 */
+	public void eliminarNaviera(EmpresaNaviera naviera) {
+		
+		this.navieras.remove(naviera);
+		
+	}
+	
+	/**
 	 * Agrega una empresa transportista a la terminal gestionada, si la empresa ya está registrada retorna una excepcion.
 	 * @param empresaTransportista -  La empresa transportista a agregar
 	 */
@@ -96,8 +112,21 @@ public class TerminalPortuaria {
 		}
 		
 	}
+	
+	/**
+	 * Elimina una empresa transportista de la lista de empresas transportistas de la terminal.
+	 * @param transportista - La transportista a eliminar de la lista de transportistas de la terminal
+	 */
+	public void eliminarEmpresaTransportista(EmpresaTransportista transportista) {
+		
+		this.empresasTransportistas.remove(transportista);
+		
+	}
 
-
+	/**
+	 * Al llegar un camion, se registra en la terminal.
+	 * @param camion - El camion a registrar en la lista de camiones
+	 */
 	public void registrarCamion(Camion camion) {
 		
 		if(this.getCamiones().contains(camion)){
@@ -108,5 +137,16 @@ public class TerminalPortuaria {
 		}
 		
 	}
+	
+	/**
+	 * Al retirarse un camion, se elimina de la lista de camiones de la terminal.
+	 * @param camion - El camion a eliminar
+	 */
+	public void eliminarCamion(Camion camion) {
+		
+		this.camiones.remove(camion);
+		
+	}
+
 	
 }

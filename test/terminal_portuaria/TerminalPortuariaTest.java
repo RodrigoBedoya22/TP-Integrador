@@ -19,7 +19,6 @@ class TerminalPortuariaTest {
 		
 		Coordenada coordenada = new Coordenada(10.5, 20.7);
 		terminal = new TerminalPortuaria("ElAtlantico", coordenada);
-
 		
 	}
 
@@ -58,7 +57,20 @@ class TerminalPortuariaTest {
 	}
 	
 	@Test
-	void test004_CuandoUnaTerminalAgregaUnaNuevaEmpresaTransportista_SuListaDeEmpresasTransportistasAumenta() {
+	void test004_CuandoUnaTerminalEliminaAUnaNavieraDeSuListaDeNavieras_LaListaDisminuye() {
+
+		EmpresaNaviera naviera = mock(EmpresaNaviera.class);
+		terminal.agregarNaviera(naviera);
+		
+		terminal.eliminarNaviera(naviera);
+		
+		assertTrue(terminal.getNavieras().isEmpty());
+		assertFalse(terminal.getNavieras().contains(naviera));
+		
+	}
+	
+	@Test
+	void test005_CuandoUnaTerminalAgregaUnaNuevaEmpresaTransportista_SuListaDeEmpresasTransportistasAumenta() {
 
 		EmpresaTransportista transportista1 = mock(EmpresaTransportista.class);
 		EmpresaTransportista transportista2 = mock(EmpresaTransportista.class);
@@ -74,7 +86,7 @@ class TerminalPortuariaTest {
 	}
 	
 	@Test
-	void test005_UnaTerminalNoPuedeAgregarALaMismaEmpresaTransportistaDosVeces() {
+	void test006_UnaTerminalNoPuedeAgregarALaMismaEmpresaTransportistaDosVeces() {
 
 		EmpresaTransportista transportista = mock(EmpresaTransportista.class);
 		terminal.agregarEmpresaTransportista(transportista);
@@ -86,13 +98,27 @@ class TerminalPortuariaTest {
 	}
 	
 	@Test
-	void test006_CuandoUnaTerminalConoceSuCoordenada() {
+	void test007_CuandoUnaTerminalEliminaAUnaEmpresaTransportistaDeSuListaDeEmpresasTransportistas_LaListaDisminuye() {
+
+		EmpresaTransportista transportista = mock(EmpresaTransportista.class);
+		terminal.agregarEmpresaTransportista(transportista);
+		
+		terminal.eliminarEmpresaTransportista(transportista);
+		
+		assertTrue(terminal.getEmpresasTransportistas().isEmpty());
+		assertFalse(terminal.getEmpresasTransportistas().contains(transportista));
+		
+	}
+	
+	@Test
+	void test008_UnaTerminalConoceSuCoordenada() {
+		
         assertEquals(10.5, terminal.getCoordenada().getX());
         assertEquals(20.7, terminal.getCoordenada().getY());
     }
 	
 	@Test
-	void test007_CuandoUnaTerminalRegistraUnNuevoCamion_SuListaDeCamionesAumenta() {
+	void test009_CuandoUnaTerminalRegistraUnNuevoCamion_SuListaDeCamionesAumenta() {
 		
 		Camion camion1 = mock(Camion.class);
 		Camion camion2 = mock(Camion.class);
@@ -104,7 +130,7 @@ class TerminalPortuariaTest {
 	}
 	
 	@Test
-	void test008_UnaTerminalNoPuedeAgregarAlMismoCamionDosVeces() {
+	void test010_UnaTerminalNoPuedeAgregarAlMismoCamionDosVeces() {
 
 		Camion camion = mock(Camion.class);
 		terminal.registrarCamion(camion);
@@ -113,6 +139,18 @@ class TerminalPortuariaTest {
 		
 		assertEquals(terminal.getCamiones().size(),1);
 		
+	}
+	
+	@Test
+	void test011_CuandoUnCamionSeRetiraDeLaTerminal_LaListaDeCamionesDisminuye() {
+		
+		Camion camion = mock(Camion.class);
+		terminal.registrarCamion(camion);
+		
+		terminal.eliminarCamion(camion);
+		
+		assertTrue(terminal.getCamiones().isEmpty());
+		assertFalse(terminal.getCamiones().contains(camion));
 	}
 	
 
