@@ -1,0 +1,36 @@
+package orden;
+
+import java.util.ArrayList;
+
+import carga.Carga;
+import cliente.Cliente;
+import empresa_naviera.BuqueViaje;
+import empresa_transportista.Camion;
+import empresa_transportista.Chofer;
+import servicio.Servicio;
+
+public class OrdenExportacion extends Orden{
+
+	private BuqueViaje viaje;
+
+	public OrdenExportacion(Cliente cliente, Carga carga, Camion camion, Chofer chofer, ArrayList<Servicio> servicios, BuqueViaje viaje) {
+		super(cliente, carga, camion, chofer, servicios);
+		this.viaje = viaje;
+		
+	}
+
+	@Override
+	public boolean esOrdenDeExportacion() {
+		return true;
+	}
+
+	@Override
+	public boolean esOrdenDeImportacion() {
+		return false;
+	}
+
+	public BuqueViaje getViaje() {
+		return viaje;
+	}
+
+}
