@@ -16,4 +16,13 @@ public class CircuitoMaritimo {
     	 return tramos;
     }
 
+	public double getDuracion() {
+		
+		double duracion= 0;
+		for (Tramo tramo: tramos) {
+			duracion+= tramo.getDuracion();
+		}
+		return duracion;
+	}
+
 }

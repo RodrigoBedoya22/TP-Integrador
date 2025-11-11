@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import terminal_portuaria.Coordenada;
 
 class BuqueTest {
+	
 	Buque buque;
 	
 	@BeforeEach

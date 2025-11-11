@@ -28,7 +28,9 @@ class CamionTest {
 	void test002_ElCamionConoceAQuienLoConduce() {
 		
 		Chofer chofer = mock(Chofer.class);
+		
 		camion.setChofer(chofer);
+		
 		assertTrue(camion.getChofer() == chofer);
 		
 	}	

@@ -29,5 +29,13 @@ class CoordenadaTest {
 		assertEquals(coordenada.getY(), 3);
 		
 	}
+	
+	@Test
+	void test003_UnaCoordenadaConoceLaDistanciaHaciaOtraCoordenada() {
+		//DOC
+		Coordenada coordenadaDOC = new Coordenada(11.0, 22.0);
+		
+		assertEquals(coordenada.distanciaHaciaCoordenada(coordenadaDOC), 21.02);
+	}
 
 }

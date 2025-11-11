@@ -16,7 +16,6 @@ class EmpresaNavieraTest {
 	void setUp() throws Exception {
 		
 		empresaNaviera = new EmpresaNaviera("Atlantida");
-        
 		
 	}
 
@@ -67,6 +66,7 @@ class EmpresaNavieraTest {
 		
 		Buque buque1 = mock(Buque.class);
 		Buque buque2 = mock(Buque.class);
+		
 		empresaNaviera.agregarBuque(buque1);
 		empresaNaviera.agregarBuque(buque2);
 		
