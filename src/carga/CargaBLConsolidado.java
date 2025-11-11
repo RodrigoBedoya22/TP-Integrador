@@ -14,18 +14,6 @@ public class CargaBLConsolidado extends Carga{
 		
 	}
 	
-	public String getTipoDeProducto() {
-		return tipoDeProducto;
-	}
-
-	public double getPeso() {
-		return peso;
-	}
-
-	public Cliente getPropietario() {
-		return propietario;
-	}
-	
 	public void agregarCarga(Carga carga) {
 		
 		this.cargas.add(carga);

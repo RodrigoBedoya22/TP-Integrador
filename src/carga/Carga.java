@@ -2,7 +2,7 @@ package carga;
 
 import cliente.Cliente;
 
-public class Carga {
+public abstract class Carga {
 	
 	String tipoDeProducto;
 	double peso;

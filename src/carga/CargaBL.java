@@ -8,19 +8,5 @@ public class CargaBL extends Carga{
 		super(tipoDeProducto, peso, propietario);
 		
 	}
-	
-	public String getTipoDeProducto() {
-		return tipoDeProducto;
-	}
-
-	public double getPeso() {
-		return peso;
-	}
-
-	public Cliente getPropietario() {
-		return propietario;
-	}
-	
-	
 
 }

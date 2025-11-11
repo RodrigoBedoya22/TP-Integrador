@@ -7,5 +7,12 @@ public class Dry extends Contenedor {
 		super(idString, idNumero, ancho, largo, alto, peso);
 		
 	}
+	
+	@Override
+	public String tipo() {
+		
+		return "dry";
+		
+	}
 
 }

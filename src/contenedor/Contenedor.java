@@ -45,4 +45,6 @@ public abstract class Contenedor {
 		
 	}
 	
+	abstract String tipo();
+	
 }
