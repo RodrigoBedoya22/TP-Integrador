@@ -9,12 +9,10 @@ import java.util.Date;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import carga.Carga;
-import carga.CargaBL;
+import carga.*;
 import cliente.Cliente;
 import empresa_naviera.BuqueViaje;
-import empresa_transportista.Camion;
-import empresa_transportista.Chofer;
+import empresa_transportista.*;
 import servicio.Servicio;
 
 class ordenTest {

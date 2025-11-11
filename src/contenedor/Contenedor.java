@@ -44,12 +44,16 @@ public abstract class Contenedor {
 		return idString +  idNumerico;
 		
 	}
-	
+	/**
+	 * Retorna los metros cubicos de un contenedor basandose en sus medidas: ancho, largo y alto
+	 * @return Double - Los metros cubicos del contenedor segun sus medidas.
+	 */
 	public double metrosCubicos() {
 		
 		double metrosCubicos = 0;
 		metrosCubicos = this.alto * this.ancho * this.largo;
-		return metrosCubicos;
+		//se redondea a 2 decimales
+		return Math.round(metrosCubicos * 100.0) / 100.0;
 		
 	}
 	

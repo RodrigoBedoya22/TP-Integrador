@@ -11,7 +11,7 @@ public class Dry extends Contenedor {
 	@Override
 	public String tipo() {
 		
-		return "dry";
+		return "Dry";
 		
 	}
 

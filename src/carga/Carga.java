@@ -8,9 +8,8 @@ public abstract class Carga {
 	double peso;
 	Cliente propietario;
 	
-	public Carga(String tipoDeProducto, double peso, Cliente propietario) {
+	public Carga(String tipoDeProducto, Cliente propietario) {
 		this.tipoDeProducto = tipoDeProducto;
-		this.peso = peso;
 		this.propietario = propietario;
 	}
 
@@ -18,9 +17,7 @@ public abstract class Carga {
 		return tipoDeProducto;
 	}
 
-	public double getPeso() {
-		return peso;
-	}
+	public abstract double getPeso();
 
 	public Cliente getPropietario() {
 		return propietario;

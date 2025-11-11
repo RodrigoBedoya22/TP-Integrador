@@ -68,9 +68,14 @@ class ContenedorTest {
 	@Test
 	void test006_UnContenedorConoceSuTipo() {
 		
-		assertEquals(contenedorDry.tipo(), "dry");
-		assertEquals(contenedorReefer.tipo(), "reefer");
-		assertEquals(contenedorTanque.tipo(), "tanque");
+		assertEquals(contenedorDry.tipo(), "Dry");
+		assertEquals(contenedorReefer.tipo(), "Reefer");
+		assertEquals(contenedorTanque.tipo(), "Tanque");
 		
+	}
+	
+	@Test
+	void test007_UnContenedorConoceSusMetrosCubicosBasandoseEnSusMedidas() {
+		assertEquals(contenedorDry.metrosCubicos(), 597.65);
 	}
 }

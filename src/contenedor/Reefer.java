@@ -14,7 +14,7 @@ public class Reefer extends Contenedor {
 	@Override
 	public String tipo() {
 		
-		return "reefer";
+		return "Reefer";
 		
 	}
 		

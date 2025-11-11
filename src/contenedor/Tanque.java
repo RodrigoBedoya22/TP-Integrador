@@ -11,7 +11,7 @@ public class Tanque extends Contenedor {
 	@Override
 	public String tipo() {
 		
-		return "tanque";
+		return "Tanque";
 		
 	}
 

@@ -8,8 +8,8 @@ public class CargaBLConsolidado extends Carga{
 	
 	private ArrayList<Carga> cargas;
 
-	public CargaBLConsolidado(String tipoDeProducto, double peso, Cliente propietario) {
-		super(tipoDeProducto, peso, propietario);
+	public CargaBLConsolidado(String tipoDeProducto, Cliente propietario) {
+		super(tipoDeProducto, propietario);
 		this.cargas = new ArrayList<Carga>();
 		
 	}
@@ -37,4 +37,12 @@ public class CargaBLConsolidado extends Carga{
 		return cargas;
 	}
     
+	@Override
+	public double getPeso() {
+		Double peso= 0.0;
+		for (Carga carga: cargas) {
+			peso+= carga.getPeso();
+		}
+		return peso;
+	}
 }

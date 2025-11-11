@@ -21,7 +21,7 @@ class cargaTest {
 		
 		Cliente cliente = new Cliente("Pedro", 12345678, "pedro@gmail.com");
 		cargaBL= new CargaBL("Comida", 25.3, cliente);
-		cargaBLConsolidado = new CargaBLConsolidado("Medicamentos", 34.8, cliente);
+		cargaBLConsolidado = new CargaBLConsolidado("Medicamentos", cliente);
 	
 	}
 
@@ -36,8 +36,10 @@ class cargaTest {
 	@Test
 	void test002_UnaCargaConoceSuPeso() {
 		
+		cargaBLConsolidado.agregarCarga(cargaBL);
+		
 		assertEquals(cargaBL.getPeso(), 25.3);
-		assertEquals(cargaBLConsolidado.getPeso(), 34.8);
+		assertEquals(cargaBLConsolidado.getPeso(), 25.3);
 		
 	}
 	
