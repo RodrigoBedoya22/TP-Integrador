@@ -39,6 +39,7 @@ class TramoTest {
 		assertEquals(tramo.getDuracion(), 1865.5);	
 		
 	}
+	
 	@Test
 	void test003_UnTramoConoceSuPrecio() throws Exception {
 		
@@ -49,6 +50,7 @@ class TramoTest {
 		
 		assertEquals(tramo.getPrecio(), 300000.0);
 	}
+	
 	@Test
 	void test004_ElPrecioDeUnTramoNoPuedeSerNegativoOCero() throws Exception{
 		

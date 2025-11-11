@@ -6,6 +6,8 @@ import java.util.Date;
 import empresa_naviera.EmpresaNaviera;
 import empresa_transportista.Camion;
 import empresa_transportista.EmpresaTransportista;
+import orden.Orden;
+import orden.OrdenExportacion;
 
 public class TerminalPortuaria {
 
@@ -14,6 +16,7 @@ public class TerminalPortuaria {
 	private ArrayList<EmpresaNaviera> navieras;
 	private ArrayList<EmpresaTransportista> empresasTransportistas;
 	private ArrayList<Camion> camiones;
+	private ArrayList<Orden> ordenesRegistradas;
 	
 	/**
 	 * Constructor de una termina portuaria
@@ -27,6 +30,7 @@ public class TerminalPortuaria {
 		this.navieras = new ArrayList<EmpresaNaviera>();
 		this.empresasTransportistas = new ArrayList<EmpresaTransportista>();
 		this.camiones = new ArrayList<Camion>();
+		this.ordenesRegistradas = new ArrayList<Orden>();
 	}
 	
 	/**
@@ -158,6 +162,12 @@ public class TerminalPortuaria {
 	public double distanciaHastaTerminal(TerminalPortuaria terminal) {
 		double distancia = this.coordenada.distanciaHaciaCoordenada(terminal.getCoordenada());
 		return distancia;
+	}
+
+	public void registrarOrden(Orden orden) {
+		
+		this.ordenesRegistradas.add(orden);
+		
 	}
 
 	
