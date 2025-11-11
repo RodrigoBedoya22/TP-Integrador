@@ -45,6 +45,14 @@ public abstract class Contenedor {
 		
 	}
 	
+	public double metrosCubicos() {
+		
+		double metrosCubicos = 0;
+		metrosCubicos = this.alto * this.ancho * this.largo;
+		return metrosCubicos;
+		
+	}
+	
 	abstract String tipo();
 	
 }
