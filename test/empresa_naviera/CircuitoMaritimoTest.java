@@ -9,18 +9,21 @@ import terminal_portuaria.*;
 
 class CircuitoMaritimoTest {
 	
-	TerminalPortuaria terminalA, terminalB, terminalC;
-	Tramo tramoAB, tramoBC, tramoCA;
+	TerminalPortuaria terminalA, terminalB, terminalC, terminalD;
+	Tramo tramoAB, tramoBC, tramoCA, tramoDB;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		terminalA = new TerminalPortuaria("Terminal A", new Coordenada(10, 222));
 		terminalB = new TerminalPortuaria("Terminal B", new Coordenada(102, 5));
 		terminalC = new TerminalPortuaria("Terminal C", new Coordenada(0, 33));
+		terminalD = new TerminalPortuaria("Terminal D", new Coordenada(56, 73));
+		
 		
 		tramoAB = new Tramo(terminalA, terminalB, 10000.0);
 		tramoBC = new Tramo(terminalB, terminalC, 10000.0);
 		tramoCA = new Tramo(terminalC, terminalA, 10000.0);
+		tramoDB = new Tramo(terminalD, terminalB, 10000.0);
 	}
 
 	@Test
@@ -45,8 +48,40 @@ class CircuitoMaritimoTest {
 		
 		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
 		
-		assertEquals(circuito.getDuracion(), 530.73 );
+		assertEquals(circuito.getDuracion(), 530.73);
 		
 	}
+	
+	@Test
+	void test003_UnCircuitoNoPuedeTenerUnaListaDeTramosVacios() {
+		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
+		
+		assertThrows(IllegalArgumentException.class, () -> new CircuitoMaritimo(listaDeTramos));
+		 
+	}
+	
+	@Test
+	void test004_UnCircuitoTieneTramosValidos() {
+		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
+		listaDeTramos.add(tramoAB);
+		listaDeTramos.add(tramoBC);
+		listaDeTramos.add(tramoDB);
+		
+		assertThrows(IllegalArgumentException.class, () -> new CircuitoMaritimo(listaDeTramos));
+		 
+	}
+	
+	@Test
+	void test005_UnCircuitoContieneUnTramoDestinoDeNombreDado(){
+		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
+		listaDeTramos.add(tramoAB);
+		listaDeTramos.add(tramoBC);
+		listaDeTramos.add(tramoCA);
+		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
+		
+		assertTrue(circuito.contieneTramoConDestino("Terminal C"));
+		 
+	}
+	
 
 }

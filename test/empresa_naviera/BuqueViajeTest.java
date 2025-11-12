@@ -1,0 +1,141 @@
+package empresa_naviera;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import buque.Buque;
+import terminal_portuaria.Coordenada;
+import terminal_portuaria.TerminalPortuaria;
+
+class BuqueViajeTest {
+	
+	Buque buque;
+	BuqueViaje viaje;
+	TerminalPortuaria terminalA, terminalB, terminalC, terminalD;
+	Tramo tramoAB, tramoBC, tramoCA, tramoDB;
+	CircuitoMaritimo circuito;
+	
+
+	@BeforeEach
+	void setUp() throws Exception {
+		
+	   Coordenada coordenadaDeBuque = new Coordenada(1.0,2.0);
+	   buque= new Buque("Titanic", coordenadaDeBuque);
+	   
+	   terminalA = new TerminalPortuaria("Terminal A", new Coordenada(10, 222));
+	   terminalB = new TerminalPortuaria("Terminal B", new Coordenada(102, 5));
+	   terminalC = new TerminalPortuaria("Terminal C", new Coordenada(0, 33));
+	   terminalD = new TerminalPortuaria("Terminal D", new Coordenada(56, 73));
+		
+	   tramoAB = new Tramo(terminalA, terminalB, 10000.0);
+	   tramoBC = new Tramo(terminalB, terminalC, 10000.0);
+	   tramoCA = new Tramo(terminalC, terminalA, 10000.0);
+	   tramoDB = new Tramo(terminalD, terminalB, 10000.0);
+	   
+	   
+	}
+
+	@Test
+	void test001UnBuqueViajeConoceAlBuqueQueVaAViajar() {
+		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
+		listaDeTramos.add(tramoAB);
+		listaDeTramos.add(tramoBC);
+		listaDeTramos.add(tramoCA);
+		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
+		
+		Calendar fecha = Calendar.getInstance();
+	    fecha.set(1990, Calendar.OCTOBER, 23);
+	    
+		viaje= new BuqueViaje(buque,circuito, fecha);
+		assertTrue(viaje.getBuque() == buque);
+	}
+	
+	@Test
+	void test002UnBuqueViajeConoceSuCircuito() {
+		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
+		listaDeTramos.add(tramoAB);
+		listaDeTramos.add(tramoBC);
+		listaDeTramos.add(tramoCA);
+		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
+		
+		Calendar fecha = Calendar.getInstance();
+	    fecha.set(1990, Calendar.OCTOBER, 23);
+		
+		viaje= new BuqueViaje(buque,circuito,fecha);
+		assertTrue(viaje.getCircuito() == circuito);
+	}
+	
+	@Test
+	void test003UnBuqueViajeConoceSuTramoActual() {
+		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
+		listaDeTramos.add(tramoAB);
+		listaDeTramos.add(tramoBC);
+		listaDeTramos.add(tramoCA);
+		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
+		
+		Calendar fecha = Calendar.getInstance();
+	    fecha.set(1990, Calendar.OCTOBER, 23);
+	    
+		viaje= new BuqueViaje(buque,circuito, fecha);
+		assertTrue(viaje.getTramoActual() == tramoAB);
+	}
+	
+	@Test
+	void test004UnBuqueViajeCambiaSuTramoActualPorOtroTramoActual() {
+		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
+		listaDeTramos.add(tramoAB);
+		listaDeTramos.add(tramoBC);
+		listaDeTramos.add(tramoCA);
+		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
+		
+		Calendar fecha = Calendar.getInstance();
+	    fecha.set(1990, Calendar.OCTOBER, 23);
+	    
+		viaje= new BuqueViaje(buque,circuito,fecha);
+		viaje.pasarASiguienteTramo();
+		
+		assertTrue(viaje.getTramoActual() == tramoBC);
+	}
+	
+	@Test
+	void test005UnBuqueViajeConoceSuFechaDeSalida() {
+		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
+		listaDeTramos.add(tramoAB);
+		listaDeTramos.add(tramoBC);
+		listaDeTramos.add(tramoCA);
+		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
+		
+		Calendar fecha = Calendar.getInstance();
+	    fecha.set(1990, Calendar.OCTOBER, 23);
+	    
+		viaje= new BuqueViaje(buque,circuito, fecha);
+		
+		assertTrue(viaje.getFechaDeSalida() == fecha);
+	}
+	
+	/*
+	@Test
+	void test006UnBuqueViajeConoceLaFechaDeLlegadaASuDestinoActual() {
+		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
+		listaDeTramos.add(tramoAB);
+		listaDeTramos.add(tramoBC);
+		listaDeTramos.add(tramoCA);
+		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
+		
+		Calendar fecha = Calendar.getInstance();
+	    fecha.set(1990, Calendar.OCTOBER, 23);
+	    
+		viaje= new BuqueViaje(buque,circuito, fecha);
+		
+		
+		assertEquals(viaje.getFechaDeLlegadaADestinoActual() = )
+	}
+	*/
+	
+
+}
