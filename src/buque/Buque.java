@@ -32,4 +32,11 @@ public class Buque {
 		return this.estado;
 	}
 
+
+	public void setEstado(EstadoBuque estado) {
+		this.estado = estado;
+	}
+	
+	
+
 }

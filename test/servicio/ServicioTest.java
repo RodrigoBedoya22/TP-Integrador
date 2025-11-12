@@ -10,6 +10,7 @@ import contenedor.Dry;
 class ServicioTest {
 
 	Servicio lavado;
+	Servicio pesado;
 	Dry contenedor;
 	Dry contenedor2;
 	
@@ -17,6 +18,7 @@ class ServicioTest {
 	void setUp() throws Exception {
 		
 		lavado = new Lavado(500);
+		pesado = new Pesado(1500);
 		contenedor = new Dry("tata", 1234567, 5.00, 5.00, 10.00, 75.00);
 		contenedor2 = new Dry("pepe", 7654321, 2.00, 2.00, 10.00, 75.00);
 		
@@ -28,6 +30,13 @@ class ServicioTest {
 		
 		assertEquals(lavado.calcularCosto(contenedor), 1000);
 		assertEquals(lavado.calcularCosto(contenedor2), 500);
+		
+	}
+	
+	@Test
+	void test002_ElServicioDePesadoSabeCuantoCobrar() {
+		
+		assertEquals(pesado.calcularCosto(contenedor), 1500);
 		
 	}
 

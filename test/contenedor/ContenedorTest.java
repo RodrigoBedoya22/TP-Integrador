@@ -76,6 +76,10 @@ class ContenedorTest {
 	
 	@Test
 	void test007_UnContenedorConoceSusMetrosCubicosBasandoseEnSusMedidas() {
+		
 		assertEquals(contenedorDry.metrosCubicos(), 597.65);
+		assertEquals(contenedorReefer.metrosCubicos(), 524.88);
+		assertEquals(contenedorTanque.metrosCubicos(), 360.36);
+		
 	}
 }
