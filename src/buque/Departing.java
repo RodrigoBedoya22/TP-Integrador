@@ -7,33 +7,33 @@ public class Departing implements EstadoBuque {
 		
 		buque.setEstado(new OutOfBound());
 			
-		}
+	}
 
 	@Override
 	public void pasarAEstadoInBound(Buque buque) {
 		
-		throw new IllegalArgumentException("Un buque no puede pasar del estado Departing al estado InBound");
+		throw new IllegalStateException("Un buque no puede pasar del estado Departing al estado InBound");
 		
 	}
 
 	@Override
 	public void pasarAEstadoArrived(Buque buque) {
 		
-		throw new IllegalArgumentException("Un buque no puede pasar del estado Departing al estado Arrived");
+		throw new IllegalStateException("Un buque no puede pasar del estado Departing al estado Arrived");
 		
 	}
 
 	@Override
 	public void pasarAEstadoWorking(Buque buque) {
 		
-		throw new IllegalArgumentException("Un buque no puede pasar del estado Departing al estado Working");
+		throw new IllegalStateException("Un buque no puede pasar del estado Departing al estado Working");
 		
 	}
 
 	@Override
 	public void pasarAEstadoDeparting(Buque buque) {
 		
-		throw new IllegalArgumentException("El buque ya se encuentra en estado Departing");
+		throw new IllegalStateException("El buque ya se encuentra en estado Departing");
 		
 	}
 	

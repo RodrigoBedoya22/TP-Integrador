@@ -1,21 +1,18 @@
 package buque;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.internal.matchers.InstanceOf;
 
 import terminal_portuaria.Coordenada;
 
 class EstadoBuqueTest {
 
-	EstadoBuque outOfBound;
-	EstadoBuque inBound;
-	EstadoBuque arrived;
-	EstadoBuque working;
-	EstadoBuque departing;
+	EstadoBuque outOfBound, inBound, arrived, working,departing;
+	Buque buque;
+	Coordenada coordenada;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -26,203 +23,230 @@ class EstadoBuqueTest {
 		working = new Working();
 		departing = new Departing();
 		
-		
-	}
-
-	@Test
-	void test001_ElBuqueConoceSuEstadoActual() {
-		
-		Coordenada coordenada = mock(Coordenada.class);
-		Buque buque = new Buque("pepe", coordenada);
-		
-		
-		assertThrows(IllegalArgumentException.class, () -> outOfBound.pasarAEstadoOutOfBound(buque));
-		assertInstanceOf(OutOfBound.class, buque.getEstado());
-		
+		coordenada = mock(Coordenada.class);
+		buque = new Buque("pepe", coordenada);
 	}
 	
+	//-------------TEST DE ESTADO OUT BOUND-------------------------
 	@Test
-	void test002_ElEstadoOutOfBoundSabeAQueEstadoPuedePasar() {
+	void test001_NoSePuedePasarDeEstadoOutBoundAlEstadoOutBound() {
 		
-		Coordenada coordenada = mock(Coordenada.class);
-		Buque buque = new Buque("pepe", coordenada);
+		assertThrows(IllegalStateException.class, () -> outOfBound.pasarAEstadoOutOfBound(buque));
+		
+	}
+	@Test
+	void test002_SePuedePasarDelEstadoOutBoundAlEstadoInBound() {
 		
 		outOfBound.pasarAEstadoInBound(buque);
+		
 		assertInstanceOf(InBound.class, buque.getEstado());
+	}
+	
+	@Test
+	void test003_NoSePuedePasarDeEstadoOutBoundAlEstadoArrived() {
+		
+		assertThrows(IllegalStateException.class, () -> outOfBound.pasarAEstadoArrived(buque));
 		
 	}
 	
 	@Test
-	void test003_ElEstadoOutOfBoundSabeAQueEstadosNoPuedePasar() {
+	void test004_NoSePuedePasarDeEstadoOutBoundAlEstadoWorking() {
 		
-		Coordenada coordenada = mock(Coordenada.class);
-		Buque buque = new Buque("pepe", coordenada);
-		
-		assertThrows(IllegalArgumentException.class, () -> outOfBound.pasarAEstadoArrived(buque));
-		assertThrows(IllegalArgumentException.class, () -> outOfBound.pasarAEstadoWorking(buque));
-		assertThrows(IllegalArgumentException.class, () -> outOfBound.pasarAEstadoDeparting(buque));
+		assertThrows(IllegalStateException.class, () -> outOfBound.pasarAEstadoWorking(buque));
 		
 	}
 	
 	@Test
-	void test004_ElEstadoInBoundSabeSuEstadoActual() {
+	void test005_NoSePuedePasarDeEstadoOutBoundAlEstadoDeparting() {
 		
-		Coordenada coordenada = mock(Coordenada.class);
-		Buque buque = new Buque("pepe", coordenada);
-		buque.setEstado(inBound);
-		
-		
-		assertThrows(IllegalArgumentException.class, () -> inBound.pasarAEstadoInBound(buque));
-		assertInstanceOf(InBound.class, buque.getEstado());
+		assertThrows(IllegalStateException.class, () -> outOfBound.pasarAEstadoDeparting(buque));
 		
 	}
-	
+	//-------------TEST DE ESTADO IN BOUND-------------------------
 	@Test
-	void test005_ElEstadoInBoundPuedeVolverAlEstadoOutOfBound() {
-		
-		Coordenada coordenada = mock(Coordenada.class);
-		Buque buque = new Buque("pepe", coordenada);
+	void test006_SePuedePasarDeEstadoInBoundAlEstadoOutBound() {
 		buque.setEstado(inBound);
 		
 		inBound.pasarAEstadoOutOfBound(buque);
+		
 		assertInstanceOf(OutOfBound.class, buque.getEstado());
 		
 	}
+	//*
+	@Test
+	void test007_NoSePuedePasarDeEstadoInBoundAlEstadoInBound() {
+		
+		buque.setEstado(inBound);
+		
+		assertThrows(IllegalStateException.class, () -> inBound.pasarAEstadoInBound(buque));
+	}
 	
 	@Test
-	void test006_ElEstadoInBoundPuedePasarAlEstadoArrived() {
+	void test008_SePuedePasarDeEstadoInBoundAlEstadoArrived() {
 		
-		Coordenada coordenada = mock(Coordenada.class);
-		Buque buque = new Buque("pepe", coordenada);
 		buque.setEstado(inBound);
 		
 		inBound.pasarAEstadoArrived(buque);
+		
 		assertInstanceOf(Arrived.class, buque.getEstado());
-
 		
 	}
 	
 	@Test
-	void test007_ElEstadoInBoundSabeAQueEstadosNoPuedePasar() {
+	void test009_NoSePuedePasarDeEstadoInBoundAlEstadoWorking() {
 		
-		Coordenada coordenada = mock(Coordenada.class);
-		Buque buque = new Buque("pepe", coordenada);
+		buque.setEstado(inBound);
 		
-		assertThrows(IllegalArgumentException.class, () -> inBound.pasarAEstadoWorking(buque));
-		assertThrows(IllegalArgumentException.class, () -> inBound.pasarAEstadoDeparting(buque));
-		
+		assertThrows(IllegalStateException.class, () -> inBound.pasarAEstadoWorking(buque));
 	}
 	
 	@Test
-	void test008_ElEstadoArrivedSabeSuEstadoActual() {
+	void test010_NoSePuedePasarDeEstadoInBoundAlEstadoDeparting() {
 		
-		Coordenada coordenada = mock(Coordenada.class);
-		Buque buque = new Buque("pepe", coordenada);
+		buque.setEstado(inBound);
+		
+		assertThrows(IllegalStateException.class, () -> inBound.pasarAEstadoDeparting(buque));
+	}
+	//-------------TEST DE ESTADO ARRIVED-------------------------
+	@Test
+	void test011_NoSePuedePasarDelEstadoArrivedAlEstadoOutBound() {
+		
 		buque.setEstado(arrived);
 		
-		
-		assertThrows(IllegalArgumentException.class, () -> arrived.pasarAEstadoArrived(buque));
-		assertInstanceOf(Arrived.class, buque.getEstado());
+		assertThrows(IllegalStateException.class, () -> arrived.pasarAEstadoOutOfBound(buque));
 		
 	}
 	
 	@Test
-	void test009_ElEstadoArrivedSabeAQueEstadoPuedePasar() {
+	void test012_NoSePuedePasarDelEstadoArrivedAlEstadoInBound() {
 		
-		Coordenada coordenada = mock(Coordenada.class);
-		Buque buque = new Buque("pepe", coordenada);
+		buque.setEstado(arrived);
+		
+		assertThrows(IllegalStateException.class, () -> arrived.pasarAEstadoInBound(buque));
+		
+	}
+	
+	@Test
+	void test013_NoSePuedePasarDelEstadoArrivedAlEstadoArrived() {
+		
+		buque.setEstado(arrived);
+		
+		assertThrows(IllegalStateException.class, () -> arrived.pasarAEstadoArrived(buque));
+		
+	}
+	
+	@Test
+	void test014_SePuedePasarDelEstadoArrivedAlEstadoWorking() {
+		
 		buque.setEstado(arrived);
 		
 		arrived.pasarAEstadoWorking(buque);
+		
 		assertInstanceOf(Working.class, buque.getEstado());
 		
 	}
 	
 	@Test
-	void test010_ElEstadoArrivedSabeAQueEstadosNoPuedePasar() {
+	void test015_NoSePuedePasarDelEstadoArrivedAlEstadoDeparting() {
 		
-		Coordenada coordenada = mock(Coordenada.class);
-		Buque buque = new Buque("pepe", coordenada);
 		buque.setEstado(arrived);
 		
-		assertThrows(IllegalArgumentException.class, () -> arrived.pasarAEstadoOutOfBound(buque));
-		assertThrows(IllegalArgumentException.class, () -> arrived.pasarAEstadoInBound(buque));
-		assertThrows(IllegalArgumentException.class, () -> arrived.pasarAEstadoDeparting(buque));
-	}
-
-	@Test
-	void test011_ElEstadoWorkingSabeSuEstadoActual() {
+		assertThrows(IllegalStateException.class, () -> arrived.pasarAEstadoDeparting(buque));
 		
-		Coordenada coordenada = mock(Coordenada.class);
-		Buque buque = new Buque("pepe", coordenada);
+	}
+	//-------------TEST DE ESTADO WORKING-------------------------
+	@Test
+	void test016_NoSePuedePasarDelEstadoWorkingAlEstadoOutBound() {
+		
 		buque.setEstado(working);
 		
-		
-		assertThrows(IllegalArgumentException.class, () -> working.pasarAEstadoWorking(buque));
-		assertInstanceOf(Working.class, buque.getEstado());
+		assertThrows(IllegalStateException.class, () -> working.pasarAEstadoOutOfBound(buque));
 		
 	}
 	
 	@Test
-	void test012_ElEstadoWorkingSabeAQueEstadoPuedePasar() {
+	void test017_NoSePuedePasarDelEstadoWorkingAlEstadoInBound() {
 		
-		Coordenada coordenada = mock(Coordenada.class);
-		Buque buque = new Buque("pepe", coordenada);
+		buque.setEstado(working);
+		
+		assertThrows(IllegalStateException.class, () -> working.pasarAEstadoInBound(buque));
+		
+	}
+	
+	@Test
+	void test018_NoSePuedePasarDelEstadoWorkingAlEstadoArrived() {
+		
+		buque.setEstado(working);
+		
+		assertThrows(IllegalStateException.class, () -> working.pasarAEstadoArrived(buque));
+		
+	}
+	
+	@Test
+	void test019_NoSePuedePasarDelEstadoWorkingAlEstadoWorking() {
+		
+		buque.setEstado(working);
+		
+		assertThrows(IllegalStateException.class, () -> working.pasarAEstadoWorking(buque));
+		
+	}
+	
+	@Test
+	void test020_SePuedePasarDelEstadoWorkingAlEstadoDeparting() {
+		
 		buque.setEstado(working);
 		
 		working.pasarAEstadoDeparting(buque);
+		
 		assertInstanceOf(Departing.class, buque.getEstado());
 		
 	}
-	
+	//-------------TEST DE ESTADO DEPARTING-------------------------
 	@Test
-	void test013_ElEstadoWorkingSabeAQueEstadosNoPuedePasar() {
+	void test021_SePuedePasarDelEstadoDepartingAlEstadoOutBound() {
 		
-		Coordenada coordenada = mock(Coordenada.class);
-		Buque buque = new Buque("pepe", coordenada);
-		buque.setEstado(working);
-		
-		assertThrows(IllegalArgumentException.class, () -> working.pasarAEstadoOutOfBound(buque));
-		assertThrows(IllegalArgumentException.class, () -> working.pasarAEstadoInBound(buque));
-		assertThrows(IllegalArgumentException.class, () -> working.pasarAEstadoArrived(buque));
-		
-	}
-	
-	@Test
-	void test014_ElEstadoDepartingSabeSuEstadoActual() {
-		
-		Coordenada coordenada = mock(Coordenada.class);
-		Buque buque = new Buque("pepe", coordenada);
-		buque.setEstado(departing);
-		
-		
-		assertThrows(IllegalArgumentException.class, () -> departing.pasarAEstadoDeparting(buque));
-		assertInstanceOf(Departing.class, buque.getEstado());
-		
-	}
-	
-	@Test
-	void test015_ElEstadoDepartingSabeAQueEstadoPuedePasar() {
-		
-		Coordenada coordenada = mock(Coordenada.class);
-		Buque buque = new Buque("pepe", coordenada);
 		buque.setEstado(departing);
 		
 		departing.pasarAEstadoOutOfBound(buque);
+		
 		assertInstanceOf(OutOfBound.class, buque.getEstado());
 		
 	}
 	
 	@Test
-	void test016_ElEstadoOutOfBoundSabeAQueEstadosNoPuedePasar() {
+	void test022_NoSePuedePasarDelEstadoDepartingAlEstadoInBound() {
 		
-		Coordenada coordenada = mock(Coordenada.class);
-		Buque buque = new Buque("pepe", coordenada);
 		buque.setEstado(departing);
 		
-		assertThrows(IllegalArgumentException.class, () -> departing.pasarAEstadoInBound(buque));
-		assertThrows(IllegalArgumentException.class, () -> departing.pasarAEstadoWorking(buque));
-		assertThrows(IllegalArgumentException.class, () -> departing.pasarAEstadoArrived(buque));
+		assertThrows(IllegalStateException.class, () -> departing.pasarAEstadoInBound(buque));
 		
 	}
+	
+	@Test
+	void test023_NoSePuedePasarDelEstadoDepartingAlEstadoArrived() {
+		
+		buque.setEstado(departing);
+		
+		assertThrows(IllegalStateException.class, () -> departing.pasarAEstadoArrived(buque));
+		
+	}
+	
+	@Test
+	void test024_NoSePuedePasarDelEstadoDepartingAlEstadoWorking() {
+		
+		buque.setEstado(departing);
+		
+		assertThrows(IllegalStateException.class, () -> departing.pasarAEstadoWorking(buque));
+		
+	}
+	
+	@Test
+	void test025_NoSePuedePasarDelEstadoDepartingAlEstadoDeparting() {
+		
+		buque.setEstado(departing);
+		
+		assertThrows(IllegalStateException.class, () -> departing.pasarAEstadoDeparting(buque));
+		
+	}
+	
 }

@@ -7,12 +7,12 @@ public class InBound implements EstadoBuque {
 		
 		buque.setEstado(new OutOfBound());
 			
-		}
+	}
 
 	@Override
 	public void pasarAEstadoInBound(Buque buque) {
 		
-		throw new IllegalArgumentException("El buque ya se encuentra en el estado InBound");
+		throw new IllegalStateException("El buque ya se encuentra en el estado InBound");
 		
 	}
 
@@ -26,14 +26,14 @@ public class InBound implements EstadoBuque {
 	@Override
 	public void pasarAEstadoWorking(Buque buque) {
 		
-		throw new IllegalArgumentException("Un buque no puede pasar del estado InBound al estado Working");
+		throw new IllegalStateException("Un buque no puede pasar del estado InBound al estado Working");
 		
 	}
 
 	@Override
 	public void pasarAEstadoDeparting(Buque buque) {
 		
-		throw new IllegalArgumentException("Un buque no puede pasar del estado InBound al estado Departing");
+		throw new IllegalStateException("Un buque no puede pasar del estado InBound al estado Departing");
 		
 	}
 

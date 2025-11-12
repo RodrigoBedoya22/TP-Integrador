@@ -5,21 +5,21 @@ public class Arrived implements EstadoBuque {
 	@Override
 	public void pasarAEstadoOutOfBound(Buque buque) {	
 		
-		throw new IllegalArgumentException("Un buque no puede pasar del estado Arrived al estado OutOfBound");
+		throw new IllegalStateException("Un buque no puede pasar del estado Arrived al estado OutOfBound");
 			
 		}
 
 	@Override
 	public void pasarAEstadoInBound(Buque buque) {
 		
-		throw new IllegalArgumentException("Un buque no puede pasar del estado Arrived al estado InBound");
+		throw new IllegalStateException("Un buque no puede pasar del estado Arrived al estado InBound");
 		
 	}
 
 	@Override
 	public void pasarAEstadoArrived(Buque buque) {
 		
-		throw new IllegalArgumentException("El buque ya se encuentra en el estado arrived");
+		throw new IllegalStateException("El buque ya se encuentra en el estado arrived");
 		
 	}
 
@@ -33,7 +33,7 @@ public class Arrived implements EstadoBuque {
 	@Override
 	public void pasarAEstadoDeparting(Buque buque) {
 		
-		throw new IllegalArgumentException("Un buque no puede pasar del estado Arrived al estado Departing");
+		throw new IllegalStateException("Un buque no puede pasar del estado Arrived al estado Departing");
 		
 	}
 

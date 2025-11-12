@@ -70,23 +70,23 @@ public class Buque {
 	
     public void pasarAEstadoInBound() {
     	
-    	estado.pasarAEstadoOutOfBound(this);
+    	estado.pasarAEstadoInBound(this);
 		
 	}
     
     public void pasarAEstadoArrived() {
-    	
+    	estado.pasarAEstadoArrived(this);
     }
     
     public void pasarAEstadoWorking() {
     	
-    	estado.pasarAEstadoOutOfBound(this);
+    	estado.pasarAEstadoWorking(this);
 		
 	}
     
     public void pasarAEstadoDeparting() {
     	
-    	estado.pasarAEstadoOutOfBound(this);
+    	estado.pasarAEstadoDeparting(this);
     	
     }
 

@@ -6,13 +6,9 @@ import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import contenedor.Contenedor;
-import contenedor.Dry;
-import contenedor.Reefer;
-import contenedor.Tanque;
+import contenedor.*;
 import empresa_naviera.BuqueViaje;
-import terminal_portuaria.Coordenada;
-import terminal_portuaria.TerminalPortuaria;
+import terminal_portuaria.*;
 
 class BuqueTest {
 	
@@ -71,6 +67,27 @@ class BuqueTest {
         assertTrue(buque.getContenedores().contains(contenedorReefer));
         assertTrue(buque.getContenedores().contains(contenedorTanque));
 	}
-
 	
+	@Test
+	void test005_CuandoUnBuqueEsCreado_PoseeElEstadoOutBound() {
+		
+        assertInstanceOf(OutOfBound.class, buque.getEstado());
+	}
+	
+	@Test
+	void test006_UnBuqueConoceSuEstado() {
+		
+        assertInstanceOf(OutOfBound.class, buque.getEstado());
+	}
+
+	@Test
+	void test007_CuandoSeLeDiceAUnBuqueQueCambieDeEstado_DelegaElCambioASuEstadoActual() {
+		//seteo el estado como un mock
+		OutOfBound estadoOutBound = mock(OutOfBound.class);
+		buque.setEstado(estadoOutBound);
+		
+		buque.pasarAEstadoInBound();
+		
+        verify(buque.getEstado()).pasarAEstadoInBound(buque);
+	}
 }
