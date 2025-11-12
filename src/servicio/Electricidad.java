@@ -14,9 +14,12 @@ public class Electricidad implements Servicio {
 		
 	}
 	
+	/**
+	 * Calcula el costo del servicio para un contenedor conectado basandose en su consumo.
+	 */
 	public double calcularCosto(Contenedor contenedor) {
 		
-		return  0.0;
+		return  0; //contenedor.getConsumoDeEnergia() * this.precioFijo;
 		
 	}
 

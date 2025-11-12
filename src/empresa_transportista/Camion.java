@@ -10,7 +10,10 @@ public class Camion {
 		this.patente = patente;
 		
 	}
-
+	/**
+	 * Indica el chofer asignado a dicho camion.
+	 * @param chofer - El chofer a asignar dicho camion.
+	 */
 	public void setChofer(Chofer chofer) {
 		this.chofer = chofer;
 	}

@@ -15,7 +15,7 @@ class ContenedorTest {
 	void setUp() throws Exception {
 		
 		contenedorDry = new Dry("lala", 1234567, 7.21, 8.3, 9.987, 3.23);
-		contenedorReefer = new Reefer("paro", 1111111, 8.1, 9.0, 7.2, 8.98);
+		contenedorReefer = new Reefer("paro", 1111111, 8.1, 9.0, 7.2, 8.98,22);
 		contenedorTanque = new Tanque("cero", 9999999, 9.1, 7.2, 5.5, 6.6);
 		
 	}

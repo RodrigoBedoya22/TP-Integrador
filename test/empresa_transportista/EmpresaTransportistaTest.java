@@ -1,15 +1,12 @@
 package empresa_transportista;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import empresa_naviera.BuqueViaje;
-import empresa_naviera.EmpresaNaviera;
 
 class EmpresaTransportistaTest {
 	

@@ -168,24 +168,40 @@ public class TerminalPortuaria {
 		double distancia = this.coordenada.distanciaHaciaCoordenada(terminal.getCoordenada());
 		return distancia;
 	}
-
+	
+	/**
+	 * Registra una orden en la lista de ordenes de la terminal
+	 * @param orden - La orden a registrar
+	 */
 	public void registrarOrden(Orden orden) {
 		
 		this.ordenesRegistradas.add(orden);
 		
 	}
-
+	
+	/**
+	 * Registra un contenedor en la terminal
+	 * @param contenedor - El contenedor a registrar
+	 */
 	public void registrarContenedor(Contenedor contenedor) {
 		
 		this.contenedoresRegistrados.add(contenedor);
 		
 	}
-
+	
+	/**
+	 * Retorna la lista de contenedores en campo de la terminal (aquellos que esperan a ser retirados o exportados)
+	 * @return - La lista de contenedores en campo de la terminal.
+	 */
 	public ArrayList<Contenedor> getContenedores() {
 		
 		return this.contenedoresRegistrados;
 	}
 	
+	/**
+	 * Indica al visitante dado que puede acceder a su información.
+	 * @param visitor - El visitante al cual se le informará el acceso a los datos de la terminal.
+	 */
 	public void aceptar(ReporteVisitor visitor) {
         visitor.visitarTerminal(this);
     }

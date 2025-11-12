@@ -9,8 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import buque.Buque;
-import terminal_portuaria.Coordenada;
-import terminal_portuaria.TerminalPortuaria;
+import terminal_portuaria.*;
 
 class BuqueViajeTest {
 	

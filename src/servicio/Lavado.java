@@ -12,6 +12,9 @@ public class Lavado implements Servicio {
 		
 	}
 	
+	/**
+	 * Calcula el costo del servicio para un contenedor basandose en sus medidas.
+	 */
 	public double calcularCosto(Contenedor contenedor) {
 		
 		if(contenedor.metrosCubicos() < 70.00) {

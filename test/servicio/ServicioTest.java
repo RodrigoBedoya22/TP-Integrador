@@ -9,10 +9,8 @@ import contenedor.Dry;
 
 class ServicioTest {
 
-	Servicio lavado;
-	Servicio pesado;
-	Dry contenedor;
-	Dry contenedor2;
+	Servicio lavado, pesado;
+	Dry contenedor, contenedor2;
 	
 	@BeforeEach
 	void setUp() throws Exception {

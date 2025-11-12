@@ -28,7 +28,9 @@ public class Coordenada {
 	 * @return Double - La distancia hacia la otra coordenada, redondeada a dos decimales
 	 */
 	public double distanciaHaciaCoordenada(Coordenada coordenada) {
-		  
+		//la formula utilizada es la de distancia entre dos puntos:
+		//     √ [ (x2 – x1)² + (y2 – y1)²] 
+		
 		double calculoX = Math.pow( (this.getX() - coordenada.getX()), 2);
 		double calculoY = Math.pow( (this.getY() - coordenada.getY()), 2);
 		double distancia= Math.sqrt(calculoX + calculoY);

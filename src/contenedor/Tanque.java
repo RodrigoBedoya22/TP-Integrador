@@ -8,6 +8,9 @@ public class Tanque extends Contenedor {
 		
 	}
 	
+	/**
+	 * Retorna el tipo de contenedor que es.
+	 */
 	@Override
 	public String tipo() {
 		

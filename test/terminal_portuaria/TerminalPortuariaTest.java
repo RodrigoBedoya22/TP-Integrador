@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 import empresa_naviera.*;
-import empresa_transportista.Camion;
-import empresa_transportista.EmpresaTransportista;
+import empresa_transportista.*;
 
 
 class TerminalPortuariaTest {

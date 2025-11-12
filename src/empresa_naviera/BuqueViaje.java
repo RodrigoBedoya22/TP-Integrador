@@ -15,6 +15,7 @@ public class BuqueViaje {
 	public BuqueViaje(Buque buque, CircuitoMaritimo circuito, Calendar fechaDeSalida){
 		this.buque = buque;
         this.circuito = circuito;
+        //el tramo actual en principio es el primero del circuito.
         this.tramoActual = circuito.getTramos().get(0);
         this.fechaDeSalida = fechaDeSalida;
 	}
@@ -26,15 +27,12 @@ public class BuqueViaje {
 	
 	public void pasarASiguienteTramo() {
 	  int indice = this.circuito.getTramos().indexOf(tramoActual);
-	  this.setTramoActual(this.circuito.getTramos().get(indice + 1));
-	  
+	  this.setTramoActual(this.circuito.getTramos().get(indice + 1));  
 		  
 	}
 	
 	private void setTramoActual(Tramo tramo) {
-		
-		this.tramoActual = tramo;
-		
+		this.tramoActual = tramo;	
 	}
 
 	public CircuitoMaritimo getCircuito() {

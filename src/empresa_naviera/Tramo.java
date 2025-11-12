@@ -29,7 +29,7 @@ public class Tramo{
 	
 	/**
 	 * Retorna la duracion del tramo desde la terminal origen hacia la terminal destino, basandose en la distancia entre ellas.
-	 * @return Double - La distancia entre la terminal origen y destino.
+	 * @return Double - La duracion del viaje entre la terminal origen y destino en dias.
 	 * NOTA: Por convencion, esta distancia es en dias.
 	 */
 	public double getDuracion() {
@@ -40,7 +40,12 @@ public class Tramo{
 	public Double getPrecio() {
 		return precio;
 	}
-
+	
+	/**
+	 * Setea el precio de un tramo en un monto dado, el monto debe ser mayor o igual a cero.
+	 * @param precio - El nuevo precio del tramo
+	 * @throws Exception - Si el precio dado es negativo o cero, genera una excepcion.
+	 */
 	public void setPrecio(Double precio) throws Exception{
 		if (precio <= 0) {
 			throw new IllegalArgumentException("El precio debe ser mayor a cero");

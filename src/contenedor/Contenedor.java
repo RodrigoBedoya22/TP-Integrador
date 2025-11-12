@@ -2,8 +2,6 @@ package contenedor;
 
 public abstract class Contenedor {
 	
-	//falta agregar la carga y el b/l
-	
 	private String idString;
 	private Integer idNumero;
 	private Double ancho;

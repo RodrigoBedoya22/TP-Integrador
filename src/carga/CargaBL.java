@@ -13,6 +13,9 @@ public class CargaBL extends Carga{
 		
 	}
 	
+	/**
+	 * Retorna el peso registrado de la carga
+	 */
 	@Override
 	public double getPeso() {
 		

@@ -12,7 +12,7 @@ public abstract class Carga {
 		this.tipoDeProducto = tipoDeProducto;
 		this.propietario = propietario;
 	}
-
+	
 	public String getTipoDeProducto() {
 		return tipoDeProducto;
 	}

@@ -42,7 +42,11 @@ public abstract class Orden {
 	public Chofer getChofer() {
 		return chofer;
 	}
-
+	
+	/**
+	 * Retorna los servicios contratados por el shipper para su exportacion
+	 * @return - La lista de servicios contratados
+	 */
 	public ArrayList<Servicio> getServicios() {
 		return servicios;
 	} 
