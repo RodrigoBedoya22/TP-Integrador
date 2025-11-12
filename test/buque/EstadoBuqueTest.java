@@ -30,7 +30,7 @@ class EstadoBuqueTest {
 	}
 
 	@Test
-	void test001_ElEstadoOutBoundSabeSuEstadoActual() {
+	void test001_ElBuqueConoceSuEstadoActual() {
 		
 		Coordenada coordenada = mock(Coordenada.class);
 		Buque buque = new Buque("pepe", coordenada);

@@ -1,13 +1,16 @@
 package terminal_portuaria;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
+import contenedor.Contenedor;
 import empresa_naviera.EmpresaNaviera;
 import empresa_transportista.Camion;
 import empresa_transportista.EmpresaTransportista;
 import orden.Orden;
 import orden.OrdenExportacion;
+import reportes.ReporteVisitor;
 
 public class TerminalPortuaria {
 
@@ -17,6 +20,7 @@ public class TerminalPortuaria {
 	private ArrayList<EmpresaTransportista> empresasTransportistas;
 	private ArrayList<Camion> camiones;
 	private ArrayList<Orden> ordenesRegistradas;
+	private ArrayList<Contenedor> contenedoresRegistrados;
 	
 	/**
 	 * Constructor de una termina portuaria
@@ -31,6 +35,7 @@ public class TerminalPortuaria {
 		this.empresasTransportistas = new ArrayList<EmpresaTransportista>();
 		this.camiones = new ArrayList<Camion>();
 		this.ordenesRegistradas = new ArrayList<Orden>();
+		this.contenedoresRegistrados = new ArrayList<Contenedor>();
 	}
 	
 	/**
@@ -169,6 +174,21 @@ public class TerminalPortuaria {
 		this.ordenesRegistradas.add(orden);
 		
 	}
+
+	public void registrarContenedor(Contenedor contenedor) {
+		
+		this.contenedoresRegistrados.add(contenedor);
+		
+	}
+
+	public ArrayList<Contenedor> getContenedores() {
+		
+		return this.contenedoresRegistrados;
+	}
+	
+	public void aceptar(ReporteVisitor visitor) {
+        visitor.visitarTerminal(this);
+    }
 
 	
 }

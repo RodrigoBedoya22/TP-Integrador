@@ -17,6 +17,7 @@ public class BuqueViaje {
         this.fechaDeSalida = fechaDeSalida;
 	}
 	
+
 	public Tramo getTramoActual() {
         return tramoActual;
     }
