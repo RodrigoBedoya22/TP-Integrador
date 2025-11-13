@@ -42,7 +42,7 @@ class BuqueViajeTest {
 
 	@Test
 	void test001UnBuqueViajeConoceAlBuqueQueVaAViajar() {
-		
+		 
 		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
 		listaDeTramos.add(tramoAB);
 		listaDeTramos.add(tramoBC);

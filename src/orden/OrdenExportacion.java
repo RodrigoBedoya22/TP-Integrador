@@ -31,5 +31,5 @@ public class OrdenExportacion extends Orden{
 	public BuqueViaje getViaje() {
 		return viaje;
 	}
-
+ 
 }

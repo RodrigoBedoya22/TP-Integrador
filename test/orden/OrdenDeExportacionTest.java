@@ -37,7 +37,7 @@ class OrdenDeExportacionTest {
 		servicios = new ArrayList<Servicio>();
 		orden = new OrdenExportacion(cliente, carga, camion, chofer, servicios, viaje);
 
-	}
+	} 
 
 	@Test
 	void test001_UnaOrdenDeExportacionConoceASuCliente() {

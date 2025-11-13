@@ -53,7 +53,7 @@ public class BuqueViaje {
 	 * Indica la duracion del viaje basandose en el circuito que recorre.
 	 * @return
 	 */
-	
+	 
 	public double getDuracion() {
 		
 		return circuito.getDuracion();
