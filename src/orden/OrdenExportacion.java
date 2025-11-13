@@ -32,5 +32,4 @@ public class OrdenExportacion extends Orden{
 		return viaje;
 	}
 
-
 }
