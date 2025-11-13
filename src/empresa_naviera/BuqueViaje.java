@@ -24,7 +24,9 @@ public class BuqueViaje {
         return tramoActual;
     }
 	
-	
+	/**
+	 * Avanza al tramo inmediatamente siguiente al tramo actual, segun la lista de tramos del circuito. 
+	 */
 	public void pasarASiguienteTramo() {
 	  int indice = this.circuito.getTramos().indexOf(tramoActual);
 	  this.setTramoActual(this.circuito.getTramos().get(indice + 1));  
@@ -47,6 +49,10 @@ public class BuqueViaje {
 		return buque;
 	}
 	
+	/**
+	 * Indica la duracion del viaje basandose en el circuito que recorre.
+	 * @return
+	 */
 	public double getDuracion() {
 		
 		return circuito.getDuracion();
@@ -58,7 +64,11 @@ public class BuqueViaje {
 		return circuito.getPrecio();
 		
 	}
-
+	
+	/**
+	 * Indica la cantidad de tramos del viaje
+	 * @return int - la cantidad de tramos del viaje
+	 */
 	public int cantidadDeTramos() {
 		return this.getCircuito().getTramos().size();
 	}

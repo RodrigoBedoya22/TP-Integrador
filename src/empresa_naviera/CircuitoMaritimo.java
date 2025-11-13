@@ -69,6 +69,10 @@ public class CircuitoMaritimo {
 		return duracion;
 	}
 	
+	/**
+	 * Retorna el precio segun el precio de sus tramos
+	 * @return double- La suma de los precios del circuito
+	 */
 	public double getPrecio() {
 		
 		double precio= 0;
@@ -78,7 +82,12 @@ public class CircuitoMaritimo {
 		return precio;
 		
 	}
-
+	
+	/**
+	 * Indica si el circuito contiene a un tramo cuya terminal destino posea el nombre dado.
+	 * @param nombre - El nombre del tramo destino que se buscará dentro del circuito.
+	 * @return True si alguno de los tramos posee dicho puerto destino con ese nombre, False en caso contrario.
+	 */
 	public Boolean contieneTramoConDestino(String nombre) {	
 		
 		return tramos.stream().anyMatch(tramo -> tramo.getTerminalDestino().getNombre() == nombre);

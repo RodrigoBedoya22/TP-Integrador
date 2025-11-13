@@ -49,7 +49,7 @@ public class Cliente {
 	 * @param camion - El camion que llevará la carga
 	 * @param chofer - El chofer del camion dado
 	 * @param serviciosRecibidos - Los servicios contratados por el cliente.
-	 * @param terminal - La terminal en la que se quiere registrar dicha orden de exportacion.
+	 * @param terminal - La terminal en la que se quiere registrar la orden de exportacion.
 	 */
 	public void crearOrdenExportacion(BuqueViaje viaje, CargaBL carga, Camion camion, Chofer chofer,
 			ArrayList<Servicio> serviciosRecibidos, TerminalPortuaria terminal) {

@@ -35,7 +35,11 @@ public abstract class Contenedor {
 	public Double getPeso() {
 		return peso;
 	}
-
+	
+	/**
+	 * Retorna el identificador completo del contenedor, con 4 digitos alfabeticos y 7 digitos numericos.
+	 * @return el identificador completo del contenedor
+	 */
 	public String getIdentificador() {
 		
 		String idNumerico = String.valueOf(idNumero);
