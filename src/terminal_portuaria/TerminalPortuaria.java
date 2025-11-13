@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+import org.mockito.ArgumentMatchers;
+
+import cliente.Cliente;
 import contenedor.Contenedor;
 import empresa_naviera.EmpresaNaviera;
 import empresa_transportista.Camion;
@@ -21,6 +24,8 @@ public class TerminalPortuaria {
 	private ArrayList<Camion> camiones;
 	private ArrayList<Orden> ordenesRegistradas;
 	private ArrayList<Contenedor> contenedoresRegistrados;
+	private ArrayList<Cliente> shippersRegistrados;
+	private ArrayList<Cliente> consigneesRegistrados;
 	
 	/**
 	 * Constructor de una termina portuaria
@@ -36,6 +41,8 @@ public class TerminalPortuaria {
 		this.camiones = new ArrayList<Camion>();
 		this.ordenesRegistradas = new ArrayList<Orden>();
 		this.contenedoresRegistrados = new ArrayList<Contenedor>();
+		this.shippersRegistrados = new ArrayList<Cliente>();
+		this.consigneesRegistrados = new ArrayList<Cliente>();
 	}
 	
 	/**
@@ -198,6 +205,34 @@ public class TerminalPortuaria {
 		return this.contenedoresRegistrados;
 	}
 	
+    public ArrayList<Orden> getOrdenes() {
+		
+		return this.ordenesRegistradas;
+	}
+    
+    public void registrarShipper(Cliente shipper) {
+		
+    	this.shippersRegistrados.add(shipper);
+		
+	}
+    
+    public ArrayList<Cliente> getShippers() {
+		
+		return this.shippersRegistrados;
+	}
+    
+    public ArrayList<Cliente> getConsignees() {
+    	
+		
+    	return this.consigneesRegistrados;
+	}
+    
+    public void registrarConsignee(Cliente consignee) {
+		
+		this.consigneesRegistrados.add(consignee);
+		
+	}
+	
 	/**
 	 * Indica al visitante dado que puede acceder a su información.
 	 * @param visitor - El visitante al cual se le informará el acceso a los datos de la terminal.
@@ -205,6 +240,15 @@ public class TerminalPortuaria {
 	public void aceptar(ReporteVisitor visitor) {
         visitor.visitarTerminal(this);
     }
+
+
+	
+
+
+	
+
+	
+
 
 	
 }

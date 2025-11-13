@@ -4,9 +4,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import cliente.Cliente;
+
 import static org.mockito.Mockito.*;
 import empresa_naviera.*;
 import empresa_transportista.*;
+import orden.OrdenExportacion;
+import orden.OrdenImportacion;
 
 
 class TerminalPortuariaTest {
@@ -151,6 +155,59 @@ class TerminalPortuariaTest {
 		assertTrue(terminal.getCamiones().isEmpty());
 		assertFalse(terminal.getCamiones().contains(camion));
 	}
+	
+	@Test
+	void test012_CuandoUnaTerminalRegistraUnNuevaOrden_YaSeaDeImportacionOExportacion_SuListaDeOrdenesAumenta() {
+		
+		OrdenExportacion ordenExportacion = mock(OrdenExportacion.class);
+		OrdenImportacion ordenImportacion = mock(OrdenImportacion.class);
+		terminal.registrarOrden(ordenExportacion);
+		terminal.registrarOrden(ordenImportacion);
+		
+        assertEquals(terminal.getOrdenes().size(), 2);
+		
+		assertTrue(terminal.getOrdenes().contains(ordenExportacion));
+		assertTrue(terminal.getOrdenes().contains(ordenExportacion));
+		
+	}
+	
+	@Test
+	void test013_CuandoUnaTerminalTieneUnaOrdenDeExportacion_SeRegistraAlShipper_SuListaDeShippersAumenta() {
+		
+		OrdenExportacion ordenExportacion = mock(OrdenExportacion.class);
+		OrdenExportacion ordenExportacion2 = mock(OrdenExportacion.class);
+		Cliente shipper1 = ordenExportacion.getCliente();
+		Cliente shipper2 = ordenExportacion.getCliente();
+		terminal.registrarOrden(ordenExportacion);
+		terminal.registrarOrden(ordenExportacion2);
+		
+        terminal.registrarShipper(shipper1);
+        terminal.registrarShipper(shipper2);
+		
+        assertEquals(terminal.getShippers().size(), 2);
+		assertTrue(terminal.getShippers().contains(shipper1));
+		assertTrue(terminal.getShippers().contains(shipper2));
+		
+	}
+	
+	@Test
+	void test013_CuandoUnaTerminalTieneUnaOrdenDeImportacion_SeRegistraAlConsignee_SuListaDeConsigneesAumenta() {
+		
+		OrdenImportacion ordenImportacion = mock(OrdenImportacion.class);
+		OrdenImportacion ordenImportacion2 = mock(OrdenImportacion.class);
+		Cliente consignee1 = ordenImportacion.getCliente();
+		Cliente consignee2 = ordenImportacion2.getCliente();
+		terminal.registrarOrden(ordenImportacion);
+		terminal.registrarOrden(ordenImportacion2);
+		
+        terminal.registrarConsignee(consignee1);
+        terminal.registrarConsignee(consignee2);
+		
+		assertTrue(terminal.getConsignees().contains(consignee1));
+		assertTrue(terminal.getConsignees().contains(consignee2));
+		
+	}
+	
 	
 
 }
