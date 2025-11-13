@@ -22,9 +22,9 @@ class BuqueTest {
 		
 		Coordenada coordenadaDeBuque = new Coordenada(1.0,2.0);
 		buque= new Buque("Titanic", coordenadaDeBuque);
-		contenedorDry = new Dry("lala", 1234567, 7.21, 8.3, 9.987, 3.23);
-		contenedorReefer = new Reefer("paro", 1111111, 8.1, 9.0, 7.2, 8.98, 22);
-		contenedorTanque = new Tanque("cero", 9999999, 9.1, 7.2, 5.5, 6.6);
+		contenedorDry = mock(Dry.class);
+		contenedorReefer = mock(Reefer.class);
+		contenedorTanque = mock(Tanque.class);
 	}
 
 	@Test
@@ -69,7 +69,7 @@ class BuqueTest {
 	}
 	
 	@Test
-	void test005_CuandoUnBuqueEsCreado_PoseeElEstadoOutBound() {
+	void test005_CuandoUnBuqueEsCreado_PoseeElEstadoOutBoundPorDefault() {
 		
         assertInstanceOf(OutOfBound.class, buque.getEstado());
 	}

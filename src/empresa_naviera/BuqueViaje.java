@@ -58,6 +58,10 @@ public class BuqueViaje {
 		return circuito.getPrecio();
 		
 	}
+
+	public int cantidadDeTramos() {
+		return this.getCircuito().getTramos().size();
+	}
   
 
 }

@@ -16,6 +16,16 @@ public class BuscadorRutas {
 	public TerminalPortuaria getTerminal() {
 		return terminal;
 	}
+
+	public Estrategia getEstrategia() {
+		
+		return this.estrategia;
+	}
+
+	public void setEstrategia(Estrategia nuevaEstrategia) {
+		
+		this.estrategia= nuevaEstrategia;
+	}
 	
 	
 

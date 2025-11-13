@@ -13,25 +13,29 @@ import carga.*;
 import cliente.Cliente;
 import empresa_naviera.BuqueViaje;
 import empresa_transportista.*;
+import servicio.Lavado;
 import servicio.Servicio;
 
-class ordenTest {
+class OrdenDeExportacionTest {
 	
+	Cliente cliente;
 	OrdenExportacion orden;
 	CargaBL carga;
 	Camion camion;
 	Chofer chofer;
 	ArrayList<Servicio> servicios;
 	BuqueViaje viaje;
+	Servicio lavado;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		
-		Cliente cliente = new Cliente("Rodrigo", 31234933, "rodro223@gmail.com");
-		CargaBL carga= new CargaBL("Comida", 25.3, cliente);
-		Camion camion = new Camion("ABC 123");
-		Chofer chofer = new Chofer("Walter", 594544894);
-		ArrayList<Servicio> servicios = new ArrayList<Servicio>();
+		cliente = mock(Cliente.class);
+		carga= mock(CargaBL.class);
+		camion = mock(Camion.class);
+		chofer = mock(Chofer.class);
+		lavado = mock(Lavado.class);
+		servicios = new ArrayList<Servicio>();
 		orden = new OrdenExportacion(cliente, carga, camion, chofer, servicios, viaje);
 
 	}
@@ -39,26 +43,27 @@ class ordenTest {
 	@Test
 	void test001_UnaOrdenConoceASuCliente() {
 		
-		Cliente cliente = orden.getCliente();
 		assertEquals(orden.getCliente(), cliente);
 	}
 	
 	@Test
 	void test002_UnaOrdenConoceSuCarga() {
-		Carga carga = orden.getCarga();
 		assertEquals(orden.getCarga(), carga);
 	}
 	
 	@Test
 	void test003_UnaOrdenConoceASuCamion() {	
-		Camion camion = orden.getCamion();
 		assertEquals(orden.getCamion(), camion);
 	}
 	
 	@Test
 	void test004_UnaOrdenConoceSuChofer() {
-		Chofer chofer = orden.getChofer();
 		assertEquals(orden.getChofer(), chofer);
+	}
+	
+	@Test
+	void test005_UnaOrdenConoceLosServiciosContratadosPorElCliente() {
+		assertEquals(orden.getServicios(), servicios);
 	}
 	
 	

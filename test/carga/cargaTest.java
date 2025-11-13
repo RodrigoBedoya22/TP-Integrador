@@ -19,7 +19,7 @@ class cargaTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		
-		Cliente cliente = new Cliente("Pedro", 12345678, "pedro@gmail.com");
+		cliente = new Cliente("Pedro", 12345678, "pedro@gmail.com");
 		cargaBL= new CargaBL("Comida", 25.3, cliente);
 		cargaBLConsolidado = new CargaBLConsolidado("Medicamentos", cliente);
 	
@@ -40,19 +40,13 @@ class cargaTest {
 		
 		assertEquals(cargaBL.getPeso(), 25.3);
 		assertEquals(cargaBLConsolidado.getPeso(), 25.3);
-		
 	}
 	
 	@Test
 	void test003_UnaCargaConoceASuCliente() {
 		
-		Cliente clienteBL = cargaBL.getPropietario();
-		assertEquals(cargaBL.getPropietario(), clienteBL);
-		
-		Cliente clienteConsolidado = cargaBLConsolidado.getPropietario();
-		assertEquals(cargaBLConsolidado.getPropietario(), clienteConsolidado);
-		
-		
+		assertEquals(cargaBL.getPropietario(), cliente);
+		assertEquals(cargaBLConsolidado.getPropietario(), cliente);
 	}
 	
 	@Test
@@ -65,7 +59,6 @@ class cargaTest {
 		cargaBLConsolidado.agregarCarga(carga2);
 		
 		assertEquals(cargaBLConsolidado.getCargas().size(), 2);
-		
 	}
 	
 	@Test
@@ -74,7 +67,6 @@ class cargaTest {
 		CargaBL carga = mock(CargaBL.class);  
 		
 		assertThrows(IllegalArgumentException.class, () -> cargaBLConsolidado.agregarCarga(carga));
-		
 	}
 
 

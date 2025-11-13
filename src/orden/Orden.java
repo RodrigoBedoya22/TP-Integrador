@@ -2,13 +2,9 @@ package orden;
 
 import java.util.ArrayList;
 
-import carga.Carga;
-import carga.CargaBL;
+import carga.*;
 import cliente.Cliente;
-import contenedor.Contenedor;
-import empresa_naviera.BuqueViaje;
-import empresa_transportista.Camion;
-import empresa_transportista.Chofer;
+import empresa_transportista.*;
 import servicio.Servicio;
 
 public abstract class Orden {
@@ -28,19 +24,19 @@ public abstract class Orden {
 	}
 
 	public Cliente getCliente() {
-		return cliente;
+		return this.cliente;
 	}
 
 	public Carga getCarga() {
-		return carga;
+		return this.carga;
 	}
 
 	public Camion getCamion() {
-		return camion;
+		return this.camion;
 	}
 
 	public Chofer getChofer() {
-		return chofer;
+		return this.chofer;
 	}
 	
 	/**
@@ -48,7 +44,7 @@ public abstract class Orden {
 	 * @return - La lista de servicios contratados
 	 */
 	public ArrayList<Servicio> getServicios() {
-		return servicios;
+		return this.servicios;
 	} 
 	
 	// public double calcularCostoTotalDeServicios() {

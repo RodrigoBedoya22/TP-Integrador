@@ -29,5 +29,28 @@ class BuscadorRutasTest {
 	    assertEquals(buscador.getTerminal(), terminal);
 	
 	}
+	
+	@Test
+	void test002_UnBuscadorTienePorDefectoLaEstrategiaMenorTiempo(){
+		
+	    TerminalPortuaria terminal = mock(TerminalPortuaria.class);
+	    BuscadorRutas buscador= new BuscadorRutas(terminal);
+
+	    assertInstanceOf(EstrategiaMenorTiempo.class, buscador.getEstrategia());
+	}
+	
+	@Test
+	void test003_SiElBuscadorCambiaDeEstrategia_SuEstrategiaCambia(){
+		
+	    TerminalPortuaria terminal = mock(TerminalPortuaria.class);
+	    BuscadorRutas buscador= new BuscadorRutas(terminal);
+	    EstrategiaMenorPrecio nuevaEstrategia = new EstrategiaMenorPrecio();
+	    
+	    buscador.setEstrategia(nuevaEstrategia);
+
+	    assertInstanceOf(EstrategiaMenorPrecio.class, buscador.getEstrategia());
+	}
+	
+	
 
 }

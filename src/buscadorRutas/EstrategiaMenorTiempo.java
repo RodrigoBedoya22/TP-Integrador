@@ -7,6 +7,9 @@ import empresa_naviera.BuqueViaje;
 
 public class EstrategiaMenorTiempo implements Estrategia {
 	
+	/**
+	 * Se realiza un filtrado por una lista de buques dada para buscar aquel viaje con menor duración.
+	 */
 	@Override
 	public BuqueViaje filtrar(ArrayList<BuqueViaje> viajes) {
 		

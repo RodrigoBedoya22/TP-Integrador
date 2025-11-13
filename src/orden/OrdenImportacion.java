@@ -5,8 +5,7 @@ import java.util.Date;
 
 import carga.Carga;
 import cliente.Cliente;
-import empresa_transportista.Camion;
-import empresa_transportista.Chofer;
+import empresa_transportista.*;
 import servicio.Servicio;
 
 public class OrdenImportacion extends Orden{

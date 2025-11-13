@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import carga.Carga;
 import cliente.Cliente;
 import empresa_naviera.BuqueViaje;
-import empresa_transportista.Camion;
-import empresa_transportista.Chofer;
+import empresa_transportista.*;
 import servicio.Servicio;
 
 public class OrdenExportacion extends Orden{
@@ -32,5 +31,6 @@ public class OrdenExportacion extends Orden{
 	public BuqueViaje getViaje() {
 		return viaje;
 	}
+
 
 }
