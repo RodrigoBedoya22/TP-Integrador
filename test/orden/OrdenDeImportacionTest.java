@@ -1,30 +1,30 @@
 package orden;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import carga.*;
+import carga.CargaBL;
 import cliente.Cliente;
-import empresa_naviera.BuqueViaje;
-import empresa_transportista.*;
+import empresa_transportista.Camion;
+import empresa_transportista.Chofer;
 import servicio.Lavado;
 import servicio.Servicio;
 
-class OrdenDeExportacionTest {
+class OrdenDeImportacionTest {
 	
 	Cliente cliente;
-	OrdenExportacion orden;
+	OrdenImportacion orden;
 	CargaBL carga;
 	Camion camion;
 	Chofer chofer;
 	ArrayList<Servicio> servicios;
-	BuqueViaje viaje;
+	LocalDate fechaLimite;
 	Lavado servicioDeLavado;
 
 	@BeforeEach
@@ -35,53 +35,52 @@ class OrdenDeExportacionTest {
 		camion = mock(Camion.class);
 		chofer = mock(Chofer.class);
 		servicios = new ArrayList<Servicio>();
-		orden = new OrdenExportacion(cliente, carga, camion, chofer, servicios, viaje);
+		fechaLimite = LocalDate.now();
+		orden = new OrdenImportacion(cliente, carga, camion, chofer, servicios, fechaLimite);
 
 	}
 
 	@Test
-	void test001_UnaOrdenDeExportacionConoceASuCliente() {
+	void test001_UnaOrdenDeImportacionConoceASuCliente() {
 		
 		assertEquals(orden.getCliente(), cliente);
 	}
 	
 	@Test
-	void test002_UnaOrdenDeExportacionConoceSuCarga() {
+	void test002_UnaOrdenDeImportacionConoceSuCarga() {
 		assertEquals(orden.getCarga(), carga);
 	}
 	
 	@Test
-	void test003_UnaOrdenDeExportacionConoceASuCamion() {	
+	void test003_UnaOrdenDeImportacionConoceASuCamion() {	
 		assertEquals(orden.getCamion(), camion);
 	}
 	
 	@Test
-	void test004_UnaOrdenDeExportacionConoceSuChofer() {
+	void test004_UnaOrdenDeImportacionConoceSuChofer() {
 		assertEquals(orden.getChofer(), chofer);
 	}
 	
 	@Test
-	void test005_UnaOrdenDeExportacionConoceLosServiciosContratadosPorElCliente() {
+	void test005_UnaOrdenDeImportacionConoceLosServiciosContratadosPorElCliente() {
 		
 		servicioDeLavado = new Lavado(10000);
 		servicios.add(servicioDeLavado);
 		assertEquals(orden.getServicios(), servicios);
+	}
+	
+	@Test
+	void test006_UnaOrdenDeImportacionConoceLaFechaDeLimiteDeRetiroDeLaCarga() {
+		
+		assertEquals(orden.getFechaLimite(), fechaLimite);
 		
 	}
 	
 	@Test
-	void test006_UnaOrdenDeExportacionConoceASuViaje() {
-		assertEquals(orden.getViaje(), viaje);
-	}
-	
-	@Test
-	void test007_UnaOrdenDeExportacionSabeDeQueTipoEs() {
+	void test007_UnaOrdenDeImportacionSabeDeQueTipoEs() {
 		
-		assertTrue(orden.esOrdenDeExportacion());
-		assertFalse(orden.esOrdenDeImportacion());
+		assertTrue(orden.esOrdenDeImportacion());
+		assertFalse(orden.esOrdenDeExportacion());
 		
 	}
-	
-	
-
 }

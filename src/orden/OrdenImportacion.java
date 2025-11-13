@@ -1,5 +1,6 @@
 package orden;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -10,15 +11,15 @@ import servicio.Servicio;
 
 public class OrdenImportacion extends Orden{
 	
-	private Date fechaLimite;
+	private LocalDate fechaLimite;
 
-	public OrdenImportacion(Cliente cliente, Carga carga, Camion camion, Chofer chofer, ArrayList<Servicio> servicios, Date fechaLimite) {
+	public OrdenImportacion(Cliente cliente, Carga carga, Camion camion, Chofer chofer, ArrayList<Servicio> servicios, LocalDate fechaLimite) {
 		super(cliente, carga, camion, chofer, servicios);
 		this.fechaLimite = fechaLimite;
 		
 	}
 
-	public Date getFechaLimite() {
+	public LocalDate getFechaLimite() {
 		return fechaLimite;
 	}
 	

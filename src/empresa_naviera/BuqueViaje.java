@@ -1,6 +1,6 @@
 package empresa_naviera;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.Date;
 
 import buque.Buque;
@@ -10,9 +10,9 @@ public class BuqueViaje {
 	private Buque buque;
 	private CircuitoMaritimo circuito;
     private Tramo tramoActual;
-	private Calendar fechaDeSalida;
+	private LocalDate fechaDeSalida;
 	
-	public BuqueViaje(Buque buque, CircuitoMaritimo circuito, Calendar fechaDeSalida){
+	public BuqueViaje(Buque buque, CircuitoMaritimo circuito, LocalDate fechaDeSalida){
 		this.buque = buque;
         this.circuito = circuito;
         //el tramo actual en principio es el primero del circuito.
@@ -41,7 +41,7 @@ public class BuqueViaje {
         return circuito;
     }
 
-	public Calendar getFechaDeSalida() {
+	public LocalDate getFechaDeSalida() {
         return fechaDeSalida;
     }
 

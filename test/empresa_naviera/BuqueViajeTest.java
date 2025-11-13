@@ -2,6 +2,7 @@ package empresa_naviera;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -47,8 +48,7 @@ class BuqueViajeTest {
 		listaDeTramos.add(tramoCA);
 		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
 		
-		Calendar fecha = Calendar.getInstance();
-	    fecha.set(1990, Calendar.OCTOBER, 23);
+		LocalDate fecha = LocalDate.of(1990, 10, 23);
 	    
 		viaje= new BuqueViaje(buque,circuito, fecha);
 		assertTrue(viaje.getBuque() == buque);
@@ -62,8 +62,7 @@ class BuqueViajeTest {
 		listaDeTramos.add(tramoCA);
 		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
 		
-		Calendar fecha = Calendar.getInstance();
-	    fecha.set(1990, Calendar.OCTOBER, 23);
+		LocalDate fecha = LocalDate.of(1990, 10, 23);
 		
 		viaje= new BuqueViaje(buque,circuito,fecha);
 		assertTrue(viaje.getCircuito() == circuito);
@@ -77,8 +76,7 @@ class BuqueViajeTest {
 		listaDeTramos.add(tramoCA);
 		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
 		
-		Calendar fecha = Calendar.getInstance();
-	    fecha.set(1990, Calendar.OCTOBER, 23);
+		LocalDate fecha = LocalDate.of(1990, 10, 23);
 	    
 		viaje= new BuqueViaje(buque,circuito, fecha);
 		assertTrue(viaje.getTramoActual() == tramoAB);
@@ -92,8 +90,7 @@ class BuqueViajeTest {
 		listaDeTramos.add(tramoCA);
 		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
 		
-		Calendar fecha = Calendar.getInstance();
-	    fecha.set(1990, Calendar.OCTOBER, 23);
+		LocalDate fecha = LocalDate.of(1990, 10, 23);
 	    
 		viaje= new BuqueViaje(buque,circuito,fecha);
 		viaje.pasarASiguienteTramo();
@@ -109,8 +106,7 @@ class BuqueViajeTest {
 		listaDeTramos.add(tramoCA);
 		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
 		
-		Calendar fecha = Calendar.getInstance();
-	    fecha.set(1990, Calendar.OCTOBER, 23);
+		LocalDate fecha = LocalDate.of(1990, 10, 23);
 	    
 		viaje= new BuqueViaje(buque,circuito, fecha);
 		
@@ -126,8 +122,7 @@ class BuqueViajeTest {
 		listaDeTramos.add(tramoCA);
 		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
 		
-		Calendar fecha = Calendar.getInstance();
-	    fecha.set(1990, Calendar.OCTOBER, 23);
+		LocalDate fecha = LocalDate.of(1990, 10, 23);
 	    
 		viaje= new BuqueViaje(buque,circuito, fecha);
 		
@@ -145,8 +140,7 @@ class BuqueViajeTest {
 		listaDeTramos.add(tramoCA);
 		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
 		
-		Calendar fecha = Calendar.getInstance();
-	    fecha.set(1990, Calendar.OCTOBER, 23);
+		LocalDate fecha = LocalDate.of(1990, 10, 23);
 	    
 		viaje= new BuqueViaje(buque,circuito, fecha);
 		
@@ -163,8 +157,7 @@ class BuqueViajeTest {
 		listaDeTramos.add(tramoCA);
 		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
 		
-		Calendar fecha = Calendar.getInstance();
-	    fecha.set(1990, Calendar.OCTOBER, 23);
+		LocalDate fecha = LocalDate.of(1990, 10, 23);
 	    
 		viaje= new BuqueViaje(buque,circuito, fecha);
 		
