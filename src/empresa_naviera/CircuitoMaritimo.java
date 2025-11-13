@@ -41,7 +41,7 @@ public class CircuitoMaritimo {
 
             tramoAnterior = tramo;
         }
-    	//verificacion de que el ultimo tramo tiene como terminal destino a la terminal orgen del primer tramo del circuito.
+    	//verificacion de que el ultimo tramo tiene como terminal destino a la terminal origen del primer tramo del circuito.
     	Tramo ultimo = copia.get(copia.size() - 1);
         if (!ultimo.getTerminalDestino().equals(copia.get(0).getTerminalOrigen())) {
             throw new IllegalArgumentException("El circuito no es cerrado correctamente");

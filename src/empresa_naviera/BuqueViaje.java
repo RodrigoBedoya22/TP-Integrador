@@ -46,6 +46,12 @@ public class BuqueViaje {
 	public Buque getBuque() {
 		return buque;
 	}
+	
+	public double getDuracion() {
+		
+		return this.circuito.getDuracion();
+		
+	}
   
 
 }
