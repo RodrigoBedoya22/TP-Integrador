@@ -40,7 +40,7 @@ class OrdenDeExportacionTest {
 	} 
 
 	@Test
-	void test001_UnaOrdenDeExportacionConoceASuCliente() {
+	void test001_UnaOrdenDeExportacionConoceASuCliente() { 
 		
 		assertEquals(orden.getCliente(), cliente);
 	}

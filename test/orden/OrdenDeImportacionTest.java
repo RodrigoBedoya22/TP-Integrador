@@ -80,7 +80,7 @@ class OrdenDeImportacionTest {
 	void test007_UnaOrdenDeImportacionSabeDeQueTipoEs() {
 		
 		assertTrue(orden.esOrdenDeImportacion());
-		assertFalse(orden.esOrdenDeExportacion());
+		assertFalse(orden.esOrdenDeExportacion()); 
 		
 	}
 

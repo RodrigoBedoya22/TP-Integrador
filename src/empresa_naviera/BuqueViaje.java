@@ -50,7 +50,7 @@ public class BuqueViaje {
 	}
 	
 	/**
-	 * Indica la duracion del viaje basandose en el circuito que recorre.
+	 * Indica la duracion del viaje basandose en el circuito que recorre. 
 	 * @return
 	 */
 	 
