@@ -154,5 +154,23 @@ class BuqueViajeTest {
 		
 	}
 	
+	@Test
+	void test008_UnBuqueViajeConoceElPrecioDeSuRecorrido() {
+		
+		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
+		listaDeTramos.add(tramoAB);
+		listaDeTramos.add(tramoBC);
+		listaDeTramos.add(tramoCA);
+		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
+		
+		Calendar fecha = Calendar.getInstance();
+	    fecha.set(1990, Calendar.OCTOBER, 23);
+	    
+		viaje= new BuqueViaje(buque,circuito, fecha);
+		
+		assertEquals(viaje.getPrecio(), 30000);
+		
+	}
+	
 
 }

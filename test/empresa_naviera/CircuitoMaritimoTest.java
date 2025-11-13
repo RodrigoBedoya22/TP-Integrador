@@ -83,5 +83,17 @@ class CircuitoMaritimoTest {
 		 
 	}
 	
+	@Test
+	void test006_UnCircuitoMaritimoSabeElPrecioDeSuRecorrido() {
+		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
+		listaDeTramos.add(tramoAB);
+		listaDeTramos.add(tramoBC);
+		listaDeTramos.add(tramoCA);
+		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
+		
+		assertTrue(circuito.getPrecio() == 30000);
+		
+	}
+	
 
 }

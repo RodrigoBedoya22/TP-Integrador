@@ -68,6 +68,16 @@ public class CircuitoMaritimo {
 		}
 		return duracion;
 	}
+	
+	public double getPrecio() {
+		
+		double precio= 0;
+		for (Tramo tramo: tramos) {
+			precio+= tramo.getPrecio();
+		}
+		return precio;
+		
+	}
 
 	public Boolean contieneTramoConDestino(String nombre) {	
 		

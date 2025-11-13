@@ -49,7 +49,13 @@ public class BuqueViaje {
 	
 	public double getDuracion() {
 		
-		return this.circuito.getDuracion();
+		return circuito.getDuracion();
+		
+	}
+	
+	public double getPrecio() {
+		
+		return circuito.getPrecio();
 		
 	}
   
