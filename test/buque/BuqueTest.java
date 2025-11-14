@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import contenedor.*;
+import coordenada.Coordenada;
 import empresa_naviera.BuqueViaje;
 import terminal_portuaria.*;
 

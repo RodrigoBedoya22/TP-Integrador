@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import bl.*;
 import static org.mockito.Mockito.*;
 import cliente.Cliente;
-import terminal_portuaria.Coordenada;
+import coordenada.Coordenada;
 
 class BlTest {
 	

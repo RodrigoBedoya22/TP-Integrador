@@ -1,18 +1,14 @@
 package terminal_portuaria;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
 
-import org.mockito.ArgumentMatchers;
 
 import cliente.Cliente;
 import contenedor.Contenedor;
+import coordenada.Coordenada;
 import empresa_naviera.EmpresaNaviera;
-import empresa_transportista.Camion;
-import empresa_transportista.EmpresaTransportista;
-import orden.Orden;
-import orden.OrdenExportacion;
+import empresa_transportista.*;
+import orden.*;
 import reportes.ReporteVisitor;
 
 public class TerminalPortuaria {

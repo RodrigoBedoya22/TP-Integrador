@@ -1,4 +1,4 @@
-package terminal_portuaria;
+package coordenada;
 
 
 public class Coordenada {
@@ -23,7 +23,7 @@ public class Coordenada {
 		return coordenadaY;
 	}
 	/**
-	 * Retorna la distancia hacia otra coordenada en un plano bidimensional, segun los puntos de ambas.
+	 * Retorna la distancia hacia otra coordenada en un plano bidimensional, segun los puntos de ambas coordenadas.
 	 * @param coordenada - La coordenada hacia la cual se calculará la distancia
 	 * @return Double - La distancia hacia la otra coordenada, redondeada a dos decimales
 	 */

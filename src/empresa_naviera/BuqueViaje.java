@@ -1,7 +1,6 @@
 package empresa_naviera;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import buque.Buque;
 
@@ -72,6 +71,16 @@ public class BuqueViaje {
 	 */
 	public int cantidadDeTramos() {
 		return this.getCircuito().getTramos().size();
+	}
+	
+	/**
+	 * Indica si el circuito del viaje contiene a un tramo cuya terminal destino posea el nombre dado.
+	 * @param nombre - El nombre del tramo destino que se buscará dentro del circuito.
+	 * @return True si alguno de los tramos posee dicho puerto destino con ese nombre, False en caso contrario.
+	 */
+	public Boolean contieneTramoConDestino(String nombre) {	
+		
+		return this.circuito.contieneTramoConDestino(nombre);
 	}
   
 

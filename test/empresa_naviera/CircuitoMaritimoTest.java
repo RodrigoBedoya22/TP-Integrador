@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import coordenada.Coordenada;
 import terminal_portuaria.*;
 
 class CircuitoMaritimoTest {

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import buque.Buque;
+import coordenada.Coordenada;
 import terminal_portuaria.*;
 
 class BuqueViajeTest {

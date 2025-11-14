@@ -6,7 +6,7 @@ import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import terminal_portuaria.Coordenada;
+import coordenada.Coordenada;
 
 class EstadoBuqueDepartingTest {
 

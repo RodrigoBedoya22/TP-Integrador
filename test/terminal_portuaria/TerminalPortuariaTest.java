@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import cliente.Cliente;
+import coordenada.Coordenada;
 
 import static org.mockito.Mockito.*;
 import empresa_naviera.*;

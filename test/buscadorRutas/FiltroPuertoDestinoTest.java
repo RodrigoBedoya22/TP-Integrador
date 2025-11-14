@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import coordenada.Coordenada;
 import empresa_naviera.BuqueViaje;
 import empresa_naviera.CircuitoMaritimo;
 import empresa_naviera.Tramo;
-import terminal_portuaria.Coordenada;
 import terminal_portuaria.TerminalPortuaria;
 
 class FiltroPuertoDestinoTest {

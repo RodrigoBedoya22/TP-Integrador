@@ -1,11 +1,10 @@
 package buque;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import contenedor.Contenedor;
+import coordenada.Coordenada;
 import empresa_naviera.EmpresaNaviera;
-import terminal_portuaria.Coordenada;
 
 public class Buque {
 	

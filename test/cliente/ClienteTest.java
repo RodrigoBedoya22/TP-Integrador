@@ -22,9 +22,37 @@ class ClienteTest {
 		
 		cliente = new Cliente("Sergio", 12345678, "sergio@gmail.com");
 	}
-
+	
 	@Test
-	void test001_CuandoUnClienteCreaUnaOrdenDeExportacion_LaTerminalLaRegistra() {
+	void test001_UnClienteConoceSuNombre() {
+		assertEquals(cliente.getNombre(), "Sergio");
+	}
+	
+	@Test
+	void test002_UnClienteConoceSuDni() {
+		assertEquals(cliente.getDni(), 12345678);
+	}
+	
+	@Test
+	void test003_UnClienteConoceSuEmail() {
+		assertEquals(cliente.getEmail(), "sergio@gmail.com");
+	}
+	
+	@Test
+	void test004_UnClientePuedeCambiarDeNombre() {
+		cliente.setNombre("Manolo");
+		assertEquals(cliente.getNombre(), "Manolo");
+	}
+	
+	@Test
+	void test005_UnClientePuedeCambiarSuEmail() {
+		
+		cliente.setEmail("123sergio@gmail.com");
+		assertEquals(cliente.getEmail(), "123sergio@gmail.com");
+	}
+	
+	@Test
+	void test006_CuandoUnClienteCreaUnaOrdenDeExportacion_LaTerminalLaRegistra() {
 		//Se crea el contexto :terminal como MOCK y lo demas como DUMMY porque son para relleno
 		TerminalPortuaria terminal = mock(TerminalPortuaria.class);
 		BlBasico carga= mock(BlBasico.class);
