@@ -2,7 +2,7 @@ package orden;
 
 import java.util.ArrayList;
 
-import carga.*;
+import bl.*;
 import cliente.Cliente;
 import empresa_transportista.*;
 import servicio.Servicio;
@@ -10,12 +10,12 @@ import servicio.Servicio;
 public abstract class Orden {
 	
 	Cliente cliente;
-	Carga carga;
+	Bl carga;
 	Camion camion;
 	Chofer chofer;
 	ArrayList<Servicio> servicios;
 	
-	public Orden(Cliente cliente, Carga carga, Camion camion, Chofer chofer, ArrayList<Servicio> servicios) {
+	public Orden(Cliente cliente, Bl carga, Camion camion, Chofer chofer, ArrayList<Servicio> servicios) {
 		this.cliente = cliente;
 		this.carga = carga;
 		this.camion = camion;
@@ -27,7 +27,7 @@ public abstract class Orden {
 		return this.cliente;
 	}
 
-	public Carga getCarga() {
+	public Bl getCarga() {
 		return this.carga;
 	}
 

@@ -9,7 +9,7 @@ import java.util.Date;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import carga.*;
+import bl.*;
 import cliente.Cliente;
 import empresa_naviera.BuqueViaje;
 import empresa_transportista.*;
@@ -20,7 +20,7 @@ class OrdenDeExportacionTest {
 	
 	Cliente cliente;
 	OrdenExportacion orden;
-	CargaBL carga;
+	BlBasico carga;
 	Camion camion;
 	Chofer chofer;
 	ArrayList<Servicio> servicios;
@@ -31,7 +31,7 @@ class OrdenDeExportacionTest {
 	void setUp() throws Exception {
 		
 		cliente = mock(Cliente.class);
-		carga= mock(CargaBL.class);
+		carga= mock(BlBasico.class);
 		camion = mock(Camion.class);
 		chofer = mock(Chofer.class);
 		servicios = new ArrayList<Servicio>();

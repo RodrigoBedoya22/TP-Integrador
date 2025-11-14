@@ -1,41 +1,39 @@
-package carga;
+package bl;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import bl.*;
 import static org.mockito.Mockito.*;
-
-
 import cliente.Cliente;
 import terminal_portuaria.Coordenada;
 
-class cargaTest {
+class BlTest {
 	
-	CargaBL cargaBL;
-	CargaBLConsolidado cargaBLConsolidado;
+	BlBasico cargaBL;
+	BLConsolidado cargaBLConsolidado;
 	Cliente cliente;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		
 		cliente = new Cliente("Pedro", 12345678, "pedro@gmail.com");
-		cargaBL= new CargaBL("Comida", 25.3, cliente);
-		cargaBLConsolidado = new CargaBLConsolidado("Medicamentos", cliente);
-	
+		cargaBL= new BlBasico("Comida", 25.3, cliente);
+		cargaBLConsolidado = new BLConsolidado();
 	}
 
 	@Test
 	void test001_UnaCargaConoceSuTipoDeProducto() {
+		cargaBLConsolidado.agregarCarga(cargaBL);
 		
 		assertEquals(cargaBL.getTipoDeProducto(), "Comida");
-		assertEquals(cargaBLConsolidado.getTipoDeProducto(), "Medicamentos");
+		assertEquals(cargaBLConsolidado.getTipoDeProducto(), "Comida");
 		
 	}
 	
 	@Test
 	void test002_UnaCargaConoceSuPeso() {
-		
 		cargaBLConsolidado.agregarCarga(cargaBL);
 		
 		assertEquals(cargaBL.getPeso(), 25.3);
@@ -44,6 +42,7 @@ class cargaTest {
 	
 	@Test
 	void test003_UnaCargaConoceASuCliente() {
+		cargaBLConsolidado.agregarCarga(cargaBL);
 		
 		assertEquals(cargaBL.getPropietario(), cliente);
 		assertEquals(cargaBLConsolidado.getPropietario(), cliente);
@@ -52,8 +51,8 @@ class cargaTest {
 	@Test
 	void test004_CuandoUnContenedorConsolidadoAgregaUnaCarga_SuListaDeCargasAumenta() {
 		
-		CargaBL carga1 = cargaBL;
-		CargaBLConsolidado carga2 = cargaBLConsolidado;
+		BlBasico carga1 = cargaBL;
+		BLConsolidado carga2 = cargaBLConsolidado;
 		
 		cargaBLConsolidado.agregarCarga(carga1);
 		cargaBLConsolidado.agregarCarga(carga2);
@@ -63,8 +62,8 @@ class cargaTest {
 	
 	@Test
 	void test005_UnContenedorConsolidadoNoPuedeAgregarUnaCargaDeUnDueñoDiferente() {
-		
-		CargaBL carga = mock(CargaBL.class);  
+		cargaBLConsolidado.agregarCarga(cargaBL);
+		BlBasico carga = mock(BlBasico.class);
 		
 		assertThrows(IllegalArgumentException.class, () -> cargaBLConsolidado.agregarCarga(carga));
 	}

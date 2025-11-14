@@ -7,8 +7,8 @@ import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import bl.BlBasico;
 import buque.Buque;
-import carga.CargaBL;
 import empresa_naviera.*;
 import empresa_transportista.*;
 import terminal_portuaria.*;
@@ -27,7 +27,7 @@ class ClienteTest {
 	void test001_CuandoUnClienteCreaUnaOrdenDeExportacion_LaTerminalLaRegistra() {
 		//Se crea el contexto :terminal como MOCK y lo demas como DUMMY porque son para relleno
 		TerminalPortuaria terminal = mock(TerminalPortuaria.class);
-		CargaBL carga= mock(CargaBL.class);
+		BlBasico carga= mock(BlBasico.class);
 		BuqueViaje viaje= mock(BuqueViaje.class);
 		Camion camion = mock(Camion.class);
 		Chofer chofer = mock(Chofer.class);

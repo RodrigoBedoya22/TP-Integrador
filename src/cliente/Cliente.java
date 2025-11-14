@@ -2,7 +2,7 @@ package cliente;
 
 import java.util.ArrayList;
 
-import carga.CargaBL;
+import bl.BlBasico;
 import empresa_naviera.BuqueViaje;
 import empresa_transportista.*;
 import orden.*;
@@ -51,7 +51,7 @@ public class Cliente {
 	 * @param serviciosRecibidos - Los servicios contratados por el cliente.
 	 * @param terminal - La terminal en la que se quiere registrar la orden de exportacion.
 	 */
-	public void crearOrdenExportacion(BuqueViaje viaje, CargaBL carga, Camion camion, Chofer chofer,
+	public void crearOrdenExportacion(BuqueViaje viaje, BlBasico carga, Camion camion, Chofer chofer,
 			ArrayList<Servicio> serviciosRecibidos, TerminalPortuaria terminal) {
 		
 		OrdenExportacion orden = new OrdenExportacion(this, carga, camion, chofer, serviciosRecibidos, viaje);
