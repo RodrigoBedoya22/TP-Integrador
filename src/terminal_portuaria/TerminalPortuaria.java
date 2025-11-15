@@ -229,6 +229,13 @@ public class TerminalPortuaria {
 		
 	}
 	
+
+	public void eliminarContenedor(Contenedor contenedor) {
+		
+		this.contenedoresRegistrados.remove(contenedor);
+		
+	}
+	
 	/**
 	 * Indica al visitante dado que puede acceder a su información.
 	 * @param visitor - El visitante al cual se le informará el acceso a los datos de la terminal.

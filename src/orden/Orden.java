@@ -51,10 +51,5 @@ public abstract class Orden {
 		
 	// }
 	
-	public abstract boolean esOrdenDeExportacion();
-	public abstract boolean esOrdenDeImportacion();
-
-	
-	
 
 }

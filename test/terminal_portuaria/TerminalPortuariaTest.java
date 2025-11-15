@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import cliente.Cliente;
+import contenedor.Contenedor;
 import coordenada.Coordenada;
 
 import static org.mockito.Mockito.*;
@@ -207,6 +208,32 @@ class TerminalPortuariaTest {
 		assertTrue(terminal.getConsignees().contains(consignee1));
 		assertTrue(terminal.getConsignees().contains(consignee2));
 		
+	}
+	
+	@Test
+	void test015_CuandoUnaTerminalRegistraUnNuevoContenedor_SuListaDeContenedoresAumenta() {
+		
+		Contenedor contenedor = mock(Contenedor.class);
+		Contenedor contenedor2 = mock(Contenedor.class);
+		terminal.registrarContenedor(contenedor);
+		terminal.registrarContenedor(contenedor2);
+	
+		assertEquals(terminal.getContenedores().size(),2);
+		
+	}
+	
+	@Test
+	void test016_CuandoUnContenedorSeRetiraDeLaTerminal_LaListaDeContenedoresDisminuye() {
+		
+		Contenedor contenedor = mock(Contenedor.class);
+		Contenedor contenedor2 = mock(Contenedor.class);
+		terminal.eliminarContenedor(contenedor);
+		terminal.eliminarContenedor(contenedor2);
+		
+		
+		assertTrue(terminal.getContenedores().isEmpty());
+		assertFalse(terminal.getContenedores().contains(contenedor));
+		assertFalse(terminal.getContenedores().contains(contenedor2));
 	}
 	
 	

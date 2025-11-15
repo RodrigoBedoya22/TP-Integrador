@@ -76,12 +76,5 @@ class OrdenDeImportacionTest {
 		
 	}
 	
-	@Test
-	void test007_UnaOrdenDeImportacionSabeDeQueTipoEs() {
-		
-		assertTrue(orden.esOrdenDeImportacion());
-		assertFalse(orden.esOrdenDeExportacion()); 
-		
-	}
 
 }

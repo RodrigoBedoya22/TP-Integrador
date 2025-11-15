@@ -23,15 +23,5 @@ public class OrdenImportacion extends Orden{
 		return fechaLimite;
 	}
 	
-	@Override
-	public boolean esOrdenDeExportacion() { 
-		return false;
-	} 
-
-	@Override
-	public boolean esOrdenDeImportacion() {
-		
-		return true;
-	}
 	
 }

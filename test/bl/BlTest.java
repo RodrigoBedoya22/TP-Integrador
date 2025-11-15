@@ -61,12 +61,40 @@ class BlTest {
 	}
 	
 	@Test
-	void test005_UnContenedorConsolidadoNoPuedeAgregarUnaCargaDeUnDueñoDiferente() {
+	void test005_UnContenedorConsolidadoSacaUnaCarga_SuListaDeCargasDisminuye() {
+		BlBasico carga1 = cargaBL;
+		BLConsolidado carga2 = cargaBLConsolidado;
+		
+		cargaBLConsolidado.agregarCarga(carga1);
+		cargaBLConsolidado.agregarCarga(carga2);
+		cargaBLConsolidado.quitarCarga(carga1);
+		cargaBLConsolidado.quitarCarga(carga2);
+
+		
+		assertEquals(cargaBLConsolidado.getCargas().size(), 0);
+	}
+	
+	@Test
+	void test006_UnContenedorConsolidadoNoPuedeSacarUnaCargaQueNoContieneEnSuListaDeCargas() {
+		BlBasico carga1 = cargaBL;
+		BLConsolidado carga2 = cargaBLConsolidado;
+		
+		cargaBLConsolidado.agregarCarga(carga1);
+		cargaBLConsolidado.quitarCarga(carga2);
+
+		assertFalse(cargaBLConsolidado.getCargas().contains(carga2));
+		assertEquals(cargaBLConsolidado.getCargas().size(), 1);
+	}
+
+	
+	@Test
+	void test007_UnContenedorConsolidadoNoPuedeAgregarUnaCargaDeUnDueñoDiferente() {
 		cargaBLConsolidado.agregarCarga(cargaBL);
 		BlBasico carga = mock(BlBasico.class);
 		
 		assertThrows(IllegalArgumentException.class, () -> cargaBLConsolidado.agregarCarga(carga));
 	}
-
+	
+	
 
 }

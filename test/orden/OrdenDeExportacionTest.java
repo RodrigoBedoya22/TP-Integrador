@@ -74,12 +74,5 @@ class OrdenDeExportacionTest {
 		assertEquals(orden.getViaje(), viaje);
 	}
 	
-	@Test
-	void test007_UnaOrdenDeExportacionSabeDeQueTipoEs() {
-		
-		assertTrue(orden.esOrdenDeExportacion());
-		assertFalse(orden.esOrdenDeImportacion());
-		
-	}
 	
 }

@@ -18,16 +18,6 @@ public class OrdenExportacion extends Orden{
 		
 	}
 
-	@Override
-	public boolean esOrdenDeExportacion() {
-		return true;
-	}
-
-	@Override
-	public boolean esOrdenDeImportacion() { 
-		return false;
-	}
-
 	public BuqueViaje getViaje() {
 		return viaje;
 	}
