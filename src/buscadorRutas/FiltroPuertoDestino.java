@@ -16,6 +16,6 @@ public class FiltroPuertoDestino implements FiltroRuta {
 
 	public Boolean cumple(BuqueViaje viaje) {
 		
-		return viaje.getCircuito().contieneTramoConDestino(nombreDelDestino);
+		return viaje.contieneTramoConDestino(nombreDelDestino);
 	}
 }

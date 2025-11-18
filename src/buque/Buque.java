@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import contenedor.Contenedor;
 import coordenada.Coordenada;
-import empresa_naviera.EmpresaNaviera;
+import empresa_naviera.BuqueViaje;
+import empresa_naviera.GPS;
 
 public class Buque {
 	
@@ -12,15 +13,19 @@ public class Buque {
 	private ArrayList<Contenedor> contenedores;
 	private Coordenada coordenada;
 	private EstadoBuque estado;
+	private GPS gps;
+	private BuqueViaje viajeActual;
 	
 
-	public Buque(String nombre, Coordenada coordenada) {
+	public Buque(String nombre) {
 		this.nombre= nombre;
-		this.coordenada= coordenada;
 		this.contenedores = new ArrayList<Contenedor>();
 		this.estado= new OutOfBound();
+		this.gps= new GPS(new Coordenada(0, 0), this);
+		this.coordenada= this.gps.getCoordenadaGPS();
+		
+		
 	}
-
 
 	public String getNombre() {
 		return this.nombre;
@@ -30,8 +35,16 @@ public class Buque {
 		return this.coordenada;
 	}
 	
-	public void setCoordenada(Coordenada coordenada) {
-		this.coordenada = coordenada;
+	public void actualizarCoordenada() {
+		this.coordenada = this.gps.getCoordenadaGPS();
+		this.evaluarEstado();
+	}
+	
+	public GPS getGPS() {
+		return this.gps;
+	}
+	public void evaluarEstado() {
+		this.estado.evaluarCambioDeEstado(this);
 	}
 
 	public EstadoBuque getEstado() {
@@ -71,51 +84,16 @@ public class Buque {
 		
 	}
 	
-	/**
-	 * Delega a su estado actual el cambio al estado OutBound.Si se logra, el estado del buque cambiará, en caso contrario
-	 *  se realiza una excepcion
-	 */
-    public void pasarAEstadoOutBound() {
-   
-    	estado.pasarAEstadoOutOfBound(this);
-    }
+	public BuqueViaje getViaje() {
+		return this.viajeActual;
+	}
+	public void setViaje(BuqueViaje viaje ) {
+		this.viajeActual = viaje;
+	}
+	public Double distanciaHaciaDestinoActual() {
+		return this.coordenada.distanciaHaciaCoordenada(this.viajeActual.getTramoActual().getTerminalDestino().getCoordenada());
+	}
 	
-    /**
-	 * Delega a su estado actual el cambio al estado InBound.Si se logra, el estado del buque cambiará, en caso contrario
-	 *  se realiza una excepcion
-	 */
-    public void pasarAEstadoInBound() {
-    	
-    	estado.pasarAEstadoInBound(this);
-		
-	}
-    
-    /**
-	 * Delega a su estado actual el cambio al estado Arrived.Si se logra, el estado del buque cambiará, en caso contrario
-	 *  se realiza una excepcion
-	 */
-    public void pasarAEstadoArrived() {
-    	estado.pasarAEstadoArrived(this);
-    }
-    
-    /**
-	 * Delega a su estado actual el cambio al estado Working.Si se logra, el estado del buque cambiará, en caso contrario
-	 *  se realiza una excepcion
-	 */
-    public void pasarAEstadoWorking() {
-    	
-    	estado.pasarAEstadoWorking(this);
-		
-	}
-    
-    /**
-	 * Delega a su estado actual el cambio al estado Departing.Si se logra, el estado del buque cambiará, en caso contrario
-	 *  se realiza una excepcion
-	 */
-    public void pasarAEstadoDeparting() {
-    	
-    	estado.pasarAEstadoDeparting(this);
-    	
-    }
 
 }
+

@@ -19,6 +19,14 @@ public class GPS {
 
 	public void setCoordenadaGPS(Coordenada coordenadaGPS) {
 		this.coordenadaGPS = coordenadaGPS;
+		if (this.buqueObservador != null && buqueObservador.getViaje() != null) {
+			notificar();
+	    }
+		
+	}
+	
+	public void notificar() {
+		this.buqueObservador.actualizarCoordenada();
 	}
 
 }

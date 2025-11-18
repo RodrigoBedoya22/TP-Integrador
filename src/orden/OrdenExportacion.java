@@ -10,11 +10,8 @@ import servicio.Servicio;
 
 public class OrdenExportacion extends Orden{
 
-	private BuqueViaje viaje;
-
 	public OrdenExportacion(Cliente cliente, Bl carga, Camion camion, Chofer chofer, ArrayList<Servicio> servicios, BuqueViaje viaje) {
-		super(cliente, carga, camion, chofer, servicios);
-		this.viaje = viaje;
+		super(cliente, carga, camion, chofer, servicios, viaje);
 		
 	}
 

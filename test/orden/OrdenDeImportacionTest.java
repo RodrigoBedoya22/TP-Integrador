@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import bl.BlBasico;
 import cliente.Cliente;
+import empresa_naviera.BuqueViaje;
 import empresa_transportista.Camion;
 import empresa_transportista.Chofer;
 import servicio.Lavado;
@@ -25,6 +26,7 @@ class OrdenDeImportacionTest {
 	Chofer chofer;
 	ArrayList<Servicio> servicios;
 	LocalDate fechaLimite;
+	BuqueViaje viaje;
 	Lavado servicioDeLavado;
 
 	@BeforeEach
@@ -35,8 +37,9 @@ class OrdenDeImportacionTest {
 		camion = mock(Camion.class);
 		chofer = mock(Chofer.class);
 		servicios = new ArrayList<Servicio>();
-		fechaLimite = LocalDate.now();
-		orden = new OrdenImportacion(cliente, carga, camion, chofer, servicios, fechaLimite);
+		fechaLimite = mock(LocalDate.class);
+		viaje = mock(BuqueViaje.class);
+		orden = new OrdenImportacion(cliente, carga, camion, chofer, servicios, fechaLimite, viaje);
 
 	}
 
@@ -73,6 +76,13 @@ class OrdenDeImportacionTest {
 	void test006_UnaOrdenDeImportacionConoceLaFechaDeLimiteDeRetiroDeLaCarga() {
 		
 		assertEquals(orden.getFechaLimite(), fechaLimite);
+		
+	}
+	
+	@Test
+	void test007_UnaOrdenDeImportacionConoceElViajeDondeVendraLaCarga() {
+		
+		assertEquals(orden.getViaje(), viaje);
 		
 	}
 	

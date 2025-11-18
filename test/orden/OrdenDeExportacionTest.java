@@ -70,9 +70,12 @@ class OrdenDeExportacionTest {
 	}
 	
 	@Test
-	void test006_UnaOrdenDeExportacionConoceASuViaje() {
+	void test006_UnaOrdenDeExportacionConoceElViajeDondeSeLlevaraLaCarga() {
 		assertEquals(orden.getViaje(), viaje);
 	}
+	
+	
+	
 	
 	
 }

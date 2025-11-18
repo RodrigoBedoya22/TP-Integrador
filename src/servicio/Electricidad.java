@@ -1,6 +1,7 @@
 package servicio;
 
 import contenedor.Contenedor;
+import contenedor.Reefer;
 
 public class Electricidad implements Servicio {
 	
@@ -17,11 +18,20 @@ public class Electricidad implements Servicio {
 	/**
 	 * Calcula el costo del servicio para un contenedor conectado basandose en su consumo.
 	 */
+	
+	
 	public double calcularCosto(Contenedor contenedor) {
-		
-		return  0; //contenedor.getConsumoDeEnergia() * this.precioFijo;
-		
+		/*
+        if(contenedor.getClass().isInstance(Reefer.class)){
+        	return contenedor.getConsumoDeEnergia() * this.precioFijo;
+        }else {
+        	return 0;
+        }
+        
+        */
+		return 0;
 	}
+     
 
 	public double getPrecioFijo() {
 		return precioFijo;

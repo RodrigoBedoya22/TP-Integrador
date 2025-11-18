@@ -1,7 +1,6 @@
 package empresa_naviera;
 
 import java.util.ArrayList;
-import java.util.function.BooleanSupplier;
 
 public class CircuitoMaritimo {
 	
@@ -33,7 +32,7 @@ public class CircuitoMaritimo {
     	Tramo tramoAnterior = copia.get(0);
     	//por cada tramo
     	for (int i = 1; i < copia.size(); i++) {
-            Tramo tramo = copia.get(i);
+    		Tramo tramo = copia.get(i);
             //si el tramo no tiene el puerto origen igual al puerto destino de su antepasado, genera excepcion
             if (!tramo.getTerminalOrigen().equals(tramoAnterior.getTerminalDestino())) {
                 throw new IllegalArgumentException("Los tramos no están conectados correctamente");

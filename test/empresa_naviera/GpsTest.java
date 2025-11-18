@@ -16,30 +16,26 @@ class GpsTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		
-		Coordenada coordenadaGps = new Coordenada(4.5, 5.7);
-		Coordenada coordenadaDeBuque = new Coordenada(1.0,2.0);
-		buque = new Buque("Titanic", coordenadaDeBuque);
-		gps1 = new GPS(coordenadaGps, buque);
+		buque = new Buque("Titanic");
+		gps1 = buque.getGPS();
 	}
 
 	@Test
 	void test001_UnGPSConoceLaCoordenadaQueTiene() {
 		
-		Coordenada coordenadaGps = gps1.coordenadaGPS;
-		assertEquals(gps1.getCoordenadaGPS(), coordenadaGps);
+		assertEquals(buque.getGPS().getCoordenadaGPS().getX(), 0.0);
+		assertEquals(buque.getGPS().getCoordenadaGPS().getY(), 0.0);
 	}
 	
 	@Test
 	void test002_UnGPSCambiaSuCoordenadaAnteriorPorLaCoordenadaActual() {
 		
-		Coordenada coordenadaAnterior = gps1.getCoordenadaGPS();
 	    Coordenada nuevaCoordenada = new Coordenada(15.9, 47.7);
 
 	    gps1.setCoordenadaGPS(nuevaCoordenada);
 
-	    assertEquals(nuevaCoordenada, gps1.getCoordenadaGPS());
-	    assertNotEquals(coordenadaAnterior, gps1.getCoordenadaGPS());
+	    assertEquals(gps1.getCoordenadaGPS().getX(), 15.9);
+	    assertEquals(gps1.getCoordenadaGPS().getY(), 47.7);
 	}
 
 }

@@ -1,9 +1,12 @@
 package empresa_transportista;
 
+import contenedor.Contenedor;
+
 public class Camion {
 	
 	private String patente;
 	private Chofer chofer;
+	private Contenedor contenedor;
 	
 	public Camion(String patente) {
 		
@@ -24,6 +27,13 @@ public class Camion {
 	
 	public String getPatente() {
 		return patente;
+	}
+	public Contenedor getContenedor() {
+		return contenedor;
+	}
+	
+	public void setContenedor(Contenedor contenedor) {
+		this.contenedor = contenedor;
 	}
 
 

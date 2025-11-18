@@ -2,14 +2,13 @@ package terminal_portuaria;
 
 import java.util.ArrayList;
 
-
+import buque.Buque;
 import cliente.Cliente;
 import contenedor.Contenedor;
 import coordenada.Coordenada;
 import empresa_naviera.EmpresaNaviera;
 import empresa_transportista.*;
 import orden.*;
-import reportes.ReporteVisitor;
 
 public class TerminalPortuaria {
 
@@ -237,12 +236,30 @@ public class TerminalPortuaria {
 	}
 	
 	/**
+	 * Pone a trabajar en carga y descarga a un buque
+	 * @param buque
+	 */
+	public void ponerEnWorking(Buque buque) {
+		buque.evaluarEstado();
+	}
+	
+	/**
+	 * Pone en estado depart a un buque
+	 * @param buque
+	 */
+	public void PonerEnDeparting(Buque buque) {
+		buque.evaluarEstado();
+	}
+	
+	/*
+	/**
 	 * Indica al visitante dado que puede acceder a su información.
 	 * @param visitor - El visitante al cual se le informará el acceso a los datos de la terminal.
-	 */
+	 
 	public void aceptar(ReporteVisitor visitor) {
         visitor.visitarTerminal(this);
     }
+	*/
 
 
 	

@@ -2,6 +2,7 @@ package cliente;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -69,25 +70,23 @@ class ClienteTest {
 		
 	}
 	
-	/*
-	 * TODAVIA HAY QUE DEFINIR BIEN LA ORDEN DE IMPORTACION
 	@Test
-	void test002_CuandoUnClienteCreaUnaOrdenDeImportacion_LaTerminalLaRegistra() {
+	void test007_CuandoUnClienteCreaUnaOrdenDeImportacion_LaTerminalLaRegistra() {
 		
 		TerminalPortuaria terminal = mock(TerminalPortuaria.class);
-		CargaBL carga= mock(CargaBL.class);
+		BlBasico carga= mock(BlBasico.class);
 		BuqueViaje viaje= mock(BuqueViaje.class);
 		Camion camion = mock(Camion.class);
 		Chofer chofer = mock(Chofer.class);
+		LocalDate fechaLimite = LocalDate.of(2005, 9, 4);
 		ArrayList<Servicio> serviciosRecibidos = new ArrayList<Servicio>();
 				
 		
-		cliente.crearOrdenImportacion(viaje,carga, camion, chofer, serviciosRecibidos, terminal );
+		cliente.crearOrdenImportacion(viaje,carga, camion, chofer, serviciosRecibidos, fechaLimite, terminal);
 		
 		verify(terminal).registrarOrden(any());
 		
 	}
-	*/
 	
 
 }

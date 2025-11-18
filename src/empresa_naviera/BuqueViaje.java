@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import buque.Buque;
 
+
 public class BuqueViaje {
 
 	private Buque buque;
@@ -82,6 +83,14 @@ public class BuqueViaje {
 		
 		return this.circuito.contieneTramoConDestino(nombre);
 	}
+  
+
+	/*
+	public LocalDate fechaDeSalidaDesde(String nombreDeTerminal) {
+		return this.fechaDeSalida.plusDays(this.getCircuito().getTramos().get(0).
+				                           getTerminalOrigen().distanciaHastaTerminal(nombreDeTerminal));
+	}
+	*/
   
 
 }

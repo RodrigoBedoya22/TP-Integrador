@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,8 +24,7 @@ class BuqueViajeTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		
-	   Coordenada coordenadaDeBuque = new Coordenada(1.0,2.0);
-	   buque= new Buque("Titanic", coordenadaDeBuque);
+	   buque= new Buque("Titanic");
 	   
 	   terminalA = new TerminalPortuaria("Terminal A", new Coordenada(10, 222));
 	   terminalB = new TerminalPortuaria("Terminal B", new Coordenada(102, 5));

@@ -1,5 +1,6 @@
 package cliente;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import bl.BlBasico;
@@ -58,5 +59,13 @@ public class Cliente {
 		terminal.registrarOrden(orden);
 		
 	}
+
+	public void crearOrdenImportacion(BuqueViaje viaje, BlBasico carga, Camion camion, Chofer chofer,
+			ArrayList<Servicio> serviciosRecibidos, LocalDate fechaLimite, TerminalPortuaria terminal) {
+		
+		OrdenImportacion orden = new OrdenImportacion(this, carga, camion, chofer, serviciosRecibidos, fechaLimite, viaje);
+		terminal.registrarOrden(orden);
+	}
+
 
 }

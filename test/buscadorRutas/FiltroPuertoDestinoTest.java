@@ -24,33 +24,20 @@ class FiltroPuertoDestinoTest {
 	}
 
 	@Test
-	void Test001_elFiltroDePuertoDestinoCumpleConElViaje() {
+	void Test001_elFiltroDePuertoDestinoCoincideConElDestinoQueTieneElViaje() {
 		FiltroPuertoDestino filtro= new FiltroPuertoDestino("Terminal A");
-		CircuitoMaritimo circuito = mock(CircuitoMaritimo.class);
-		when(circuito.contieneTramoConDestino("Terminal A")).thenReturn(true);
-		
-		ArrayList<Tramo> tramos = new ArrayList<>();
-	    Tramo tramoMock = mock(Tramo.class);
-	    tramos.add(tramoMock);
-	    when(circuito.getTramos()).thenReturn(tramos);
-	    
-		BuqueViaje viaje = new BuqueViaje(null, circuito, null);
+		BuqueViaje viaje = mock(BuqueViaje.class);
+		when(viaje.contieneTramoConDestino("Terminal A")).thenReturn(true);
 
         assertTrue(filtro.cumple(viaje));
 	}
 	
 	@Test
-	void Test002_elFiltroDePuertoDestinoNoCumpleConElViaje() {
-		FiltroPuertoDestino filtro= new FiltroPuertoDestino("Terminal A");
-		CircuitoMaritimo circuito = mock(CircuitoMaritimo.class);
-		when(circuito.contieneTramoConDestino("Terminal T")).thenReturn(false);
-		
-		ArrayList<Tramo> tramos = new ArrayList<>();
-	    Tramo tramoMock = mock(Tramo.class);
-	    tramos.add(tramoMock);
-	    when(circuito.getTramos()).thenReturn(tramos);
+	void Test002_elFiltroDePuertoDestinoNoCoincideConElDestinoQueTienelViaje() {
 	    
-		BuqueViaje viaje = new BuqueViaje(null, circuito, null);
+	    FiltroPuertoDestino filtro= new FiltroPuertoDestino("Terminal B");
+		BuqueViaje viaje = mock(BuqueViaje.class);
+		when(viaje.contieneTramoConDestino("Terminal T")).thenReturn(false);
 
         assertFalse(filtro.cumple(viaje));
 	}

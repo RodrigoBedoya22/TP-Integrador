@@ -236,6 +236,5 @@ class TerminalPortuariaTest {
 		assertFalse(terminal.getContenedores().contains(contenedor2));
 	}
 	
-	
 
 }
