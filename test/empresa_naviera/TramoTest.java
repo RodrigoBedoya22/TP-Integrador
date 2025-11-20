@@ -37,7 +37,7 @@ class TramoTest {
 		//SUT
 		Tramo tramo = new Tramo(terminalOrigen, terminalDestino, 100000.0);
 		
-		assertEquals(tramo.getDuracion(), 1865.5);	
+		assertEquals(tramo.getDuracion(), 84);	
 		
 	}
 	

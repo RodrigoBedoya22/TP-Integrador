@@ -113,7 +113,7 @@ class BuqueViajeTest {
 		assertTrue(viaje.getFechaDeSalida() == fecha);
 	}
 	
-	/*
+
 	@Test
 	void test006UnBuqueViajeConoceLaFechaDeLlegadaASuDestinoActual() {
 		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
@@ -127,9 +127,8 @@ class BuqueViajeTest {
 		viaje= new BuqueViaje(buque,circuito, fecha);
 		
 		
-		assertEquals(viaje.getFechaDeLlegadaADestinoActual() = )
+		assertEquals(viaje.getFechaDeLlegadaA("Terminal B"), fecha.plusDays(tramoAB.getDuracion()));
 	}
-	*/
 	
 	@Test
 	void test007_UnBuqueViajeConoceLaDuracionDeSuRecorrido() {
@@ -144,7 +143,7 @@ class BuqueViajeTest {
 	    
 		viaje= new BuqueViaje(buque,circuito, fecha);
 		
-		assertEquals(viaje.getDuracion(), 530.73);
+		assertEquals(viaje.getDuracion(), 22);
 		
 	}
 	
@@ -163,6 +162,22 @@ class BuqueViajeTest {
 		
 		assertEquals(viaje.getPrecio(), 30000);
 		
+	}
+	
+	@Test
+	void test009_UnBuqueViajeSabeLaFechaDeLlegadaDeUnTramo() {
+		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
+		listaDeTramos.add(tramoAB);
+		listaDeTramos.add(tramoBC);
+		listaDeTramos.add(tramoCA);
+		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
+		
+		LocalDate fechaDeSalidaInicial = LocalDate.of(1990, 10, 23);
+	    
+		viaje= new BuqueViaje(buque,circuito, fechaDeSalidaInicial);
+		
+		
+		assertEquals(viaje.getFechaDeLlegadaA("Terminal B"), fechaDeSalidaInicial.plusDays(tramoAB.getDuracion()));
 	}
 	
 

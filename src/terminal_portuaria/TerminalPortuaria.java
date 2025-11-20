@@ -161,17 +161,6 @@ public class TerminalPortuaria {
 	}
 	
 	/**
-	 * Retorna la distancia hacia otra terminal, basandose en las coordenadas de las mismas.
-	 * @param terminal - La terminal hacia la cual se calculará la distancia
-	 * @return double - La distancia hacia la terminal dada.
-	 * NOTA: Por convencion el numero retornado es en dias.
-	 */
-	public double distanciaHastaTerminal(TerminalPortuaria terminal) {
-		double distancia = this.coordenada.distanciaHaciaCoordenada(terminal.getCoordenada());
-		return distancia;
-	}
-	
-	/**
 	 * Registra una orden en la lista de ordenes de la terminal
 	 * @param orden - La orden a registrar
 	 */

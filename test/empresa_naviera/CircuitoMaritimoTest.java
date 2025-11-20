@@ -49,7 +49,7 @@ class CircuitoMaritimoTest {
 		
 		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
 		
-		assertEquals(circuito.getDuracion(), 530.73);
+		assertEquals(circuito.getDuracion(), 22);
 		
 	}
 	

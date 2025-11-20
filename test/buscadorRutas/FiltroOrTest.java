@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -31,7 +32,7 @@ class FiltroOrTest {
 	    tramos.add(tramoMock);
 	    when(circuito.getTramos()).thenReturn(tramos);
 	    
-		BuqueViaje viaje = new BuqueViaje(null, circuito, null);
+		BuqueViaje viaje = new BuqueViaje(null, circuito, LocalDate.of(2005, 3, 31));
 
         assertTrue(filtroOr.cumple(viaje));
 	}
@@ -48,7 +49,7 @@ class FiltroOrTest {
 	    tramos.add(tramoMock);
 	    when(circuito.getTramos()).thenReturn(tramos);
 	    
-		BuqueViaje viaje = new BuqueViaje(null, circuito, null);
+		BuqueViaje viaje = new BuqueViaje(null, circuito, LocalDate.of(2005, 5, 21));
 
         assertTrue(filtroOr.cumple(viaje));
 	}
@@ -65,7 +66,7 @@ class FiltroOrTest {
 	    tramos.add(tramoMock);
 	    when(circuito.getTramos()).thenReturn(tramos);
 	    
-		BuqueViaje viaje = new BuqueViaje(null, circuito, null);
+		BuqueViaje viaje = new BuqueViaje(null, circuito, LocalDate.of(2002, 3, 31));
 
         assertTrue(filtroOr.cumple(viaje));
 	}
@@ -82,7 +83,7 @@ class FiltroOrTest {
 	    tramos.add(tramoMock);
 	    when(circuito.getTramos()).thenReturn(tramos);
 	    
-		BuqueViaje viaje = new BuqueViaje(null, circuito, null);
+		BuqueViaje viaje = new BuqueViaje(null, circuito, LocalDate.of(1995, 4, 1));
 
         assertFalse(filtroOr.cumple(viaje));
 	}

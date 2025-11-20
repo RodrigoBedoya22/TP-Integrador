@@ -1,6 +1,7 @@
 package empresa_naviera;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import buque.Buque;
 
@@ -11,6 +12,7 @@ public class BuqueViaje {
 	private CircuitoMaritimo circuito;
     private Tramo tramoActual;
 	private LocalDate fechaDeSalida;
+	private ArrayList<LocalDate> fechasDeArribo;
 	
 	public BuqueViaje(Buque buque, CircuitoMaritimo circuito, LocalDate fechaDeSalida){
 		this.buque = buque;
@@ -18,8 +20,10 @@ public class BuqueViaje {
         //el tramo actual en principio es el primero del circuito.
         this.tramoActual = circuito.getTramos().get(0);
         this.fechaDeSalida = fechaDeSalida;
+        this.fechasDeArribo = new ArrayList<LocalDate>();
+        this.definirCronograma();
 	}
-	
+
 	public Tramo getTramoActual() {
         return tramoActual;
     }
@@ -28,9 +32,10 @@ public class BuqueViaje {
 	 * Avanza al tramo inmediatamente siguiente al tramo actual, segun la lista de tramos del circuito. 
 	 */
 	public void pasarASiguienteTramo() {
-	  int indice = this.circuito.getTramos().indexOf(tramoActual);
-	  this.setTramoActual(this.circuito.getTramos().get(indice + 1));  
-		  
+	  int indiceActual = this.circuito.getTramos().indexOf(tramoActual);	  
+	  if (indiceActual < circuito.getTramos().size() - 1) {
+		  this.setTramoActual(this.circuito.getTramos().get(indiceActual + 1)); 
+	    }
 	}
 	
 	private void setTramoActual(Tramo tramo) {
@@ -82,6 +87,40 @@ public class BuqueViaje {
 	public Boolean contieneTramoConDestino(String nombre) {	
 		
 		return this.circuito.contieneTramoConDestino(nombre);
+	}
+
+	public LocalDate getFechaDeLlegadaA(String nombreDeTerminal) {
+		
+	 Tramo tramoActual = circuito.getTramos().stream().filter(tramo -> tramo.getTerminalDestino().getNombre().equals(nombreDeTerminal)).findFirst().get();
+	 int indiceDeTramo = circuito.getTramos().indexOf(tramoActual);
+	 return this.getFechasDeArribo().get(indiceDeTramo);
+		
+	}
+
+	public ArrayList<LocalDate> getFechasDeArribo() {
+	 	
+		return this.fechasDeArribo;
+	}
+	/**
+	 * Define el cronograma de fechas segun la fecha de salida del viaje
+	 */
+	public void definirCronograma() {
+	    // Se setea la primera fecha 
+		Tramo tramoAnterior = circuito.getTramos().get(0);
+		this.fechasDeArribo.add(fechaDeSalida.plusDays(tramoAnterior.getDuracion()));
+		LocalDate fechaAnterior = this.fechasDeArribo.get(0);
+		
+		// Basandose en la fecha anterior se setea la siguiente por cada tramo del circuito
+		for(int i = 1; i < circuito.getTramos().size(); i++) {
+			Tramo tramoActual = circuito.getTramos().get(i);
+			LocalDate fechaActual = fechaAnterior.plusDays(tramoActual.getDuracion());
+			fechasDeArribo.add(fechaActual);
+			
+			// Se pasa al siguiente tramo
+			tramoAnterior = tramoActual;
+			fechaAnterior = fechaActual;
+		}
+		
 	}
   
 

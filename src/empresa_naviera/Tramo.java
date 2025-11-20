@@ -32,9 +32,11 @@ public class Tramo{
 	 * @return Double - La duracion del viaje entre la terminal origen y destino en dias.
 	 * NOTA: Por convencion, esta distancia es en dias.
 	 */
-	public double getDuracion() {
+	public int getDuracion() {
 		
-		return this.terminalOrigen.distanciaHastaTerminal(this.terminalDestino);
+	  double distanciaEntreTerminales = this.terminalOrigen.getCoordenada().distanciaHaciaCoordenada(this.terminalDestino.getCoordenada());
+	  int duracionEnDias = (int)distanciaEntreTerminales / 22;
+		return duracionEnDias;
 	}
 
 	public Double getPrecio() {

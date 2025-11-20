@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -31,7 +32,7 @@ class FiltroANDTest {
 	    tramos.add(tramoMock);
 	    when(circuito.getTramos()).thenReturn(tramos);
 	    
-		BuqueViaje viaje = new BuqueViaje(null, circuito, null);
+		BuqueViaje viaje = new BuqueViaje(null, circuito, LocalDate.of(2009, 5, 14));
 
         assertTrue(filtroAnd.cumple(viaje));
 	}
@@ -48,7 +49,7 @@ class FiltroANDTest {
 	    tramos.add(tramoMock);
 	    when(circuito.getTramos()).thenReturn(tramos);
 	    
-		BuqueViaje viaje = new BuqueViaje(null, circuito, null);
+		BuqueViaje viaje = new BuqueViaje(null, circuito, LocalDate.of(2006, 5, 14));
 
         assertFalse(filtroAnd.cumple(viaje));
 	}
