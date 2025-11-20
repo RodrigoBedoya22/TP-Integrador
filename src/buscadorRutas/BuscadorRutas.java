@@ -1,5 +1,9 @@
 package buscadorRutas;
 
+import java.util.ArrayList;
+
+import empresa_naviera.BuqueViaje;
+import empresa_naviera.EmpresaNaviera;
 import terminal_portuaria.TerminalPortuaria;
 
 public class BuscadorRutas {
@@ -26,7 +30,27 @@ public class BuscadorRutas {
 		
 		this.estrategia= nuevaEstrategia;
 	}
-	
-	
+
+	public ArrayList<BuqueViaje> buscar(FiltroRuta filtroDado) {
+		
+		ArrayList<BuqueViaje> todosLosViajes = new ArrayList<BuqueViaje>(this.getTerminal().getNavieras().stream()
+		        .flatMap(naviera -> naviera.getViajes().stream())
+		        .toList());
+		
+		ArrayList<BuqueViaje> viajesFiltrados = new ArrayList<BuqueViaje>();
+		for(BuqueViaje viaje : todosLosViajes) {
+			
+			if(filtroDado.cumple(viaje)) {
+				
+				viajesFiltrados.add(viaje);
+				
+			}
+			
+		}
+		
+		ArrayList<BuqueViaje> viajesAdecuados = this.estrategia.filtrar(viajesFiltrados);
+		return viajesAdecuados;
+		
+	}
 
 }

@@ -59,9 +59,9 @@ public class CircuitoMaritimo {
      * Obtiene la duracion en dias del circuito segun la duracion de sus tramos
      * @return Double - la duracion en días del circuito.
      */
-	public double getDuracion() {
+	public int getDuracion() {
 		
-		double duracion= 0;
+		int duracion= 0;
 		for (Tramo tramo: tramos) {
 			duracion+= tramo.getDuracion();
 		}

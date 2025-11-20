@@ -8,13 +8,16 @@ import empresa_naviera.BuqueViaje;
 public class EstrategiaMenorPrecio implements Estrategia {
 	
 	/**
-	 * Realiza un filtro para buscar el viaje con menor precio dentro de una lista de viajes dada. En caso de no existir devuelve null.
+	 * Realiza un filtro para devolver la lista de viajes dada, ordenada de menor a mayor, segun el precio de cada viajes. En caso de no existir 
+	 * devuelve una lista vacia.
 	 */
 	@Override
-	public BuqueViaje filtrar(ArrayList<BuqueViaje> viajes) {
+	public ArrayList<BuqueViaje> filtrar(ArrayList<BuqueViaje> viajes) {
 		
-		BuqueViaje menorPrecio = viajes.stream().min(Comparator.comparing(BuqueViaje::getPrecio)).orElse(null);
-		return menorPrecio;
+		ArrayList<BuqueViaje> ordenados = new ArrayList<BuqueViaje>(viajes.stream()
+		        .sorted(Comparator.comparingDouble(BuqueViaje::getPrecio))
+		        .toList());
+		return ordenados;
 		
 	}
 

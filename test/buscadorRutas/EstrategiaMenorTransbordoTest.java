@@ -5,6 +5,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ class EstrategiaMenorTransbordoTest {
 	}
 	
 	@Test
-	void test001_LaEstrategiaDeMenorTiempoSabeCualEsElBuqueViajeQueTardaMenosEnLlegarASuDestino() {
+	void test001_LaEstrategiaDeMenorTransbordoOrdenaLosViajesDeMenorAMayorSegunSuCantidadDeTramos() {
 		//Se crean los DOCS de viaje con su duracion, en este caso Stubs
 	    BuqueViaje viajeStub1 = mock(BuqueViaje.class);
 	    when(viajeStub1.cantidadDeTramos()).thenReturn(8);
@@ -36,7 +37,12 @@ class EstrategiaMenorTransbordoTest {
 	    listaDeViajes.add(viajeStub2);
 	    listaDeViajes.add(viajeStub3);
 	    
-		assertEquals(estrategiaMenorTransbordo.filtrar(listaDeViajes),viajeStub2);
+	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
+	    listaDeViajesOrdenados.add(viajeStub2);
+	    listaDeViajesOrdenados.add(viajeStub1);
+	    listaDeViajesOrdenados.add(viajeStub3);
+	    
+	    assertEquals(estrategiaMenorTransbordo.filtrar(listaDeViajes), listaDeViajesOrdenados);
 	}
 	
 	@Test
@@ -44,7 +50,7 @@ class EstrategiaMenorTransbordoTest {
 		
 	    ArrayList<BuqueViaje> listaDeViajes = new ArrayList<BuqueViaje>();
 	    
-		assertEquals(estrategiaMenorTransbordo.filtrar(listaDeViajes),null);
+	    assertTrue(estrategiaMenorTransbordo.filtrar(listaDeViajes).isEmpty() );
 	}
 
 }

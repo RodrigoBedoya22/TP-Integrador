@@ -59,7 +59,7 @@ public class BuqueViaje {
 	 * @return
 	 */
 	 
-	public double getDuracion() {
+	public int getDuracion() {
 		
 		return circuito.getDuracion();
 		

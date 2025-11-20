@@ -7,7 +7,8 @@ public class FiltroOr implements FiltroRuta{
 	private FiltroRuta primerFiltro;
 	private FiltroRuta segundoFiltro;
 
-	public FiltroOr(FiltroPuertoDestino primerFiltro, FiltroPuertoDestino segundoFiltro) {
+	public FiltroOr(FiltroRuta primerFiltro, FiltroRuta segundoFiltro) {
+		
 		  this.primerFiltro = primerFiltro;
 		  this.segundoFiltro = segundoFiltro;
 		

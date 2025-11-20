@@ -8,14 +8,17 @@ import empresa_naviera.BuqueViaje;
 public class EstrategiaMenorTiempo implements Estrategia {
 	
 	/**
-	 * Se realiza un filtrado por una lista de viajes dada para buscar aquel viaje con menor duración. En caso de no existir ninguno devuelve null.
+	 * Realiza un filtro para devolver la lista de viajes dada, ordenada de menor a mayor, segun el tiempo de cada viaje. En caso de no existir 
+	 * devuelve una lista vacia.
 	 */
 	@Override
-	public BuqueViaje filtrar(ArrayList<BuqueViaje> viajes) {
+	public ArrayList<BuqueViaje> filtrar(ArrayList<BuqueViaje> viajes) {
 		
-		BuqueViaje menorDuracion = viajes.stream().min(Comparator.comparing(BuqueViaje::getDuracion)).orElse(null);
-		return menorDuracion;
+		ArrayList<BuqueViaje> ordenados = new ArrayList<BuqueViaje>(viajes.stream()
+		        .sorted(Comparator.comparingDouble(BuqueViaje::getDuracion))
+		        .toList());
+		return ordenados;
 		
 	}
-
+	
 }

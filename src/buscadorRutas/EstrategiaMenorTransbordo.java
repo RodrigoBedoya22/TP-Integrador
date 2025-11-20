@@ -8,13 +8,15 @@ import empresa_naviera.BuqueViaje;
 public class EstrategiaMenorTransbordo implements Estrategia {
 
 	/**
-	 * Se realiza un filtrado para obtener aquel viaje dentro de la lista de viajes dada con menor cantidad de tramos. En caso de no
-	 * existir, retorna null.
+	 * Realiza un filtro para devolver la lista de viajes dada, ordenada de menor a mayor, segun la cantidad de tramos de cada viaje. 
+	 * En caso de no existir devuelve una lista vacia.
 	 */
 	@Override
-	public BuqueViaje filtrar(ArrayList<BuqueViaje> viajes) {
-		BuqueViaje menorCantidadDeTramos = viajes.stream().min(Comparator.comparing(BuqueViaje::cantidadDeTramos)).orElse(null);
-		return menorCantidadDeTramos;
+	public ArrayList<BuqueViaje> filtrar(ArrayList<BuqueViaje> viajes) {
+		
+		ArrayList<BuqueViaje> ordenados = new ArrayList<BuqueViaje>(viajes.stream()
+		        .sorted(Comparator.comparingDouble(BuqueViaje::cantidadDeTramos))
+		        .toList());
+		return ordenados;
 	}
-
 }

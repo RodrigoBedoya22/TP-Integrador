@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ class EstrategiaMenorPrecioTest {
 	}
 	
 	@Test
-	void test001_LaEstrategiaDeMenorPrecioSabeCualEsElBuqueViajeMásBarato() {
+	void test001_LaEstrategiaDeMenorPrecioOrdenaLosViajesDeMenorAMayorSegunElPrecio() {
 		//Se crean los DOCS de viaje con su duracion, en este caso Stubs
 	    BuqueViaje viajeStub1 = mock(BuqueViaje.class);
 	    when(viajeStub1.getPrecio()).thenReturn(200.0);
@@ -37,14 +38,20 @@ class EstrategiaMenorPrecioTest {
 	    listaDeViajes.add(viajeStub2);
 	    listaDeViajes.add(viajeStub3);
 	    
-		assertEquals(estrategiaMenorPrecio.filtrar(listaDeViajes), viajeStub2);	
+	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
+	    listaDeViajesOrdenados.add(viajeStub2);
+	    listaDeViajesOrdenados.add(viajeStub1);
+	    listaDeViajesOrdenados.add(viajeStub3);
+	    
+		assertEquals(estrategiaMenorPrecio.filtrar(listaDeViajes), listaDeViajesOrdenados);
 	}
+	
 	@Test
-	void test002_LaEstrategiaDeMenorPrecioDevuelveNullSiNoHayViajes() {
+	void test002_LaEstrategiaDeMenorPrecioDevuelveUnaListaVaciaSiNoHayViajes() {
 		
 	    ArrayList<BuqueViaje> listaDeViajes = new ArrayList<BuqueViaje>();
 	    
-		assertEquals(estrategiaMenorPrecio.filtrar(listaDeViajes),null);
+		assertTrue(estrategiaMenorPrecio.filtrar(listaDeViajes).isEmpty() );
 	}
 
 }
