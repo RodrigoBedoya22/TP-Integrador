@@ -180,5 +180,21 @@ class BuqueViajeTest {
 		assertEquals(viaje.getFechaDeLlegadaA("Terminal B"), fechaDeSalidaInicial.plusDays(tramoAB.getDuracion()));
 	}
 	
+	@Test
+	void test010_UnBuqueViajeConoceSuCantidadDeTramos() {
+		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
+		listaDeTramos.add(tramoAB);
+		listaDeTramos.add(tramoBC);
+		listaDeTramos.add(tramoCA);
+		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
+		
+		LocalDate fechaDeSalidaInicial = LocalDate.of(1990, 10, 23);
+	    
+		viaje= new BuqueViaje(buque,circuito, fechaDeSalidaInicial);
+		
+		
+		assertEquals(viaje.cantidadDeTramos(), 3);
+	}
+	
 
 }

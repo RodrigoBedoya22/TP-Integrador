@@ -1,17 +1,20 @@
 package empresa_naviera;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import static org.mockito.Mockito.*;
 import coordenada.Coordenada;
 import terminal_portuaria.*;
 
 class CircuitoMaritimoTest {
 	
 	TerminalPortuaria terminalA, terminalB, terminalC, terminalD;
-	Tramo tramoAB, tramoBC, tramoCA, tramoDB;
+	Tramo tramoAB, tramoBC, tramoCA, tramoCD, tramoDB;
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -25,6 +28,7 @@ class CircuitoMaritimoTest {
 		tramoBC = new Tramo(terminalB, terminalC, 10000.0);
 		tramoCA = new Tramo(terminalC, terminalA, 10000.0);
 		tramoDB = new Tramo(terminalD, terminalB, 10000.0);
+		tramoCD = new Tramo(terminalC, terminalD, 10000.0);
 	}
 
 	@Test
@@ -62,6 +66,29 @@ class CircuitoMaritimoTest {
 	}
 	
 	@Test
+	void test004_AlCrearUnCircuito_SiElUltimoTramoNoTieneComoDestinoElOrigenDelPrimerTramo_SeLanzaUnaExcepcion() {
+		ArrayList<Tramo> listaDeTramos = new ArrayList<Tramo>();
+		listaDeTramos.add(tramoAB);
+		listaDeTramos.add(tramoBC);
+		listaDeTramos.add(tramoCD);
+		
+		assertThrows(IllegalArgumentException.class, () -> new CircuitoMaritimo(listaDeTramos));
+	}
+	
+	@Test
+	void test004_CuandoUnCircuitoEsInstanciado_SeValidaQueSusTramosEstenBienConstruidos() {
+		ArrayList<Tramo> listaDeTramos = new ArrayList<Tramo>();
+		listaDeTramos.add(tramoAB);
+		listaDeTramos.add(tramoBC);
+		listaDeTramos.add(tramoCA);
+		
+		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
+		
+		assertTrue(circuito.validarListaDeTramos(listaDeTramos));
+		
+	}
+	
+	@Test
 	void test004_UnCircuitoTieneTramosValidos() {
 		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
 		listaDeTramos.add(tramoAB);
@@ -92,7 +119,7 @@ class CircuitoMaritimoTest {
 		listaDeTramos.add(tramoCA);
 		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
 		
-		assertTrue(circuito.getPrecio() == 30000);
+		assertEquals(circuito.getPrecio(), 30000);
 		
 	}
 	
