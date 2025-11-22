@@ -61,9 +61,10 @@ class ClienteTest {
 		Camion camion = mock(Camion.class);
 		Chofer chofer = mock(Chofer.class);
 		ArrayList<Servicio> serviciosRecibidos = new ArrayList<Servicio>();
+		String nombreDeTerminalDestino = "Terminal B";
 				
 		//se realiza la accion
-		cliente.crearOrdenExportacion(viaje,carga, camion, chofer, serviciosRecibidos, terminal );
+		cliente.crearOrdenExportacion(viaje,carga, camion, chofer, serviciosRecibidos, terminal, nombreDeTerminalDestino );
 		
 		//Se usa la terminal como un MOCK y se verifica que se le haya mandado el mensaje registrarOrden.
 		verify(terminal).registrarOrden(any());
@@ -80,9 +81,10 @@ class ClienteTest {
 		Chofer chofer = mock(Chofer.class);
 		LocalDate fechaLimite = LocalDate.of(2005, 9, 4);
 		ArrayList<Servicio> serviciosRecibidos = new ArrayList<Servicio>();
+		String nombreDeTerminalDestino = "Terminal A";
 				
 		
-		cliente.crearOrdenImportacion(viaje,carga, camion, chofer, serviciosRecibidos, fechaLimite, terminal);
+		cliente.crearOrdenImportacion(viaje,carga, camion, chofer, serviciosRecibidos, fechaLimite, terminal, nombreDeTerminalDestino);
 		
 		verify(terminal).registrarOrden(any());
 		

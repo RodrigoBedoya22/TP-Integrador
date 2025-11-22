@@ -25,6 +25,8 @@ class OrdenDeExportacionTest {
 	Chofer chofer;
 	ArrayList<Servicio> servicios;
 	BuqueViaje viaje;
+	String nombreDeTerminalOrigen;
+	String nombreDeTerminalDestino;
 	Lavado servicioDeLavado;
 
 	@BeforeEach
@@ -34,8 +36,10 @@ class OrdenDeExportacionTest {
 		carga= mock(BlBasico.class);
 		camion = mock(Camion.class);
 		chofer = mock(Chofer.class);
+		nombreDeTerminalOrigen = "Terminal A";
+		nombreDeTerminalDestino = "Terminal B";
 		servicios = new ArrayList<Servicio>();
-		orden = new OrdenExportacion(cliente, carga, camion, chofer, servicios, viaje);
+		orden = new OrdenExportacion(cliente, carga, camion, chofer, servicios, viaje, nombreDeTerminalOrigen, nombreDeTerminalDestino);
 
 	} 
 
@@ -74,7 +78,17 @@ class OrdenDeExportacionTest {
 		assertEquals(orden.getViaje(), viaje);
 	}
 	
+	@Test
+	void test007_UnaOrdenDeExportacionConoceElNombreDeLaTerminalOrigenDeLaQueSaldraSuCarga() {
+		assertEquals(orden.getNombreTerminalOrigen(),nombreDeTerminalOrigen);
+		 
+	}
 	
+	@Test
+	void test008_UnaOrdenDeExportacionConoceElNombreDeLaTerminalDestinoDeLaQueLlegaraSuCarga() {
+		assertEquals(orden.getNombreTerminalDestino(),nombreDeTerminalDestino);
+		 
+	}
 	
 	
 	

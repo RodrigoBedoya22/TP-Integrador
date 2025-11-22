@@ -1,21 +1,26 @@
 package contenedor;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import bl.BlBasico;
 
 class ContenedorTest {
 
 	Contenedor contenedorDry;
 	Contenedor contenedorReefer;
 	Contenedor contenedorTanque;
+	BlBasico carga;
 	
 	@BeforeEach
 	void setUp() throws Exception {
 		
 		contenedorDry = new Dry("lala", 1234567, 7.21, 8.3, 9.987, 3.23);
-		contenedorReefer = new Reefer("paro", 1111111, 8.1, 9.0, 7.2, 8.98,22);
+		carga = mock(BlBasico.class);
+		contenedorReefer = new Reefer("paro", 1111111, 8.1, 9.0, 7.2, 8.98, 10, carga);
 		contenedorTanque = new Tanque("cero", 9999999, 9.1, 7.2, 5.5, 6.6);
 		
 	}

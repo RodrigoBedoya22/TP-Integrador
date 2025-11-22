@@ -29,6 +29,7 @@ class LavadoTest {
 		lavado.setPrecioFijo(1000);
 		assertEquals(lavado.getPrecioFijo(), 1000);
 	}
+	
 	@Test
 	void test003_ElServicioDeLavadoCobraSuPrecioFijoBaseAUnContenedorDeMenosDe70MetrosCubicos() {
 		
@@ -44,5 +45,12 @@ class LavadoTest {
 		assertEquals(lavado.calcularCosto(contenedor2), 1000);
 		
 	}
+	
+	@Test
+	void test005_UnServicioDeLavadoNoPuedeTenerSuPrecioBaseFijoEnNegativo() {
+		assertThrows(IllegalArgumentException.class, () -> new Lavado(-500));
+	}
+	
+	
 	
 }

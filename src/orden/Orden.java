@@ -16,14 +16,19 @@ public abstract class Orden {
 	Chofer chofer;
 	ArrayList<Servicio> servicios;
 	BuqueViaje viaje;
+	String nombreTerminalOrigen;
+	String nombreTerminalDestino;
 	
-	public Orden(Cliente cliente, Bl carga, Camion camion, Chofer chofer, ArrayList<Servicio> servicios, BuqueViaje viaje) {
+	public Orden(Cliente cliente, Bl carga, Camion camion, Chofer chofer, ArrayList<Servicio> servicios, 
+			     BuqueViaje viaje, String nombreTerminalOrigen, String nombreTerminalDestino) {
 		this.cliente = cliente;
 		this.carga = carga;
 		this.camion = camion;
 		this.chofer = chofer;
 		this.servicios = servicios;
 		this.viaje = viaje;
+		this.nombreTerminalOrigen = nombreTerminalOrigen;
+		this.nombreTerminalDestino = nombreTerminalDestino;
 	}
 
 	public BuqueViaje getViaje() {
@@ -53,6 +58,14 @@ public abstract class Orden {
 	public ArrayList<Servicio> getServicios() {
 		return this.servicios;
 	} 
+	
+	public String getNombreTerminalOrigen() {
+		return nombreTerminalOrigen;
+	}
+
+	public String getNombreTerminalDestino() {
+		return nombreTerminalDestino;
+	}
 	
 	// public double calcularCostoTotalDeServicios() {
 		

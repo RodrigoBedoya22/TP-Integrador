@@ -53,17 +53,17 @@ public class Cliente {
 	 * @param terminal - La terminal en la que se quiere registrar la orden de exportacion.
 	 */
 	public void crearOrdenExportacion(BuqueViaje viaje, BlBasico carga, Camion camion, Chofer chofer,
-			ArrayList<Servicio> serviciosRecibidos, TerminalPortuaria terminal) {
+			ArrayList<Servicio> serviciosRecibidos, TerminalPortuaria terminal, String nombreDeTerminalDestino) {
 		
-		OrdenExportacion orden = new OrdenExportacion(this, carga, camion, chofer, serviciosRecibidos, viaje);
+		OrdenExportacion orden = new OrdenExportacion(this, carga, camion, chofer, serviciosRecibidos, viaje, terminal.getNombre(), nombreDeTerminalDestino);
 		terminal.registrarOrden(orden);
 		
 	}
 
 	public void crearOrdenImportacion(BuqueViaje viaje, BlBasico carga, Camion camion, Chofer chofer,
-			ArrayList<Servicio> serviciosRecibidos, LocalDate fechaLimite, TerminalPortuaria terminal) {
+			ArrayList<Servicio> serviciosRecibidos, LocalDate fechaLimite, TerminalPortuaria terminal, String nombreDeTerminalOrigen) {
 		
-		OrdenImportacion orden = new OrdenImportacion(this, carga, camion, chofer, serviciosRecibidos, fechaLimite, viaje);
+		OrdenImportacion orden = new OrdenImportacion(this, carga, camion, chofer, serviciosRecibidos, fechaLimite, viaje, nombreDeTerminalOrigen, terminal.getNombre());
 		terminal.registrarOrden(orden);
 	}
 

@@ -1,8 +1,7 @@
 package buscadorRutas;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -77,11 +76,6 @@ class BuscadorRutasTest {
 	    when(viajeStub3.getPrecio()).thenReturn(300.0);
 	    when(viajeStub3.contieneTramoConDestino("Miami")).thenReturn(true);
 	    
-	    ArrayList<BuqueViaje> listaDeViajes = new ArrayList<BuqueViaje>();
-	    listaDeViajes.add(viajeStub1);
-	    listaDeViajes.add(viajeStub2);
-	    listaDeViajes.add(viajeStub3);
-	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
 	    listaDeViajesOrdenados.add(viajeStub3);
 	    listaDeViajesOrdenados.add(viajeStub1);
@@ -115,11 +109,6 @@ class BuscadorRutasTest {
 	    when(viajeStub3.getPrecio()).thenReturn(300.0);
 	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 12, 11));
 	    
-	    ArrayList<BuqueViaje> listaDeViajes = new ArrayList<BuqueViaje>();
-	    listaDeViajes.add(viajeStub1);
-	    listaDeViajes.add(viajeStub2);
-	    listaDeViajes.add(viajeStub3);
-	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
 	    listaDeViajesOrdenados.add(viajeStub2);
 	    listaDeViajesOrdenados.add(viajeStub1);
@@ -152,11 +141,6 @@ class BuscadorRutasTest {
 	    when(viajeStub3.getPrecio()).thenReturn(300.0);
 	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2026, 3, 21));
 	    
-	    ArrayList<BuqueViaje> listaDeViajes = new ArrayList<BuqueViaje>();
-	    listaDeViajes.add(viajeStub1);
-	    listaDeViajes.add(viajeStub2);
-	    listaDeViajes.add(viajeStub3);
-	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
 	    listaDeViajesOrdenados.add(viajeStub2);
 	    listaDeViajesOrdenados.add(viajeStub1);
@@ -172,7 +156,94 @@ class BuscadorRutasTest {
 	}
 	
 	@Test
-	void test007_CuandoElBuscadorUtilizaLaEstrategiaDeMenorTiempoConFiltroDePuertoDestinoDevuelveLoQueCorresponde() {
+	void test007_CuandoElBuscadorUtilizaLaEstrategiaMenorPrecioYUnFiltroANDDevuelveLoQueCorresponde() {
+		
+		terminal = new TerminalPortuaria("jaja", new Coordenada(2.0, 3.7));
+		buscador = new BuscadorRutas(terminal);
+		empresaNaviera = new EmpresaNaviera("lol");
+		
+		buscador.setEstrategia(new EstrategiaMenorPrecio());
+		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
+	    when(viajeStub1.getPrecio()).thenReturn(400.0);
+	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 21));
+	    when(viajeStub1.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
+	    when(viajeStub2.getPrecio()).thenReturn(200.0);
+	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2026, 12, 5));
+	    when(viajeStub2.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
+	    when(viajeStub3.getPrecio()).thenReturn(300.0);
+	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 11));
+	    when(viajeStub3.contieneTramoConDestino("Paraguay")).thenReturn(true);
+	    BuqueViaje viajeStub4 = mock(BuqueViaje.class);
+	    when(viajeStub4.getPrecio()).thenReturn(100.0);
+	    when(viajeStub4.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 10, 21));
+	    when(viajeStub4.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    
+	    
+	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
+	    listaDeViajesOrdenados.add(viajeStub4);
+	    listaDeViajesOrdenados.add(viajeStub1);
+	    
+	    empresaNaviera.agregarViaje(viajeStub1);
+	    empresaNaviera.agregarViaje(viajeStub2);
+	    empresaNaviera.agregarViaje(viajeStub3);
+	    empresaNaviera.agregarViaje(viajeStub4);
+	    
+	    terminal.agregarNaviera(empresaNaviera);
+	    
+	    assertEquals(buscador.buscar(new FiltroAnd(new FiltroPuertoDestino("LaPampa")
+	    							, new FiltroFechaDeLlegada(LocalDate.of(2026, 1, 1), terminal.getNombre()  )  )  )
+	    							, listaDeViajesOrdenados);
+		
+	}
+	
+	@Test
+	void test008_CuandoElBuscadorUtilizaLaEstrategiaMenorPrecioYUnFiltroORDevuelveLoQueCorresponde() {
+		
+		terminal = new TerminalPortuaria("jaja", new Coordenada(2.0, 3.7));
+		buscador = new BuscadorRutas(terminal);
+		empresaNaviera = new EmpresaNaviera("lol");
+		
+		buscador.setEstrategia(new EstrategiaMenorPrecio());
+		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
+	    when(viajeStub1.getPrecio()).thenReturn(400.0);
+	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 21));
+	    when(viajeStub1.contieneTramoConDestino("LaPampa")).thenReturn(false);
+	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
+	    when(viajeStub2.getPrecio()).thenReturn(200.0);
+	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2026, 12, 5));
+	    when(viajeStub2.contieneTramoConDestino("LaPampa")).thenReturn(false);
+	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
+	    when(viajeStub3.getPrecio()).thenReturn(300.0);
+	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 11));
+	    when(viajeStub3.contieneTramoConDestino("Paraguay")).thenReturn(true);
+	    BuqueViaje viajeStub4 = mock(BuqueViaje.class);
+	    when(viajeStub4.getPrecio()).thenReturn(100.0);
+	    when(viajeStub4.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 10, 21));
+	    when(viajeStub4.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    
+	    
+	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
+	    listaDeViajesOrdenados.add(viajeStub4);
+	    listaDeViajesOrdenados.add(viajeStub3);
+	    listaDeViajesOrdenados.add(viajeStub1);
+	    
+	    empresaNaviera.agregarViaje(viajeStub1);
+	    empresaNaviera.agregarViaje(viajeStub2);
+	    empresaNaviera.agregarViaje(viajeStub3);
+	    empresaNaviera.agregarViaje(viajeStub4);
+	    
+	    terminal.agregarNaviera(empresaNaviera);
+	    
+	    assertEquals(buscador.buscar(new FiltroOr(new FiltroPuertoDestino("LaPampa")
+	    							, new FiltroFechaDeLlegada(LocalDate.of(2026, 1, 1), terminal.getNombre()  )  )  )
+	    							, listaDeViajesOrdenados);
+		
+	}
+	
+	@Test
+	void test009_CuandoElBuscadorUtilizaLaEstrategiaDeMenorTiempoConFiltroDePuertoDestinoDevuelveLoQueCorresponde() {
 		
 		terminal = new TerminalPortuaria("jaja", new Coordenada(2.0, 3.7));
 		buscador = new BuscadorRutas(terminal);
@@ -189,11 +260,6 @@ class BuscadorRutasTest {
 	    when(viajeStub3.getDuracion()).thenReturn(30);
 	    when(viajeStub3.contieneTramoConDestino("LaPampa")).thenReturn(true);
 	    
-	    ArrayList<BuqueViaje> listaDeViajes = new ArrayList<BuqueViaje>();
-	    listaDeViajes.add(viajeStub1);
-	    listaDeViajes.add(viajeStub2);
-	    listaDeViajes.add(viajeStub3);
-	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
 	    listaDeViajesOrdenados.add(viajeStub2);
 	    listaDeViajesOrdenados.add(viajeStub1);
@@ -210,7 +276,7 @@ class BuscadorRutasTest {
 	}
 	
 	@Test
-	void test008_CuandoElBuscadorUtilizaLaEstrategiaDeMenorTiempoConFiltroDeFechaDeLlegadaDevuelveLoQueCorresponde() {
+	void test010_CuandoElBuscadorUtilizaLaEstrategiaDeMenorTiempoConFiltroDeFechaDeLlegadaDevuelveLoQueCorresponde() {
 		
 		terminal = new TerminalPortuaria("jaja", new Coordenada(2.0, 3.7));
 		buscador = new BuscadorRutas(terminal);
@@ -227,11 +293,6 @@ class BuscadorRutasTest {
 	    when(viajeStub3.getDuracion()).thenReturn(30);
 	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 11));
 	    
-	    ArrayList<BuqueViaje> listaDeViajes = new ArrayList<BuqueViaje>();
-	    listaDeViajes.add(viajeStub1);
-	    listaDeViajes.add(viajeStub2);
-	    listaDeViajes.add(viajeStub3);
-	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
 	    listaDeViajesOrdenados.add(viajeStub2);
 	    listaDeViajesOrdenados.add(viajeStub3);
@@ -247,7 +308,7 @@ class BuscadorRutasTest {
 	}
 
 	@Test
-	void test009_CuandoElBuscadorUtilizaLaEstrategiaDeMenorTiempoConFiltroDeFechaDeSalidaDevuelveLoQueCorresponde() {
+	void test011_CuandoElBuscadorUtilizaLaEstrategiaDeMenorTiempoConFiltroDeFechaDeSalidaDevuelveLoQueCorresponde() {
 		
 		terminal = new TerminalPortuaria("jaja", new Coordenada(2.0, 3.7));
 		buscador = new BuscadorRutas(terminal);
@@ -263,124 +324,6 @@ class BuscadorRutasTest {
 	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
 	    when(viajeStub3.getDuracion()).thenReturn(98);
 	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2026, 3, 21));
-	    
-	    ArrayList<BuqueViaje> listaDeViajes = new ArrayList<BuqueViaje>();
-	    listaDeViajes.add(viajeStub1);
-	    listaDeViajes.add(viajeStub2);
-	    listaDeViajes.add(viajeStub3);
-	    
-	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
-	    listaDeViajesOrdenados.add(viajeStub1);
-	    listaDeViajesOrdenados.add(viajeStub2);
-	    
-	    
-	    empresaNaviera.agregarViaje(viajeStub1);
-	    empresaNaviera.agregarViaje(viajeStub2);
-	    empresaNaviera.agregarViaje(viajeStub3);
-	    
-	    terminal.agregarNaviera(empresaNaviera);
-	    
-	    assertEquals(buscador.buscar(new FiltroFechaDeSalida(LocalDate.of(2025, 12, 30), terminal.getNombre())), listaDeViajesOrdenados);
-	    
-	}
-	
-	@Test
-	void test010_CuandoElBuscadorUtilizaLaEstrategiaDeMenorTransbordoConFiltroDePuertoDestinoDevuelveLoQueCorresponde() {
-		
-		terminal = new TerminalPortuaria("jaja", new Coordenada(2.0, 3.7));
-		buscador = new BuscadorRutas(terminal);
-		empresaNaviera = new EmpresaNaviera("lol");
-		
-		buscador.setEstrategia(new EstrategiaMenorTransbordo());
-		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
-	    when(viajeStub1.cantidadDeTramos()).thenReturn(6);
-	    when(viajeStub1.contieneTramoConDestino("Miami")).thenReturn(true);
-	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
-	    when(viajeStub2.cantidadDeTramos()).thenReturn(9);
-	    when(viajeStub2.contieneTramoConDestino("Miami")).thenReturn(true);
-	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
-	    when(viajeStub3.cantidadDeTramos()).thenReturn(8);
-	    when(viajeStub3.contieneTramoConDestino("LaPampa")).thenReturn(true);
-	    
-	    ArrayList<BuqueViaje> listaDeViajes = new ArrayList<BuqueViaje>();
-	    listaDeViajes.add(viajeStub1);
-	    listaDeViajes.add(viajeStub2);
-	    listaDeViajes.add(viajeStub3);
-	    
-	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
-	    listaDeViajesOrdenados.add(viajeStub1);
-	    listaDeViajesOrdenados.add(viajeStub2);
-	    
-	    empresaNaviera.agregarViaje(viajeStub1);
-	    empresaNaviera.agregarViaje(viajeStub2);
-	    empresaNaviera.agregarViaje(viajeStub3);
-	    
-	    terminal.agregarNaviera(empresaNaviera);
-	    
-	    
-	    assertEquals(buscador.buscar(new FiltroPuertoDestino("Miami")), listaDeViajesOrdenados);
-		
-	}
-	
-	@Test
-	void test011_CuandoElBuscadorUtilizaLaEstrategiaDeMenorTransbordoConFiltroDeFechaDeLlegadaDevuelveLoQueCorresponde() {
-		
-		terminal = new TerminalPortuaria("jaja", new Coordenada(2.0, 3.7));
-		buscador = new BuscadorRutas(terminal);
-		empresaNaviera = new EmpresaNaviera("lol");
-		
-		buscador.setEstrategia(new EstrategiaMenorTransbordo());
-		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
-	    when(viajeStub1.cantidadDeTramos()).thenReturn(14);
-	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 21));
-	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
-	    when(viajeStub2.cantidadDeTramos()).thenReturn(7);
-	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 12, 5));
-	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
-	    when(viajeStub3.cantidadDeTramos()).thenReturn(9);
-	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 11));
-	    
-	    ArrayList<BuqueViaje> listaDeViajes = new ArrayList<BuqueViaje>();
-	    listaDeViajes.add(viajeStub1);
-	    listaDeViajes.add(viajeStub2);
-	    listaDeViajes.add(viajeStub3);
-	    
-	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
-	    listaDeViajesOrdenados.add(viajeStub2);
-	    listaDeViajesOrdenados.add(viajeStub3);
-	    listaDeViajesOrdenados.add(viajeStub1);
-	    
-	    empresaNaviera.agregarViaje(viajeStub1);
-	    empresaNaviera.agregarViaje(viajeStub2);
-	    empresaNaviera.agregarViaje(viajeStub3);
-	    
-	    terminal.agregarNaviera(empresaNaviera);
-	    
-	    assertEquals(buscador.buscar(new FiltroFechaDeLlegada(LocalDate.of(2025, 12, 7), terminal.getNombre())), listaDeViajesOrdenados);
-	}
-
-	@Test
-	void test012_CuandoElBuscadorUtilizaLaEstrategiaDeMenorTransbordoConFiltroDeFechaDeSalidaDevuelveLoQueCorresponde() {
-		
-		terminal = new TerminalPortuaria("jaja", new Coordenada(2.0, 3.7));
-		buscador = new BuscadorRutas(terminal);
-		empresaNaviera = new EmpresaNaviera("lol");
-		
-		buscador.setEstrategia(new EstrategiaMenorTransbordo());
-		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
-	    when(viajeStub1.cantidadDeTramos()).thenReturn(5);
-	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 1, 21));
-	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
-	    when(viajeStub2.cantidadDeTramos()).thenReturn(9);
-	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 2, 21));
-	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
-	    when(viajeStub3.cantidadDeTramos()).thenReturn(7);
-	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2026, 3, 21));
-	    
-	    ArrayList<BuqueViaje> listaDeViajes = new ArrayList<BuqueViaje>();
-	    listaDeViajes.add(viajeStub1);
-	    listaDeViajes.add(viajeStub2);
-	    listaDeViajes.add(viajeStub3);
 	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
 	    listaDeViajesOrdenados.add(viajeStub1);
@@ -421,9 +364,7 @@ class BuscadorRutasTest {
 	    when(viajeStub4.getDuracion()).thenReturn(37);
 	    when(viajeStub4.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 10, 21));
 	    when(viajeStub4.contieneTramoConDestino("LaPampa")).thenReturn(true);
-	    
-	    ArrayList<BuqueViaje> listaDeViajes = new ArrayList<BuqueViaje>();
-	    listaDeViajes.add(viajeStub1);
+
 	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
 	    listaDeViajesOrdenados.add(viajeStub4);
@@ -466,9 +407,7 @@ class BuscadorRutasTest {
 	    when(viajeStub4.getDuracion()).thenReturn(37);
 	    when(viajeStub4.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2027, 10, 21));
 	    when(viajeStub4.contieneTramoConDestino("Jamaica")).thenReturn(true);
-	    
-	    ArrayList<BuqueViaje> listaDeViajes = new ArrayList<BuqueViaje>();
-	    listaDeViajes.add(viajeStub1);
+	 
 	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
 	    listaDeViajesOrdenados.add(viajeStub2);
@@ -484,6 +423,193 @@ class BuscadorRutasTest {
 	    assertEquals(buscador.buscar(new FiltroOr(new FiltroPuertoDestino("LaPampa")
 	    							, new FiltroFechaDeLlegada(LocalDate.of(2026, 1, 1), terminal.getNombre()  )  )  )
 	    							, listaDeViajesOrdenados  );
+		
+	}
+	
+	@Test
+	void test014_CuandoElBuscadorUtilizaLaEstrategiaDeMenorTransbordoConFiltroDePuertoDestinoDevuelveLoQueCorresponde() {
+		
+		terminal = new TerminalPortuaria("jaja", new Coordenada(2.0, 3.7));
+		buscador = new BuscadorRutas(terminal);
+		empresaNaviera = new EmpresaNaviera("lol");
+		
+		buscador.setEstrategia(new EstrategiaMenorTransbordo());
+		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
+	    when(viajeStub1.cantidadDeTramos()).thenReturn(6);
+	    when(viajeStub1.contieneTramoConDestino("Miami")).thenReturn(true);
+	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
+	    when(viajeStub2.cantidadDeTramos()).thenReturn(9);
+	    when(viajeStub2.contieneTramoConDestino("Miami")).thenReturn(true);
+	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
+	    when(viajeStub3.cantidadDeTramos()).thenReturn(8);
+	    when(viajeStub3.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    
+	    
+	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
+	    listaDeViajesOrdenados.add(viajeStub1);
+	    listaDeViajesOrdenados.add(viajeStub2);
+	    
+	    empresaNaviera.agregarViaje(viajeStub1);
+	    empresaNaviera.agregarViaje(viajeStub2);
+	    empresaNaviera.agregarViaje(viajeStub3);
+	    
+	    terminal.agregarNaviera(empresaNaviera);
+	    
+	    
+	    assertEquals(buscador.buscar(new FiltroPuertoDestino("Miami")), listaDeViajesOrdenados);
+		
+	}
+	
+	@Test
+	void test015_CuandoElBuscadorUtilizaLaEstrategiaDeMenorTransbordoConFiltroDeFechaDeLlegadaDevuelveLoQueCorresponde() {
+		
+		terminal = new TerminalPortuaria("jaja", new Coordenada(2.0, 3.7));
+		buscador = new BuscadorRutas(terminal);
+		empresaNaviera = new EmpresaNaviera("lol");
+		
+		buscador.setEstrategia(new EstrategiaMenorTransbordo());
+		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
+	    when(viajeStub1.cantidadDeTramos()).thenReturn(14);
+	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 21));
+	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
+	    when(viajeStub2.cantidadDeTramos()).thenReturn(7);
+	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 12, 5));
+	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
+	    when(viajeStub3.cantidadDeTramos()).thenReturn(9);
+	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 11));
+	    
+	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
+	    listaDeViajesOrdenados.add(viajeStub2);
+	    listaDeViajesOrdenados.add(viajeStub3);
+	    listaDeViajesOrdenados.add(viajeStub1);
+	    
+	    empresaNaviera.agregarViaje(viajeStub1);
+	    empresaNaviera.agregarViaje(viajeStub2);
+	    empresaNaviera.agregarViaje(viajeStub3);
+	    
+	    terminal.agregarNaviera(empresaNaviera);
+	    
+	    assertEquals(buscador.buscar(new FiltroFechaDeLlegada(LocalDate.of(2025, 12, 7), terminal.getNombre())), listaDeViajesOrdenados);
+	}
+
+	@Test
+	void test016_CuandoElBuscadorUtilizaLaEstrategiaDeMenorTransbordoConFiltroDeFechaDeSalidaDevuelveLoQueCorresponde() {
+		
+		terminal = new TerminalPortuaria("jaja", new Coordenada(2.0, 3.7));
+		buscador = new BuscadorRutas(terminal);
+		empresaNaviera = new EmpresaNaviera("lol");
+		
+		buscador.setEstrategia(new EstrategiaMenorTransbordo());
+		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
+	    when(viajeStub1.cantidadDeTramos()).thenReturn(5);
+	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 1, 21));
+	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
+	    when(viajeStub2.cantidadDeTramos()).thenReturn(9);
+	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 2, 21));
+	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
+	    when(viajeStub3.cantidadDeTramos()).thenReturn(7);
+	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2026, 3, 21));
+	    
+	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
+	    listaDeViajesOrdenados.add(viajeStub1);
+	    listaDeViajesOrdenados.add(viajeStub2);
+	    
+	    
+	    empresaNaviera.agregarViaje(viajeStub1);
+	    empresaNaviera.agregarViaje(viajeStub2);
+	    empresaNaviera.agregarViaje(viajeStub3);
+	    
+	    terminal.agregarNaviera(empresaNaviera);
+	    
+	    assertEquals(buscador.buscar(new FiltroFechaDeSalida(LocalDate.of(2025, 12, 30), terminal.getNombre())), listaDeViajesOrdenados);
+	    
+	}
+	
+	@Test
+	void test017_CuandoElBuscadorUtilizaLaEstrategiaMenorTransbordoYUnFiltroANDDevuelveLoQueCorresponde() {
+		
+		terminal = new TerminalPortuaria("jaja", new Coordenada(2.0, 3.7));
+		buscador = new BuscadorRutas(terminal);
+		empresaNaviera = new EmpresaNaviera("lol");
+		
+		buscador.setEstrategia(new EstrategiaMenorTransbordo());
+		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
+	    when(viajeStub1.cantidadDeTramos()).thenReturn(4);
+	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 21));
+	    when(viajeStub1.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
+	    when(viajeStub2.cantidadDeTramos()).thenReturn(1);
+	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2026, 12, 5));
+	    when(viajeStub2.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
+	    when(viajeStub3.cantidadDeTramos()).thenReturn(3);
+	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 11));
+	    when(viajeStub3.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    BuqueViaje viajeStub4 = mock(BuqueViaje.class);
+	    when(viajeStub4.cantidadDeTramos()).thenReturn(7);
+	    when(viajeStub4.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 10, 21));
+	    when(viajeStub4.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    
+	    
+	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
+	    listaDeViajesOrdenados.add(viajeStub3);
+	    listaDeViajesOrdenados.add(viajeStub1);
+	    listaDeViajesOrdenados.add(viajeStub4);
+	    
+	    empresaNaviera.agregarViaje(viajeStub1);
+	    empresaNaviera.agregarViaje(viajeStub2);
+	    empresaNaviera.agregarViaje(viajeStub3);
+	    empresaNaviera.agregarViaje(viajeStub4);
+	    
+	    terminal.agregarNaviera(empresaNaviera);
+	    
+	    assertEquals(buscador.buscar(new FiltroAnd(new FiltroPuertoDestino("LaPampa")
+	    							, new FiltroFechaDeLlegada(LocalDate.of(2026, 1, 1), terminal.getNombre()  )  )  )
+	    							, listaDeViajesOrdenados);
+		
+	}
+	
+	@Test
+	void test018_CuandoElBuscadorUtilizaLaEstrategiaMenorTransbordoYUnFiltroOrDevuelveLoQueCorresponde() {
+		
+		terminal = new TerminalPortuaria("jaja", new Coordenada(2.0, 3.7));
+		buscador = new BuscadorRutas(terminal);
+		empresaNaviera = new EmpresaNaviera("lol");
+		
+		buscador.setEstrategia(new EstrategiaMenorTransbordo());
+		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
+	    when(viajeStub1.cantidadDeTramos()).thenReturn(4);
+	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 21));
+	    when(viajeStub1.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
+	    when(viajeStub2.cantidadDeTramos()).thenReturn(1);
+	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2026, 12, 5));
+	    when(viajeStub2.contieneTramoConDestino("LaPampa")).thenReturn(false);
+	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
+	    when(viajeStub3.cantidadDeTramos()).thenReturn(3);
+	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 11));
+	    when(viajeStub3.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    BuqueViaje viajeStub4 = mock(BuqueViaje.class);
+	    when(viajeStub4.cantidadDeTramos()).thenReturn(7);
+	    when(viajeStub4.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 10, 21));
+	    when(viajeStub4.contieneTramoConDestino("LaPampa")).thenReturn(false);
+	    
+	    
+	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
+	    listaDeViajesOrdenados.add(viajeStub3);
+	    listaDeViajesOrdenados.add(viajeStub1);
+	    listaDeViajesOrdenados.add(viajeStub4);
+	    
+	    empresaNaviera.agregarViaje(viajeStub1);
+	    empresaNaviera.agregarViaje(viajeStub2);
+	    empresaNaviera.agregarViaje(viajeStub3);
+	    empresaNaviera.agregarViaje(viajeStub4);
+	    
+	    terminal.agregarNaviera(empresaNaviera);
+	    
+	    assertEquals(buscador.buscar(new FiltroOr(new FiltroPuertoDestino("LaPampa")
+	    							, new FiltroFechaDeLlegada(LocalDate.of(2026, 1, 1), terminal.getNombre()  )  )  )
+	    							, listaDeViajesOrdenados);
 		
 	}
 	

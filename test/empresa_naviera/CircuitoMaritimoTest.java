@@ -76,7 +76,7 @@ class CircuitoMaritimoTest {
 	}
 	
 	@Test
-	void test004_CuandoUnCircuitoEsInstanciado_SeValidaQueSusTramosEstenBienConstruidos() {
+	void test005_CuandoUnCircuitoEsInstanciado_SeValidaQueSusTramosEstenBienConstruidos() {
 		ArrayList<Tramo> listaDeTramos = new ArrayList<Tramo>();
 		listaDeTramos.add(tramoAB);
 		listaDeTramos.add(tramoBC);
@@ -89,7 +89,7 @@ class CircuitoMaritimoTest {
 	}
 	
 	@Test
-	void test004_UnCircuitoTieneTramosValidos() {
+	void test006_UnCircuitoTieneTramosValidos() {
 		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
 		listaDeTramos.add(tramoAB);
 		listaDeTramos.add(tramoBC);
@@ -100,7 +100,7 @@ class CircuitoMaritimoTest {
 	}
 	
 	@Test
-	void test005_UnCircuitoContieneUnTramoDestinoDeNombreDado(){
+	void test007_UnCircuitoContieneUnTramoDestinoDeNombreDado(){
 		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
 		listaDeTramos.add(tramoAB);
 		listaDeTramos.add(tramoBC);
@@ -112,7 +112,7 @@ class CircuitoMaritimoTest {
 	}
 	
 	@Test
-	void test006_UnCircuitoMaritimoSabeElPrecioDeSuRecorrido() {
+	void test008_UnCircuitoMaritimoSabeElPrecioDeSuRecorrido() {
 		ArrayList<Tramo> listaDeTramos= new ArrayList<Tramo>();
 		listaDeTramos.add(tramoAB);
 		listaDeTramos.add(tramoBC);

@@ -28,6 +28,8 @@ class OrdenDeImportacionTest {
 	LocalDate fechaLimite;
 	BuqueViaje viaje;
 	Lavado servicioDeLavado;
+	String nombreDeTerminalOrigen;
+	String nombreDeTerminalDestino;
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -39,7 +41,9 @@ class OrdenDeImportacionTest {
 		servicios = new ArrayList<Servicio>();
 		fechaLimite = mock(LocalDate.class);
 		viaje = mock(BuqueViaje.class);
-		orden = new OrdenImportacion(cliente, carga, camion, chofer, servicios, fechaLimite, viaje);
+		nombreDeTerminalOrigen = "Terminal A";
+		nombreDeTerminalDestino = "Terminal B";
+		orden = new OrdenImportacion(cliente, carga, camion, chofer, servicios, fechaLimite, viaje, nombreDeTerminalOrigen, nombreDeTerminalDestino);
 
 	}
 
@@ -86,5 +90,17 @@ class OrdenDeImportacionTest {
 		
 	}
 	
+	@Test
+	void test008_UnaOrdenDeImportacionConoceElNombreDeLaTerminalOrigenDeLaQueSaldraSuCarga() {
+		
+		assertEquals(orden.getNombreTerminalOrigen(),nombreDeTerminalOrigen);
+		
+	}
+	
+	@Test
+	void test009_UnaOrdenDeImportacionConoceElNombreDeLaTerminalDestinoDeLaQueLlegaraSuCarga() {
+		assertEquals(orden.getNombreTerminalDestino(),nombreDeTerminalDestino);
+		 
+	}
 
 }
