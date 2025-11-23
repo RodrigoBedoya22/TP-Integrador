@@ -1,9 +1,9 @@
 package servicio;
 
-import contenedor.Contenedor;
+import orden.Orden;
 
 public interface Servicio {
 	
-	public double calcularCosto(Contenedor contenedor);
+	public double calcularCosto(Orden orden);
 
 }

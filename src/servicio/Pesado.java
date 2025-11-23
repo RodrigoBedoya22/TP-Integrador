@@ -1,6 +1,6 @@
 package servicio;
 
-import contenedor.Contenedor;
+import orden.Orden;
 
 public class Pesado implements Servicio {
 	
@@ -12,11 +12,6 @@ public class Pesado implements Servicio {
 		
 	}
 	
-	public double calcularCosto(Contenedor contenedor) {
-		
-		return this.getPrecioFijo();
-		
-	}
 
 	public double getPrecioFijo() {
 		return precioFijo;
@@ -24,6 +19,11 @@ public class Pesado implements Servicio {
 
 	public void setPrecioFijo(double precioFijo) {
 		this.precioFijo = precioFijo;
+	}
+
+	@Override
+	public double calcularCosto(Orden orden) {
+		return this.getPrecioFijo();
 	}
 	
 	

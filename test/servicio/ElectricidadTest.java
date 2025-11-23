@@ -4,15 +4,20 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import bl.BlBasico;
 import cliente.Cliente;
-import contenedor.Reefer;
+import contenedor.*;
 import coordenada.Coordenada;
 import empresa_naviera.BuqueViaje;
+import empresa_naviera.Tramo;
+import orden.OrdenExportacion;
 import terminal_portuaria.TerminalPortuaria;
 
 class ElectricidadTest {
@@ -21,7 +26,7 @@ class ElectricidadTest {
 	Reefer contenedor, contenedor2;
 	BlBasico carga;
 	Cliente cliente;
-	TerminalPortuaria terminal;
+	TerminalPortuaria terminal, terminal2;
 	BuqueViaje viaje;
 
 	@BeforeEach
@@ -33,8 +38,10 @@ class ElectricidadTest {
 		cliente = new Cliente ("Tomy", 45633467, "tomasagustinramos@gmail.com");
 		Coordenada coordenada = new Coordenada(10.5, 20.7);
 		terminal = new TerminalPortuaria ("ElAtlantico", coordenada);
+		terminal2 = mock(TerminalPortuaria.class);
 		viaje = mock(BuqueViaje.class);
 		when(viaje.getFechaDeLlegadaA("ElAtlantico")).thenReturn(LocalDate.of(2023, 4, 23));
+		when(viaje.getTramoActual()).thenReturn(new Tramo(terminal2, terminal, 22.0));
 		
 	}
 	
@@ -49,10 +56,20 @@ class ElectricidadTest {
 		assertThrows(IllegalArgumentException.class, () -> new Electricidad(-500));
 	}
 	
-	//@Test
-	//void test003_ElServicioDeElectricidadCobraSuPrecioFijoEnBaseALaCantidadDeHorasPorConsumoTotalDeKwDeUnContenedor() {
-	//	LocalDate fechaDeInicio = terminal.
-		// int cantidadDeHorasDeConsumo = Duration.between(inicio, fin).toHours();
-	// }
-
+	@Test
+	void test003_ElServicioDeElectricidadCobraSuPrecioFijoEnBaseALaCantidadDeHorasPorConsumoTotalDeKwDeUnContenedor() {
+		
+		ArrayList<Servicio> listaDeServicios = new ArrayList<Servicio>();
+		listaDeServicios.add(electricidad);
+		
+		OrdenExportacion orden = new OrdenExportacion(cliente, contenedor, null, null, listaDeServicios, viaje, "ElAtlantico", null);
+		terminal.registrarOrden(orden);
+		//el contenedor llega a la terminal un dia antes
+		terminal.registrarContenedor(contenedor, LocalDate.of(2023, 4, 22));
+		
+		assertEquals(orden.calcularCostoTotalDeServicios(), 9600.0);
+		
+	}
+	
+	
 }

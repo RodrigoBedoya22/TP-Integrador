@@ -3,7 +3,7 @@ package cliente;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import bl.BlBasico;
+import contenedor.Contenedor;
 import empresa_naviera.BuqueViaje;
 import empresa_transportista.*;
 import orden.*;
@@ -46,24 +46,33 @@ public class Cliente {
 	/**
 	 * Crea una orden de exportacion y le dice a la terminal dada que la registre.
 	 * @param viaje - El viaje que tendra la orden
-	 * @param carga - La carga que se querrá exportar
+	 * @param contenedor- El contenedor con la carga que se exportará
 	 * @param camion - El camion que llevará la carga
 	 * @param chofer - El chofer del camion dado
 	 * @param serviciosRecibidos - Los servicios contratados por el cliente.
 	 * @param terminal - La terminal en la que se quiere registrar la orden de exportacion.
 	 */
-	public void crearOrdenExportacion(BuqueViaje viaje, BlBasico carga, Camion camion, Chofer chofer,
+	public void crearOrdenExportacion(BuqueViaje viaje, Contenedor contenedor, Camion camion, Chofer chofer,
 			ArrayList<Servicio> serviciosRecibidos, TerminalPortuaria terminal, String nombreDeTerminalDestino) {
 		
-		OrdenExportacion orden = new OrdenExportacion(this, carga, camion, chofer, serviciosRecibidos, viaje, terminal.getNombre(), nombreDeTerminalDestino);
+		OrdenExportacion orden = new OrdenExportacion(this, contenedor, camion, chofer, serviciosRecibidos, viaje, terminal.getNombre(), nombreDeTerminalDestino);
 		terminal.registrarOrden(orden);
 		
 	}
-
-	public void crearOrdenImportacion(BuqueViaje viaje, BlBasico carga, Camion camion, Chofer chofer,
+	
+	/**
+	 * Crea una orden de importacion y le dice a la terminal dada que la registre.
+	 * @param viaje - El viaje en el que vendrá la carga
+	 * @param contenedor- El contenedor con la carga que se importará
+	 * @param camion - El camion que retirará la carga
+	 * @param chofer - El chofer del camion dado
+	 * @param serviciosRecibidos - Los servicios contratados por el cliente.
+	 * @param terminal - La terminal en la que se quiere registrar la orden de exportacion.
+	 */
+	public void crearOrdenImportacion(BuqueViaje viaje, Contenedor contenedor, Camion camion, Chofer chofer,
 			ArrayList<Servicio> serviciosRecibidos, LocalDate fechaLimite, TerminalPortuaria terminal, String nombreDeTerminalOrigen) {
 		
-		OrdenImportacion orden = new OrdenImportacion(this, carga, camion, chofer, serviciosRecibidos, fechaLimite, viaje, nombreDeTerminalOrigen, terminal.getNombre());
+		OrdenImportacion orden = new OrdenImportacion(this, contenedor, camion, chofer, serviciosRecibidos, fechaLimite, viaje, nombreDeTerminalOrigen, terminal.getNombre());
 		terminal.registrarOrden(orden);
 	}
 

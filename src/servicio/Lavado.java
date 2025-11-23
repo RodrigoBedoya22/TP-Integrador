@@ -1,6 +1,6 @@
 package servicio;
 
-import contenedor.Contenedor;
+import orden.Orden;
 
 public class Lavado implements Servicio {
 	
@@ -28,15 +28,15 @@ public class Lavado implements Servicio {
 	 * Calcula el costo del servicio para un contenedor basandose en sus medidas.
 	 * Si los metros cubicos del contenedor son menos de 70, cobra el precio base, en caso contrario se cobra el doble del precio base.
 	 */
-	public double calcularCosto(Contenedor contenedor) {
+	public double calcularCosto(Orden orden) {
 		
-		if(contenedor.metrosCubicos() < 70.00) {
+		if(orden.getContenedor().metrosCubicos() < 70.00) {
 			
-			return precioFijo;
+			return this.precioFijo;
 			
 		} else {
 			
-			return precioFijo * 2;
+			return this.precioFijo * 2;
 			
 		}
 		

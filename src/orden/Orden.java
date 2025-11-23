@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import bl.*;
 import cliente.Cliente;
+import contenedor.Contenedor;
 import empresa_naviera.BuqueViaje;
 import empresa_transportista.*;
 import servicio.Servicio;
@@ -11,7 +12,7 @@ import servicio.Servicio;
 public abstract class Orden {
 	
 	Cliente cliente;
-	Bl carga;
+	Contenedor contenedor;
 	Camion camion;
 	Chofer chofer;
 	ArrayList<Servicio> servicios;
@@ -19,10 +20,10 @@ public abstract class Orden {
 	String nombreTerminalOrigen;
 	String nombreTerminalDestino;
 	
-	public Orden(Cliente cliente, Bl carga, Camion camion, Chofer chofer, ArrayList<Servicio> servicios, 
+	public Orden(Cliente cliente,Contenedor contenedor, Camion camion, Chofer chofer, ArrayList<Servicio> servicios, 
 			     BuqueViaje viaje, String nombreTerminalOrigen, String nombreTerminalDestino) {
 		this.cliente = cliente;
-		this.carga = carga;
+		this.contenedor = contenedor;
 		this.camion = camion;
 		this.chofer = chofer;
 		this.servicios = servicios;
@@ -38,9 +39,12 @@ public abstract class Orden {
 	public Cliente getCliente() {
 		return this.cliente;
 	}
-
+	
+	public Contenedor getContenedor() {
+		return this.contenedor;
+	}
 	public Bl getCarga() {
-		return this.carga;
+		return this.contenedor.getCarga();
 	}
 
 	public Camion getCamion() {
@@ -67,9 +71,12 @@ public abstract class Orden {
 		return nombreTerminalDestino;
 	}
 	
-	// public double calcularCostoTotalDeServicios() {
-		
-	// }
+	public double calcularCostoTotalDeServicios() {
+		double precioACobrar = this.getServicios().stream()
+												.mapToDouble(servicio -> servicio.calcularCosto(this))
+												.sum();
+		return precioACobrar;
+	}
 	
 
 }

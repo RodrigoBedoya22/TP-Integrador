@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import bl.BlBasico;
 import buque.Buque;
+import contenedor.*;
 import empresa_naviera.*;
 import empresa_transportista.*;
 import terminal_portuaria.*;
@@ -57,6 +58,7 @@ class ClienteTest {
 		//Se crea el contexto :terminal como MOCK y lo demas como DUMMY porque son para relleno
 		TerminalPortuaria terminal = mock(TerminalPortuaria.class);
 		BlBasico carga= mock(BlBasico.class);
+		Contenedor contenedor = new Dry("aaaa", 1234567, 20.0, 40.0, 20.0, 1400.0, carga);
 		BuqueViaje viaje= mock(BuqueViaje.class);
 		Camion camion = mock(Camion.class);
 		Chofer chofer = mock(Chofer.class);
@@ -64,7 +66,7 @@ class ClienteTest {
 		String nombreDeTerminalDestino = "Terminal B";
 				
 		//se realiza la accion
-		cliente.crearOrdenExportacion(viaje,carga, camion, chofer, serviciosRecibidos, terminal, nombreDeTerminalDestino );
+		cliente.crearOrdenExportacion(viaje,contenedor, camion, chofer, serviciosRecibidos, terminal, nombreDeTerminalDestino );
 		
 		//Se usa la terminal como un MOCK y se verifica que se le haya mandado el mensaje registrarOrden.
 		verify(terminal).registrarOrden(any());
@@ -76,6 +78,7 @@ class ClienteTest {
 		
 		TerminalPortuaria terminal = mock(TerminalPortuaria.class);
 		BlBasico carga= mock(BlBasico.class);
+		Contenedor contenedor = new Dry("aaaa", 1234567, 20.0, 40.0, 20.0, 1400.0, carga);
 		BuqueViaje viaje= mock(BuqueViaje.class);
 		Camion camion = mock(Camion.class);
 		Chofer chofer = mock(Chofer.class);
@@ -84,7 +87,7 @@ class ClienteTest {
 		String nombreDeTerminalDestino = "Terminal A";
 				
 		
-		cliente.crearOrdenImportacion(viaje,carga, camion, chofer, serviciosRecibidos, fechaLimite, terminal, nombreDeTerminalDestino);
+		cliente.crearOrdenImportacion(viaje,contenedor, camion, chofer, serviciosRecibidos, fechaLimite, terminal, nombreDeTerminalDestino);
 		
 		verify(terminal).registrarOrden(any());
 		

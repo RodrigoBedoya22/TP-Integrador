@@ -1,6 +1,9 @@
 package terminal_portuaria;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import buque.Buque;
 import cliente.Cliente;
@@ -18,7 +21,7 @@ public class TerminalPortuaria {
 	private ArrayList<EmpresaTransportista> empresasTransportistas;
 	private ArrayList<Camion> camiones;
 	private ArrayList<Orden> ordenesRegistradas;
-	private ArrayList<Contenedor> contenedoresRegistrados;
+	private Map<Contenedor, LocalDate> contenedoresRegistrados;
 	private ArrayList<Cliente> shippersRegistrados;
 	private ArrayList<Cliente> consigneesRegistrados;
 	
@@ -35,7 +38,7 @@ public class TerminalPortuaria {
 		this.empresasTransportistas = new ArrayList<EmpresaTransportista>();
 		this.camiones = new ArrayList<Camion>();
 		this.ordenesRegistradas = new ArrayList<Orden>();
-		this.contenedoresRegistrados = new ArrayList<Contenedor>();
+		this.contenedoresRegistrados = new HashMap<>();
 		this.shippersRegistrados = new ArrayList<Cliente>();
 		this.consigneesRegistrados = new ArrayList<Cliente>();
 	}
@@ -171,12 +174,13 @@ public class TerminalPortuaria {
 	}
 	
 	/**
-	 * Registra un contenedor en la terminal
+	 * Registra un contenedor en la terminal en una fecha dada.
 	 * @param contenedor - El contenedor a registrar
+	 * @param localdate - La fecha en la que se registrará el contenedor
 	 */
-	public void registrarContenedor(Contenedor contenedor) {
+	public void registrarContenedor(Contenedor contenedor, LocalDate fecha) {
 		
-		this.contenedoresRegistrados.add(contenedor);
+		this.contenedoresRegistrados.put(contenedor, fecha);
 		
 	}
 	
@@ -184,7 +188,7 @@ public class TerminalPortuaria {
 	 * Retorna la lista de contenedores en campo de la terminal (aquellos que esperan a ser retirados o exportados)
 	 * @return - La lista de contenedores en campo de la terminal.
 	 */
-	public ArrayList<Contenedor> getContenedores() {
+	public Map<Contenedor, LocalDate> getContenedores() {
 		
 		return this.contenedoresRegistrados;
 	}
@@ -238,6 +242,11 @@ public class TerminalPortuaria {
 	 */
 	public void PonerEnDeparting(Buque buque) {
 		buque.evaluarEstado();
+	}
+
+	public LocalDate fechaDeRegistroDeContenedor(Contenedor contenedor) {
+		
+		return this.getContenedores().get(contenedor);
 	}
 	
 	/*

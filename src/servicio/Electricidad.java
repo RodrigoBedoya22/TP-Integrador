@@ -1,7 +1,9 @@
 package servicio;
 
-import contenedor.Contenedor;
-import contenedor.Reefer;
+import java.time.Duration;
+
+import contenedor.*;
+import orden.Orden;
 
 public class Electricidad implements Servicio {
 	
@@ -27,16 +29,16 @@ public class Electricidad implements Servicio {
 	 */
 	
 	
-	public double calcularCosto(Contenedor contenedor) {
-		/*
-        if(contenedor.getClass().isInstance(Reefer.class)){
-        	return contenedor.getConsumoDeEnergia() * this.precioFijo;
-        }else {
-        	return 0;
-        }
-        
-        */
-		return 0;
+	public double calcularCosto(Orden orden) {
+		double consumoDelContainer = orden.getContenedor().getConsumoDeEnergía();
+		double tiempoDeConsumo = Duration.between(
+											orden.getViaje().getTramoActual().getTerminalDestino().fechaDeRegistroDeContenedor(orden.getContenedor()).atStartOfDay()
+											, orden.getViaje().getFechaDeLlegadaA(orden.getNombreTerminalOrigen()).atStartOfDay()
+												)
+											.toHours();
+		
+        double costoACobrar= this.precioFijo * tiempoDeConsumo;
+        return costoACobrar;
 	}
      
 

@@ -9,10 +9,12 @@ import contenedor.Contenedor;
 import coordenada.Coordenada;
 
 import static org.mockito.Mockito.*;
+
+import java.time.LocalDate;
+
 import empresa_naviera.*;
 import empresa_transportista.*;
-import orden.OrdenExportacion;
-import orden.OrdenImportacion;
+import orden.*;
 
 
 class TerminalPortuariaTest {
@@ -215,8 +217,8 @@ class TerminalPortuariaTest {
 		
 		Contenedor contenedor = mock(Contenedor.class);
 		Contenedor contenedor2 = mock(Contenedor.class);
-		terminal.registrarContenedor(contenedor);
-		terminal.registrarContenedor(contenedor2);
+		terminal.registrarContenedor(contenedor, LocalDate.of(2003, 12, 11));
+		terminal.registrarContenedor(contenedor2, LocalDate.of(2003, 12, 11));
 	
 		assertEquals(terminal.getContenedores().size(),2);
 		
@@ -232,8 +234,16 @@ class TerminalPortuariaTest {
 		
 		
 		assertTrue(terminal.getContenedores().isEmpty());
-		assertFalse(terminal.getContenedores().contains(contenedor));
-		assertFalse(terminal.getContenedores().contains(contenedor2));
+		assertEquals(terminal.getContenedores().size(), 0);
+	}
+	
+	@Test
+	void test017_CuandoUnaTerminalRegistraUnContenedor_ConoceLaFechaEnLaQueSeRegistróElMismo() {
+
+		Contenedor contenedor = mock(Contenedor.class);
+		terminal.registrarContenedor(contenedor, LocalDate.of(2003, 12, 11));
+		
+		assertEquals(terminal.fechaDeRegistroDeContenedor(contenedor) , LocalDate.of(2003, 12, 11));
 	}
 	
 

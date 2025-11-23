@@ -1,6 +1,7 @@
 package servicio;
 
 import contenedor.Contenedor;
+import orden.Orden;
 
 public class AlmacenamientoExcedente implements Servicio {
 	
@@ -17,7 +18,7 @@ public class AlmacenamientoExcedente implements Servicio {
 	/**
 	 * Calcula el costo a pagar por el contenedor dado segun su estancai en la terminal.
 	 */
-	public double calcularCosto(Contenedor contenedor) {
+	public double calcularCosto(Orden orden) {
 		
 		return 0;
 		

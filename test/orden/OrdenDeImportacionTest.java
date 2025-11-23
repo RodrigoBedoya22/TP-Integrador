@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import bl.BlBasico;
 import cliente.Cliente;
+import contenedor.Contenedor;
+import contenedor.Dry;
 import empresa_naviera.BuqueViaje;
 import empresa_transportista.Camion;
 import empresa_transportista.Chofer;
@@ -30,12 +32,14 @@ class OrdenDeImportacionTest {
 	Lavado servicioDeLavado;
 	String nombreDeTerminalOrigen;
 	String nombreDeTerminalDestino;
+	Contenedor contenedor;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		
 		cliente = mock(Cliente.class);
 		carga= mock(BlBasico.class);
+		contenedor = new Dry("aaaa", 1234567, 20.0, 40.0, 20.0, 1400.0, carga);
 		camion = mock(Camion.class);
 		chofer = mock(Chofer.class);
 		servicios = new ArrayList<Servicio>();
@@ -43,7 +47,7 @@ class OrdenDeImportacionTest {
 		viaje = mock(BuqueViaje.class);
 		nombreDeTerminalOrigen = "Terminal A";
 		nombreDeTerminalDestino = "Terminal B";
-		orden = new OrdenImportacion(cliente, carga, camion, chofer, servicios, fechaLimite, viaje, nombreDeTerminalOrigen, nombreDeTerminalDestino);
+		orden = new OrdenImportacion(cliente, contenedor, camion, chofer, servicios, fechaLimite, viaje, nombreDeTerminalOrigen, nombreDeTerminalDestino);
 
 	}
 

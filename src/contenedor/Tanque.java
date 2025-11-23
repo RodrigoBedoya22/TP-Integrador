@@ -1,21 +1,28 @@
 package contenedor;
 
+import bl.Bl;
+import bl.BlBasico;
+
 public class Tanque extends Contenedor {
 	
-	public Tanque(String idString, Integer idNumero, Double ancho, Double largo, Double alto, Double peso) {
+	private BlBasico carga;
+	
+	public Tanque(String idString, Integer idNumero, Double ancho, Double largo, Double alto, Double peso, BlBasico carga) {
 		
 	super(idString, idNumero, ancho, largo, alto, peso);
-		
-	}
-	
-	/**
-	 * Retorna el tipo de contenedor que es.
-	 */
-	@Override
-	public String tipo() {
-		
-		return "Tanque";
+	this.carga = carga;
 		
 	}
 
+	@Override
+	public Bl getCarga() {
+		// TODO Auto-generated method stub
+		return this.carga;
+	}
+
+	@Override
+	public double getConsumoDeEnergía() {
+		return 0;
+	}
+	
 }

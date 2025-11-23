@@ -57,7 +57,7 @@ public class CircuitoMaritimo {
     
     /**
      * Obtiene la duracion en dias del circuito segun la duracion de sus tramos
-     * @return Double - la duracion en días del circuito.
+     * @return Int - la duracion en días del circuito.
      */
 	public int getDuracion() {
 		

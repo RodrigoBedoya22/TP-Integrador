@@ -1,5 +1,7 @@
 package contenedor;
 
+import bl.Bl;
+
 public abstract class Contenedor {
 	
 	private String idString;
@@ -59,6 +61,7 @@ public abstract class Contenedor {
 		
 	}
 	
-	abstract String tipo();
+	public abstract Bl getCarga();
+	public abstract double getConsumoDeEnergía();
 	
 }
