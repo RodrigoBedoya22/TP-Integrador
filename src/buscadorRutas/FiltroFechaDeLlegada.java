@@ -14,6 +14,9 @@ public class FiltroFechaDeLlegada implements FiltroRuta{
 		this.nombreDestino = nombre;
 	}
 	
+	/**
+	 * Indica si un viaje llega a una terminal con nombre dado en la fecha dada, o antes. 
+	 */
 	@Override
 	public Boolean cumple(BuqueViaje viaje) {
 		

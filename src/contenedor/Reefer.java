@@ -16,6 +16,9 @@ public class Reefer extends Contenedor {
 		
 	} 
 	
+	/**
+	 * Retorna el consumo de energia del contenedor
+	 */
 	@Override
 	public double getConsumoDeEnergía() {
 		return this.consumoDeEnergia;

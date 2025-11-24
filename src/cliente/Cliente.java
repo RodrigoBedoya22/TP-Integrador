@@ -1,6 +1,5 @@
 package cliente;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import contenedor.Contenedor;

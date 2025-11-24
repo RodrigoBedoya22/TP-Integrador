@@ -63,14 +63,26 @@ public abstract class Orden {
 		return this.servicios;
 	} 
 	
+	/**
+	 * Retorna el nombre de la terminal origen desde la cual la carga sale.
+	 * @return String - El nombre de la terminal origen
+	 */
 	public String getNombreTerminalOrigen() {
 		return nombreTerminalOrigen;
 	}
 
+	/**
+	 * Retorna el nombre de la terminal destino de la carga de la orden
+	 * @return String - El nombre de la terminal destino
+	 */
 	public String getNombreTerminalDestino() {
 		return nombreTerminalDestino;
 	}
 	
+	/**
+	 * Retorna la suma del costo de todos los servicios contratados para la orden.
+	 * @return Double - El precio de sumar el costo de todos los servicios
+	 */
 	public double calcularCostoTotalDeServicios() {
 		double precioACobrar = this.getServicios().stream()
 												.mapToDouble(servicio -> servicio.calcularCosto(this))

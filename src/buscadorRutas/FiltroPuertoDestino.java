@@ -1,9 +1,6 @@
 package buscadorRutas;
 
-import java.util.Date;
-
 import empresa_naviera.BuqueViaje;
-import terminal_portuaria.TerminalPortuaria;
 
 public class FiltroPuertoDestino implements FiltroRuta {
 
@@ -13,7 +10,10 @@ public class FiltroPuertoDestino implements FiltroRuta {
 		this.nombreDelDestino = nombreDelDestino;
 
 	}
-
+	
+	/**
+	 * Indica si el viaje dado contiene al destino indicado
+	 */
 	public Boolean cumple(BuqueViaje viaje) {
 		
 		return viaje.contieneTramoConDestino(nombreDelDestino);

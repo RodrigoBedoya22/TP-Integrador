@@ -18,6 +18,9 @@ public class Dry extends Contenedor {
 		return this.carga;
 	}
 	
+	/**
+	 * Un contenedor dry no consume energia, retorna 0
+	 */
 	@Override
 	public double getConsumoDeEnergía() {
 		return 0;

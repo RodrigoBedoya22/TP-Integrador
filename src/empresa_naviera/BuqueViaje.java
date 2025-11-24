@@ -102,7 +102,9 @@ public class BuqueViaje {
 		return this.fechasDeArribo;
 	}
 	/**
-	 * Define el cronograma de fechas segun la fecha de salida del viaje
+	 * Define el cronograma de fechas segun la fecha de salida del viaje.
+	 * La fecha del siguiente tramo es la fecha de llegada del anterior + la duracion del tramo actual.
+	 * Se asume que un buque llega y se retira el mismo dia, por lo que fecha de llegada y salida son las mismas.
 	 */
 	public void definirCronograma() {
 	    // Se setea la primera fecha 

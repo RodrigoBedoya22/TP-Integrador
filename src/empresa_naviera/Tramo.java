@@ -1,10 +1,6 @@
 package empresa_naviera;
 
-import java.util.Date;
-
 import terminal_portuaria.TerminalPortuaria;
-
-
 
 public class Tramo{
 	
@@ -19,10 +15,18 @@ public class Tramo{
         this.setPrecio(precio);
 	}
 	
+	/**
+	 * Retorna la terminal origen del tramo
+	 * @return Terminal - La terminal origen del tramo
+	 */
 	public TerminalPortuaria getTerminalOrigen() {
 		return terminalOrigen;
 	}
 
+	/**
+	 * Retorna la terminal destino del tramo
+	 * @return Terminal - La terminal destino del tramo
+	 */
 	public TerminalPortuaria getTerminalDestino() {
 		return terminalDestino;
 	}
@@ -30,12 +34,13 @@ public class Tramo{
 	/**
 	 * Retorna la duracion del tramo desde la terminal origen hacia la terminal destino, basandose en la distancia entre ellas.
 	 * @return Double - La duracion del viaje entre la terminal origen y destino en dias.
-	 * NOTA: Por convencion, esta distancia es en dias.
+	 * NOTA: Por convencion, esta distancia es en dias. Se divide la distancia en Km por la velocidad promedio de un buque (22Km/h)
 	 */
 	public int getDuracion() {
 		
 	  double distanciaEntreTerminales = this.terminalOrigen.getCoordenada().distanciaHaciaCoordenada(this.terminalDestino.getCoordenada());
-	  int duracionEnDias = (int)distanciaEntreTerminales / 22;
+	  int velocidadPromedioDeBuque = 22; // se entiende que son 22km/h
+	  int duracionEnDias = (int)distanciaEntreTerminales / velocidadPromedioDeBuque;
 		return duracionEnDias;
 	}
 

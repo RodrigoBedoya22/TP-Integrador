@@ -13,6 +13,9 @@ public class FiltroAnd implements FiltroRuta{
 		
 	}
 
+	/**
+	 * Indica si un viaje dado cumple con ambos filtros concretos.
+	 */
 	@Override
 	public Boolean cumple(BuqueViaje viaje) {
 		

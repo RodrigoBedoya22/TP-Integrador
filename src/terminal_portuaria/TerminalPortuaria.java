@@ -80,8 +80,8 @@ public class TerminalPortuaria {
 	}
 	
 	/**
-	 * Retorna los camiones registrados en la terminal
-	 * @return ArrayList<Camion> la lista de camiones registrados en la terminal
+	 * Retorna los camiones registrados en la terminal y su fecha.
+	 * @return Map<Camion, LocalDate> un diccionario que contiene al camion y su fecha de ingreso
 	 */
 	public Map<Camion, LocalDate> getCamiones() {
 			
@@ -139,8 +139,9 @@ public class TerminalPortuaria {
 	}
 
 	/**
-	 * Al llegar un camion, se registra en la terminal.
+	 * Registra un camion dado en una fecha dada dentro de la terminal.
 	 * @param camion - El camion a registrar en la lista de camiones
+	 * @param fecha - La fecha de ingreso del camion.
 	 */
 	public void registrarCamion(Camion camion, LocalDate fecha) {
 		
@@ -154,7 +155,7 @@ public class TerminalPortuaria {
 	}
 	
 	/**
-	 * Al retirarse un camion, se elimina de la lista de camiones de la terminal.
+	 * Al retirarse un camion, se elimina de los camiones registrados de la terminal.
 	 * @param camion - El camion a eliminar
 	 */
 	public void eliminarCamion(Camion camion) {
@@ -185,14 +186,18 @@ public class TerminalPortuaria {
 	}
 	
 	/**
-	 * Retorna la lista de contenedores en campo de la terminal (aquellos que esperan a ser retirados o exportados)
-	 * @return - La lista de contenedores en campo de la terminal.
+	 * Retorna la lista de contenedores en campo de la terminal (aquellos que esperan a ser retirados o exportados) y la fecha en la que llegaron.
+	 * @return - La lista de contenedores en campo de la terminal y su fecha de llegada.
 	 */
 	public Map<Contenedor, LocalDate> getContenedores() {
 		
 		return this.contenedoresRegistrados;
 	}
 	
+	/**
+	 * Retorna las ordenes registradas en la terminal
+	 * @return ArrayList<Orden> - las ordenes registradas en la terminal
+	 */
     public ArrayList<Orden> getOrdenes() {
 		
 		return this.ordenesRegistradas;
@@ -221,7 +226,10 @@ public class TerminalPortuaria {
 		
 	}
 	
-
+    /**
+     * Elimina al contenedor dado de los contenedores registrados en la terminal
+     * @param contenedor
+     */
 	public void eliminarContenedor(Contenedor contenedor) {
 		
 		this.contenedoresRegistrados.remove(contenedor);
@@ -244,11 +252,21 @@ public class TerminalPortuaria {
 		buque.evaluarEstado();
 	}
 
+	/**
+	 * Retorna la fecha de registro de un contenedor dado en la terminal.
+	 * @param contenedor - El contenedor del cual se consultará su fecha de registro en la terminal.
+	 * @return LocalDate - la fecha de registro del contenedor dado.
+	 */
 	public LocalDate fechaDeRegistroDeContenedor(Contenedor contenedor) {
 		
 		return this.getContenedores().get(contenedor);
 	}
 
+	/**
+	 * Retorna la fecha de registro de un camion dado en la terminal.
+	 * @param Camion - El camion del cual se consultará su fecha de registro en la terminal.
+	 * @return LocalDate - la fecha de registro del camion dado.
+	 */
 	public LocalDate fechaDeRegistroDeCamion(Camion camion) {
 		
 		return this.getCamiones().get(camion);

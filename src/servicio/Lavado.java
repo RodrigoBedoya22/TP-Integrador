@@ -24,6 +24,14 @@ public class Lavado implements Servicio {
 		return true;
 	}
 
+	public double getPrecioFijo() {
+		return precioFijo;
+	}
+
+	public void setPrecioFijo(double precioFijo) {
+		this.precioFijo = precioFijo;
+	}
+
 	/**
 	 * Calcula el costo del servicio para un contenedor basandose en sus medidas.
 	 * Si los metros cubicos del contenedor son menos de 70, cobra el precio base, en caso contrario se cobra el doble del precio base.
@@ -41,15 +49,6 @@ public class Lavado implements Servicio {
 		}
 		
 	}
-
-	public double getPrecioFijo() {
-		return precioFijo;
-	}
-
-	public void setPrecioFijo(double precioFijo) {
-		this.precioFijo = precioFijo;
-	}
-	
 	
 
 }

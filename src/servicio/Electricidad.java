@@ -1,8 +1,6 @@
 package servicio;
 
 import java.time.Duration;
-
-import contenedor.*;
 import orden.Orden;
 
 public class Electricidad implements Servicio {
@@ -23,12 +21,19 @@ public class Electricidad implements Servicio {
 		}
 		return true;
 	}
+     
 
+	public double getPrecioFijo() {
+		return precioFijo;
+	}
+
+	public void setPrecioFijo(double precioFijo) {
+		this.precioFijo = precioFijo;
+	}
+	
 	/**
-	 * Calcula el costo del servicio para un contenedor conectado basandose en su consumo.
+	 * Calcula el costo del servicio para un contenedor conectado basandose en su consumo y la cantidad de horas que estuvo conectado en la terminal.
 	 */
-	
-	
 	public double calcularCosto(Orden orden) {
 		double consumoDelContainer = orden.getContenedor().getConsumoDeEnergía();
 		double tiempoDeConsumo = Duration.between(
@@ -40,16 +45,6 @@ public class Electricidad implements Servicio {
         double costoACobrar= this.precioFijo * tiempoDeConsumo * consumoDelContainer;
         return costoACobrar;
 	}
-     
-
-	public double getPrecioFijo() {
-		return precioFijo;
-	}
-
-	public void setPrecioFijo(double precioFijo) {
-		this.precioFijo = precioFijo;
-	}
-	
 	
 
 }
