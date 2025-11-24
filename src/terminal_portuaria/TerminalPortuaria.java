@@ -19,7 +19,7 @@ public class TerminalPortuaria {
 	private Coordenada coordenada;
 	private ArrayList<EmpresaNaviera> navieras;
 	private ArrayList<EmpresaTransportista> empresasTransportistas;
-	private ArrayList<Camion> camiones;
+	private Map<Camion, LocalDate> camiones;
 	private ArrayList<Orden> ordenesRegistradas;
 	private Map<Contenedor, LocalDate> contenedoresRegistrados;
 	private ArrayList<Cliente> shippersRegistrados;
@@ -36,7 +36,7 @@ public class TerminalPortuaria {
 		this.coordenada = coordenada;
 		this.navieras = new ArrayList<EmpresaNaviera>();
 		this.empresasTransportistas = new ArrayList<EmpresaTransportista>();
-		this.camiones = new ArrayList<Camion>();
+		this.camiones = new HashMap<>();
 		this.ordenesRegistradas = new ArrayList<Orden>();
 		this.contenedoresRegistrados = new HashMap<>();
 		this.shippersRegistrados = new ArrayList<Cliente>();
@@ -83,7 +83,7 @@ public class TerminalPortuaria {
 	 * Retorna los camiones registrados en la terminal
 	 * @return ArrayList<Camion> la lista de camiones registrados en la terminal
 	 */
-	public ArrayList<Camion> getCamiones() {
+	public Map<Camion, LocalDate> getCamiones() {
 			
 			return this.camiones;
 	}
@@ -142,13 +142,13 @@ public class TerminalPortuaria {
 	 * Al llegar un camion, se registra en la terminal.
 	 * @param camion - El camion a registrar en la lista de camiones
 	 */
-	public void registrarCamion(Camion camion) {
+	public void registrarCamion(Camion camion, LocalDate fecha) {
 		
-		if(this.getCamiones().contains(camion)){
+		if(this.getCamiones().containsKey(camion)){
 			throw new IllegalArgumentException("El camion ya se encuentra registrado en la lista de camiones en la terminal");
 		}
 		else {
-			this.camiones.add(camion);
+			this.camiones.put(camion, fecha);
 		}
 		
 	}
@@ -247,6 +247,11 @@ public class TerminalPortuaria {
 	public LocalDate fechaDeRegistroDeContenedor(Contenedor contenedor) {
 		
 		return this.getContenedores().get(contenedor);
+	}
+
+	public LocalDate fechaDeRegistroDeCamion(Camion camion) {
+		
+		return this.getCamiones().get(camion);
 	}
 	
 	/*

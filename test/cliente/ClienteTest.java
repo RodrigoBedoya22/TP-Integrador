@@ -76,18 +76,18 @@ class ClienteTest {
 	@Test
 	void test007_CuandoUnClienteCreaUnaOrdenDeImportacion_LaTerminalLaRegistra() {
 		
+		String nombreDeTerminalDestino = "Terminal A";
 		TerminalPortuaria terminal = mock(TerminalPortuaria.class);
+		when(terminal.getNombre()).thenReturn(nombreDeTerminalDestino);
 		BlBasico carga= mock(BlBasico.class);
 		Contenedor contenedor = new Dry("aaaa", 1234567, 20.0, 40.0, 20.0, 1400.0, carga);
 		BuqueViaje viaje= mock(BuqueViaje.class);
+		when(viaje.getFechaDeLlegadaA(nombreDeTerminalDestino)).thenReturn(LocalDate.of(2020, 12, 12));
 		Camion camion = mock(Camion.class);
 		Chofer chofer = mock(Chofer.class);
-		LocalDate fechaLimite = LocalDate.of(2005, 9, 4);
 		ArrayList<Servicio> serviciosRecibidos = new ArrayList<Servicio>();
-		String nombreDeTerminalDestino = "Terminal A";
-				
 		
-		cliente.crearOrdenImportacion(viaje,contenedor, camion, chofer, serviciosRecibidos, fechaLimite, terminal, nombreDeTerminalDestino);
+		cliente.crearOrdenImportacion(viaje,contenedor, camion, chofer, serviciosRecibidos, terminal, nombreDeTerminalDestino);
 		
 		verify(terminal).registrarOrden(any());
 		

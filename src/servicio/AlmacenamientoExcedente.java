@@ -1,7 +1,10 @@
 package servicio;
 
+import java.time.Duration;
+import java.time.temporal.Temporal;
+
 import contenedor.Contenedor;
-import orden.Orden;
+import orden.*;
 
 public class AlmacenamientoExcedente implements Servicio {
 	
@@ -13,14 +16,17 @@ public class AlmacenamientoExcedente implements Servicio {
 		
 		this.precioFijo = precioFijo;
 		
-	}
+	} 
 	
 	/**
-	 * Calcula el costo a pagar por el contenedor dado segun su estancai en la terminal.
+	 * Calcula el costo a pagar por el contenedor dado segun su estancia en la terminal.
 	 */
 	public double calcularCosto(Orden orden) {
 		
-		return 0;
+		long cantidadDeDias = Duration.between(orden.getViaje().getFechaDeLlegadaA(orden.getNombreTerminalDestino()).atStartOfDay(), 
+											orden.getViaje().getTramoActual().getTerminalDestino().fechaDeRegistroDeCamion(orden.getCamion()).atStartOfDay()).toDays();
+		
+		return precioFijo * cantidadDeDias ;
 		
 	}
 

@@ -14,14 +14,14 @@ public class OrdenImportacion extends Orden{
 	private LocalDate fechaLimite;
 
 	public OrdenImportacion(Cliente cliente, Contenedor contenedor, Camion camion, Chofer chofer, ArrayList<Servicio> servicios, 
-			                LocalDate fechaLimite, BuqueViaje viaje, String nombreTerminalOrigen, String nombreTerminalDestino) {
+			                BuqueViaje viaje, String nombreTerminalOrigen, String nombreTerminalDestino) {
 		super(cliente, contenedor, camion, chofer, servicios, viaje, nombreTerminalOrigen, nombreTerminalDestino);
-		this.fechaLimite = fechaLimite;
+		this.fechaLimite = viaje.getFechaDeLlegadaA(nombreTerminalDestino).plusDays(1);
 		
 	}
 
 	public LocalDate getFechaLimite() {
-		return fechaLimite;
+		return this.fechaLimite;
 	}
 	
 	

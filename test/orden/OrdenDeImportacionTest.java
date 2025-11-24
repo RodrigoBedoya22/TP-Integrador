@@ -1,7 +1,7 @@
 package orden;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -27,7 +27,6 @@ class OrdenDeImportacionTest {
 	Camion camion;
 	Chofer chofer;
 	ArrayList<Servicio> servicios;
-	LocalDate fechaLimite;
 	BuqueViaje viaje;
 	Lavado servicioDeLavado;
 	String nombreDeTerminalOrigen;
@@ -43,11 +42,11 @@ class OrdenDeImportacionTest {
 		camion = mock(Camion.class);
 		chofer = mock(Chofer.class);
 		servicios = new ArrayList<Servicio>();
-		fechaLimite = mock(LocalDate.class);
-		viaje = mock(BuqueViaje.class);
 		nombreDeTerminalOrigen = "Terminal A";
 		nombreDeTerminalDestino = "Terminal B";
-		orden = new OrdenImportacion(cliente, contenedor, camion, chofer, servicios, fechaLimite, viaje, nombreDeTerminalOrigen, nombreDeTerminalDestino);
+		viaje = mock(BuqueViaje.class);
+		when(viaje.getFechaDeLlegadaA(nombreDeTerminalDestino)).thenReturn(LocalDate.of(2020, 12, 12));
+		orden = new OrdenImportacion(cliente, contenedor, camion, chofer, servicios, viaje, nombreDeTerminalOrigen, nombreDeTerminalDestino);
 
 	}
 
@@ -83,7 +82,7 @@ class OrdenDeImportacionTest {
 	@Test
 	void test006_UnaOrdenDeImportacionConoceLaFechaDeLimiteDeRetiroDeLaCarga() {
 		
-		assertEquals(orden.getFechaLimite(), fechaLimite);
+		assertEquals(orden.getFechaLimite(), viaje.getFechaDeLlegadaA(nombreDeTerminalDestino).plusDays(1));
 		
 	}
 	

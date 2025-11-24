@@ -37,7 +37,7 @@ public class Electricidad implements Servicio {
 												)
 											.toHours();
 		
-        double costoACobrar= this.precioFijo * tiempoDeConsumo;
+        double costoACobrar= this.precioFijo * tiempoDeConsumo * consumoDelContainer;
         return costoACobrar;
 	}
      

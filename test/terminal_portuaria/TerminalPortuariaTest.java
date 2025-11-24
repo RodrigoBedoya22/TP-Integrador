@@ -125,24 +125,21 @@ class TerminalPortuariaTest {
     }
 	
 	@Test
-	void test009_CuandoUnaTerminalRegistraUnNuevoCamion_SuListaDeCamionesAumenta() {
+	void test009_CuandoUnaTerminalRegistraUnNuevoCamion_SuListaDeCamionesAumentaYSeRegistraLaFecha() {
+
+		Camion camion = mock(Camion.class);
+		terminal.registrarCamion(camion, LocalDate.of(2003, 12, 11));
 		
-		Camion camion1 = mock(Camion.class);
-		Camion camion2 = mock(Camion.class);
-		terminal.registrarCamion(camion1);
-		terminal.registrarCamion(camion2);
-	
-		assertEquals(terminal.getCamiones().size(), 2);
-		
+		assertEquals(terminal.fechaDeRegistroDeCamion(camion) , LocalDate.of(2003, 12, 11));
 	}
 	
 	@Test
 	void test010_UnaTerminalNoPuedeAgregarAlMismoCamionDosVeces() {
 
 		Camion camion = mock(Camion.class);
-		terminal.registrarCamion(camion);
+		terminal.registrarCamion(camion, LocalDate.of(2025, 12, 12));
 		
-		assertThrows(IllegalArgumentException.class, () -> terminal.registrarCamion(camion));
+		assertThrows(IllegalArgumentException.class, () -> terminal.registrarCamion(camion, LocalDate.of(2025, 12, 12)));
 		
 		assertEquals(terminal.getCamiones().size(),1);
 		
@@ -152,12 +149,12 @@ class TerminalPortuariaTest {
 	void test011_CuandoUnCamionSeRetiraDeLaTerminal_LaListaDeCamionesDisminuye() {
 		
 		Camion camion = mock(Camion.class);
-		terminal.registrarCamion(camion);
+		terminal.registrarCamion(camion, LocalDate.of(2025, 12, 12));
 		
 		terminal.eliminarCamion(camion);
 		
 		assertTrue(terminal.getCamiones().isEmpty());
-		assertFalse(terminal.getCamiones().contains(camion));
+		assertFalse(terminal.getCamiones().containsKey(camion));
 	}
 	
 	@Test
@@ -246,5 +243,6 @@ class TerminalPortuariaTest {
 		assertEquals(terminal.fechaDeRegistroDeContenedor(contenedor) , LocalDate.of(2003, 12, 11));
 	}
 	
+
 
 }

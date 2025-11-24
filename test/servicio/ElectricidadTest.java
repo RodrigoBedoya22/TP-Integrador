@@ -57,7 +57,15 @@ class ElectricidadTest {
 	}
 	
 	@Test
-	void test003_ElServicioDeElectricidadCobraSuPrecioFijoEnBaseALaCantidadDeHorasPorConsumoTotalDeKwDeUnContenedor() {
+	void test003_ElServicioDeElectricidadPuedeCambiarDePrecio() {
+		
+		electricidad.setPrecioFijo(500);
+		assertEquals(electricidad.getPrecioFijo(), 500);
+		
+	}
+	
+	@Test
+	void test004_ElServicioDeElectricidadCobraSuPrecioFijoEnBaseALaCantidadDeHorasPorConsumoTotalDeKwDeUnContenedor() {
 		
 		ArrayList<Servicio> listaDeServicios = new ArrayList<Servicio>();
 		listaDeServicios.add(electricidad);
@@ -67,7 +75,7 @@ class ElectricidadTest {
 		//el contenedor llega a la terminal un dia antes
 		terminal.registrarContenedor(contenedor, LocalDate.of(2023, 4, 22));
 		
-		assertEquals(orden.calcularCostoTotalDeServicios(), 9600.0);
+		assertEquals(orden.calcularCostoTotalDeServicios(), 192000.0);
 		
 	}
 	
