@@ -285,7 +285,6 @@ public class TerminalPortuaria {
 		for (Orden orden: this.getOrdenes()) {
 			//si el nombre del destino coincide
 			if(orden.getNombreTerminalDestino() == viaje.getTramoActual().getTerminalDestino().getNombre()) {
-				Cliente cliente= orden.getCliente();
 				this.notificarImportacionA(orden);
 			}
 		}
@@ -328,7 +327,7 @@ public class TerminalPortuaria {
 		String facturacion = "Facturación de servicios: ";
 		for (Servicio servicio: orden.getServicios()) {
 			facturacion += 
-					System.lineSeparator() + servicio + "= $" + servicio.calcularCosto(orden);
+					System.lineSeparator() + servicio.getNombre() + "= $" + servicio.calcularCosto(orden);
 			;
 		}
 		//mensaje
@@ -350,14 +349,6 @@ public class TerminalPortuaria {
         visitor.visitarTerminal(this);
     }
 	*/
-
-
-	
-
-
-	
-
-	
 
 
 	

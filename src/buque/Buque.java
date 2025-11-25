@@ -6,20 +6,21 @@ import contenedor.Contenedor;
 import coordenada.Coordenada;
 import empresa_naviera.BuqueViaje;
 import empresa_naviera.GPS;
+import orden.*;
 
 public class Buque {
 	
 	private String nombre;
-	private ArrayList<Contenedor> contenedores;
 	private Coordenada coordenada;
 	private EstadoBuque estado;
 	private GPS gps;
 	private BuqueViaje viajeActual;
+	public ArrayList<Orden> listaDeOrdenes;
 	
 
 	public Buque(String nombre) {
 		this.nombre= nombre;
-		this.contenedores = new ArrayList<Contenedor>();
+		this.listaDeOrdenes = new ArrayList<Orden>();
 		this.estado= new OutOfBound();
 		this.gps= new GPS(new Coordenada(0, 0), this);
 		this.coordenada= this.gps.getCoordenadaGPS();
@@ -61,26 +62,26 @@ public class Buque {
 	 * Retorna los contenedores que posee el buque
 	 * @return la lista de contenedores del buque
 	 */
-	public ArrayList<Contenedor> getContenedores() {
-		return this.contenedores;
+	public ArrayList<Orden> getOrdenes() {
+		return this.listaDeOrdenes;
 	}
 
 	/**
-	 * Agrega un contenedor dado a la lista de contenedores del buque
-	 * @param contenedor - El contenedor a a gregar
+	 * Agrega una orden dad< a la lista de ordenes del buque
+	 * @param orden - La orden a a gregar
 	 */
-	public void agregarContenedor(Contenedor contenedor) {
+	public void agregarOrden(Orden orden) {
 		
-		this.contenedores.add(contenedor);
+		this.listaDeOrdenes.add(orden);
 		
 	}
 
 	/**
-	 * Saca el contenedor dado de la lista de contenedores del buque
-	 * @param contenedor - El contenedor a sacar del buque
+	 * Saca la orden dada de la lista de ordenes del buque
+	 * @param orden - La orden a sacar del buque
 	 */
-	public void sacarContenedor(Contenedor contenedor) {
-		this.contenedores.remove(contenedor);
+	public void sacarOrden(Orden orden) {
+		this.listaDeOrdenes.remove(orden);
 		
 	}
 	

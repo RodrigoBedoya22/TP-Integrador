@@ -25,6 +25,13 @@ class BuqueTest {
 	TerminalPortuaria terminalA, terminalB, terminalC, terminalD, terminalBSpy;
 	Tramo tramoAB, tramoBC, tramoCA, tramoDB;
 	BuqueViaje viaje;
+	Camion camion;
+	Chofer chofer;
+	Cliente cliente;
+	OrdenImportacion orden; 
+	String nombreDeTerminalOrigen;
+	String nombreDeTerminalDestino;
+	ArrayList<Servicio> servicios;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -53,6 +60,14 @@ class BuqueTest {
 		CircuitoMaritimo circuito = new CircuitoMaritimo(listaDeTramos);
 		viaje = new BuqueViaje(buque, circuito, LocalDate.of(2025, 12, 1) );
 		buque.setViaje(viaje);
+		camion = mock(Camion.class);
+		chofer = mock(Chofer.class);
+		servicios = new ArrayList<Servicio>();
+		nombreDeTerminalOrigen = "Terminal A";
+		nombreDeTerminalDestino = "Terminal B";
+		
+		orden = new OrdenImportacion(cliente, contenedorDry, camion, chofer, servicios, viaje, nombreDeTerminalOrigen, nombreDeTerminalDestino);
+
 	}
 
 	@Test
@@ -69,31 +84,21 @@ class BuqueTest {
 	}
 	
 	@Test
-	void test003_UnBuqueConoceLosContenedoresQueTiene() {
+	void test003_UnBuqueConoceLasOrdenesQueTiene() {
         
-		buque.agregarContenedor(contenedorDry);
-		buque.agregarContenedor(contenedorReefer);
-		buque.agregarContenedor(contenedorTanque);
+		buque.agregarOrden(orden);
 		
-        assertEquals(3, buque.getContenedores().size());
-        
-        assertTrue(buque.getContenedores().contains(contenedorDry));
-        assertTrue(buque.getContenedores().contains(contenedorReefer));
-        assertTrue(buque.getContenedores().contains(contenedorTanque));
+        assertEquals(1, buque.getOrdenes().size());
+
 	}
 	
 	@Test
-	void test004_CuandoUnBuqueSacaUnContenedor_SuListaDeContenedoresDisminuye() {
-		buque.agregarContenedor(contenedorDry);
-		buque.agregarContenedor(contenedorReefer);
-		buque.agregarContenedor(contenedorTanque);
-		buque.sacarContenedor(contenedorDry);
+	void test004_CuandoUnBuqueSacaUnaOrden_SuListaDeOrdenesDisminuye() {
+		buque.agregarOrden(orden);
+		buque.sacarOrden(orden);
 		
-        assertEquals(2, buque.getContenedores().size());
+        assertEquals(0, buque.getOrdenes().size());
         
-        assertFalse(buque.getContenedores().contains(contenedorDry));
-        assertTrue(buque.getContenedores().contains(contenedorReefer));
-        assertTrue(buque.getContenedores().contains(contenedorTanque));
 	}
 	
 	@Test
@@ -276,6 +281,61 @@ class BuqueTest {
 		//se verifica que al pasar de departing a outbound se envian las notificaciones
 		verify(terminalBSpy).notificarExportaciones(viaje);
 		verify(terminalBSpy).notificarExportacionA(orden);	
+	}
+	
+	@Test
+	void test018_CuandoUnBuqueSePasaAEstadoWorkingSeAgreganLasOrdenesAExportarASuListaDeOrdenes() {
+		
+		Cliente pepe= new Cliente("Pepe", 12345678, "pepe24@gmail.com");
+		Camion camion= mock(Camion.class);
+		Chofer chofer= mock(Chofer.class);
+		Servicio lavado = new Lavado("Lavado", 400);
+		ArrayList<Servicio> listaDeServicios= new ArrayList<Servicio>();
+		listaDeServicios.add(lavado);
+		Arrived arrived= new Arrived();
+		OrdenExportacion orden= new OrdenExportacion(pepe, contenedorDry, camion, chofer,
+				                          listaDeServicios, viaje, terminalBSpy.getNombre(), terminalC.getNombre());
+		
+		
+		terminalBSpy.registrarOrden(orden);
+		
+		//se setea en arrived y cambia a working al final
+		
+		Arrived arrivedSpy = spy(arrived);
+		buque.setEstado(arrivedSpy);
+		buque.getGPS().setCoordenadaGPS(terminalBSpy.getCoordenada());
+		terminalBSpy.ponerEnWorking(buque);
+		
+		verify(arrivedSpy).operarOrdenes(buque);
+		assertEquals(1,buque.getOrdenes().size());
+	}
+	
+	@Test
+	void test019_CuandoUnBuqueSePasaAEstadoWorkingSeEliminenLasOrdenesAImportarASuListaDeOrdenes() {
+		
+		Cliente pepe= new Cliente("Pepe", 12345678, "pepe24@gmail.com");
+		Camion camion= mock(Camion.class);
+		Chofer chofer= mock(Chofer.class);
+		Servicio lavado = new Lavado("Lavado", 400);
+		ArrayList<Servicio> listaDeServicios= new ArrayList<Servicio>();
+		listaDeServicios.add(lavado);
+		Arrived arrived= new Arrived();
+		OrdenExportacion orden= new OrdenExportacion(pepe, contenedorDry, camion, chofer,
+				                          listaDeServicios, viaje, terminalA.getNombre(), terminalBSpy.getNombre());
+		
+		
+		terminalBSpy.registrarOrden(orden);
+		
+		//se setea en arrived y cambia a working al final
+		
+		Arrived arrivedSpy = spy(arrived);
+		buque.setEstado(arrivedSpy);
+		buque.getGPS().setCoordenadaGPS(terminalBSpy.getCoordenada());
+		terminalBSpy.ponerEnWorking(buque);
+		
+		verify(arrivedSpy).operarOrdenes(buque);
+		assertEquals(0,buque.getOrdenes().size());
+		
 	}
 	
 	
