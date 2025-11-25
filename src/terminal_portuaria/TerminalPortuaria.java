@@ -9,9 +9,10 @@ import buque.Buque;
 import cliente.Cliente;
 import contenedor.Contenedor;
 import coordenada.Coordenada;
-import empresa_naviera.EmpresaNaviera;
+import empresa_naviera.*;
 import empresa_transportista.*;
 import orden.*;
+import servicio.*;
 
 public class TerminalPortuaria {
 
@@ -272,6 +273,74 @@ public class TerminalPortuaria {
 		return this.getCamiones().get(camion);
 	}
 	
+	/**
+	 * Notifica a todos los consignees interesados en el viaje dado que sus importaciones estan llegando a terminal.
+	 * @param viaje - El viaje del cual se notificaran a los consignees interesados
+	 */
+	public void notificarImportaciones(BuqueViaje viaje) {
+		//viaje tiene terminal destino y su nombre y orden tiene el nombre de la terminal destino
+		//recorremos la lista de ordenes y buscamos aquellas que tengan como nombre de terminal destino el destino actual del viaje
+		//
+		
+		for (Orden orden: this.getOrdenes()) {
+			//si el nombre del destino coincide
+			if(orden.getNombreTerminalDestino() == viaje.getTramoActual().getTerminalDestino().getNombre()) {
+				Cliente cliente= orden.getCliente();
+				this.notificarImportacionA(orden);
+			}
+		}
+	}
+
+	/**
+	 * Notifica a un cliente concreto que su importacion esta llegando
+	 * @param cliente - El cliente a notificar
+	 */
+	public void notificarImportacionA(Orden orden) {
+		
+		System.out.println(
+				"Para: " + orden.getCliente().getEmail() + System.lineSeparator() + 
+				"Asunto: ¡Su importación está llegando!" + System.lineSeparator() + 
+				"Le notificamos que su importación está llegando a la terminal " + this.getNombre()+ System.lineSeparator() + 
+				"Saludos"
+		);
+	}
+
+	/**
+	 * Notifica a todos los Shippers interesados en el viaje dado que sus exportaciones han salido de la terminal.
+	 * @param viaje - El viaje del cual se notificaran a los shippers exportadores
+	 */
+	public void notificarExportaciones(BuqueViaje viaje) {
+		
+		for (Orden orden: this.getOrdenes()) {
+			//si el nombre del origen coincide
+			if(orden.getNombreTerminalOrigen() == viaje.getTramoActual().getTerminalOrigen().getNombre()) {
+				this.notificarExportacionA(orden);
+			}
+		}
+	}
+	
+	/**
+	 * Notifica a un cliente concreto que su exportación ha salido de la terminal.
+	 * @param cliente - El cliente a notificar
+	 */
+	public void notificarExportacionA(Orden orden) {
+		//listado de precios de cada servicio
+		String facturacion = "Facturación de servicios: ";
+		for (Servicio servicio: orden.getServicios()) {
+			facturacion += 
+					System.lineSeparator() + servicio + "= $" + servicio.calcularCosto(orden);
+			;
+		}
+		//mensaje
+		System.out.println(
+				"Para: " + orden.getCliente().getEmail() + System.lineSeparator() + 
+				"Asunto: ¡Su exportación está en camino!" + System.lineSeparator() + 
+				"Le notificamos que su exportacion ha salido de la terminal hacia su destino " + System.lineSeparator() + 
+				facturacion + System.lineSeparator() +
+				"Costo total a pagar = $" + orden.calcularCostoTotalDeServicios() + System.lineSeparator() + 
+				"Saludos"
+		);
+	}
 	/*
 	/**
 	 * Indica al visitante dado que puede acceder a su información.

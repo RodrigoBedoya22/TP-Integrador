@@ -3,15 +3,11 @@ package servicio;
 import java.time.Duration;
 import orden.*;
 
-public class AlmacenamientoExcedente implements Servicio {
+public class AlmacenamientoExcedente extends Servicio {
 	
-	// ver como calcular el costo
 	
-	private double precioFijo;
-	
-	public AlmacenamientoExcedente(double precioFijo) {
-		
-		this.precioFijo = precioFijo;
+	public AlmacenamientoExcedente(String nombre, double precioFijo) {
+		super(nombre, precioFijo);
 		
 	} 
 	
@@ -23,16 +19,8 @@ public class AlmacenamientoExcedente implements Servicio {
 		long cantidadDeDias = Duration.between(orden.getViaje().getFechaDeLlegadaA(orden.getNombreTerminalDestino()).atStartOfDay(), 
 											orden.getViaje().getTramoActual().getTerminalDestino().fechaDeRegistroDeCamion(orden.getCamion()).atStartOfDay()).toDays();
 		
-		return precioFijo * cantidadDeDias ;
+		return this.getPrecioFijo() * cantidadDeDias ;
 		
-	}
-
-	public double getPrecioFijo() {
-		return precioFijo;
-	}
-
-	public void setPrecioFijo(double precioFijo) {
-		this.precioFijo = precioFijo;
 	}
 	
 	

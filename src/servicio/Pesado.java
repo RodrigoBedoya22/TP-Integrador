@@ -2,25 +2,13 @@ package servicio;
 
 import orden.Orden;
 
-public class Pesado implements Servicio {
+public class Pesado extends Servicio {
 	
-	private double precioFijo;
-	
-	public Pesado(double precioFijo) {
+	public Pesado(String nombre, double precioFijo) {
 		
-		this.precioFijo = precioFijo;
-		
+		super(nombre, precioFijo);
 	}
 	
-
-	public double getPrecioFijo() {
-		return precioFijo;
-	}
-
-	public void setPrecioFijo(double precioFijo) {
-		this.precioFijo = precioFijo;
-	}
-
 	/**
 	 * Calcula el valor de pesado para una orden. El precio siempre es el precio fijo definido por el servicio.
 	 */

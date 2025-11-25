@@ -3,32 +3,11 @@ package servicio;
 import java.time.Duration;
 import orden.Orden;
 
-public class Electricidad implements Servicio {
+public class Electricidad extends Servicio {
 	
-	//ver como calcular el costo
-	
-	private double precioFijo;
-	
-	public Electricidad(double precioFijo) {
-		this.asertarValorPositivo(precioFijo);
-		this.precioFijo = precioFijo;
+	public Electricidad(String nombre, double precioFijo) {
 		
-	}
-	
-	private boolean asertarValorPositivo(double precioFijo) {
-		if(precioFijo <= 0) {
-			throw new IllegalArgumentException("El precio fijo del servicio de electricidad no puede ser 0 o negativo");
-		}
-		return true;
-	}
-     
-
-	public double getPrecioFijo() {
-		return precioFijo;
-	}
-
-	public void setPrecioFijo(double precioFijo) {
-		this.precioFijo = precioFijo;
+		super(nombre, precioFijo);	
 	}
 	
 	/**
@@ -42,7 +21,7 @@ public class Electricidad implements Servicio {
 												)
 											.toHours();
 		
-        double costoACobrar= this.precioFijo * tiempoDeConsumo * consumoDelContainer;
+        double costoACobrar= this.getPrecioFijo() * tiempoDeConsumo * consumoDelContainer;
         return costoACobrar;
 	}
 	

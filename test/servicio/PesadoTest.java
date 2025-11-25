@@ -1,8 +1,7 @@
 package servicio;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,8 +13,7 @@ import bl.BlBasico;
 import cliente.Cliente;
 import contenedor.Reefer;
 import coordenada.Coordenada;
-import empresa_naviera.BuqueViaje;
-import empresa_naviera.Tramo;
+import empresa_naviera.*;
 import orden.OrdenExportacion;
 import terminal_portuaria.TerminalPortuaria;
 
@@ -31,7 +29,7 @@ class PesadoTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		
-		pesado = new Pesado(400);
+		pesado = new Pesado("Pesado",400);
 		carga = mock(BlBasico.class);
 		contenedor2 = new Reefer("tata", 1234567, 5.00, 5.00, 10.00, 75.00, 10, carga);
 		contenedor = new Reefer("pepe", 7654321, 2.00, 2.00, 10.00, 75.00, 20, carga);
@@ -48,22 +46,7 @@ class PesadoTest {
 	
 	
 	@Test
-	void test001_UnServicioDePesadoSabeSuPrecioBaseFijo() {
-		
-		assertEquals(pesado.getPrecioFijo(), 400);
-		
-	}
-	
-	@Test
-	void test002_ElServicioDePesadoPuedeCambiarDePrecio() {
-		
-		pesado.setPrecioFijo(500);
-		assertEquals(pesado.getPrecioFijo(), 500);
-		
-	}
-	
-	@Test
-	void test003_ElServicioDePesadoCobraEnBaseASuPrecioFijo() {
+	void test001_ElServicioDePesadoCobraEnBaseASuPrecioFijo() {
 		
 		ArrayList<Servicio> listaDeServicios = new ArrayList<Servicio>();
 		listaDeServicios.add(pesado);

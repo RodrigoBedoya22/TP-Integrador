@@ -13,9 +13,7 @@ import cliente.Cliente;
 import contenedor.*;
 import empresa_naviera.BuqueViaje;
 import empresa_transportista.*;
-import servicio.Lavado;
-import servicio.Servicio;
-import orden.*;
+import servicio.*;
 
 class OrdenDeExportacionTest {
 	
@@ -28,7 +26,7 @@ class OrdenDeExportacionTest {
 	BuqueViaje viaje;
 	String nombreDeTerminalOrigen;
 	String nombreDeTerminalDestino;
-	Lavado servicioDeLavado;
+	Servicio servicioDeLavado;
 	Contenedor contenedor;
 
 	@BeforeEach
@@ -70,7 +68,7 @@ class OrdenDeExportacionTest {
 	@Test
 	void test005_UnaOrdenDeExportacionConoceLosServiciosContratadosPorElCliente() {
 		
-		servicioDeLavado = new Lavado(10000);
+		servicioDeLavado = new Lavado("Lavado", 10000);
 		servicios.add(servicioDeLavado);
 		assertEquals(orden.getServicios(), servicios);
 		

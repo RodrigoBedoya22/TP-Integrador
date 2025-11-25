@@ -35,7 +35,7 @@ public class BuqueViaje {
 	  int indiceActual = this.circuito.getTramos().indexOf(tramoActual);	  
 	  if (indiceActual < circuito.getTramos().size() - 1) {
 		  this.setTramoActual(this.circuito.getTramos().get(indiceActual + 1)); 
-	    }
+	  }
 	}
 	
 	private void setTramoActual(Tramo tramo) {

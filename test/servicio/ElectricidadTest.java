@@ -5,8 +5,6 @@ import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,10 +13,9 @@ import bl.BlBasico;
 import cliente.Cliente;
 import contenedor.*;
 import coordenada.Coordenada;
-import empresa_naviera.BuqueViaje;
-import empresa_naviera.Tramo;
+import empresa_naviera.*;
 import orden.OrdenExportacion;
-import terminal_portuaria.TerminalPortuaria;
+import terminal_portuaria.*;
 
 class ElectricidadTest {
 	
@@ -31,7 +28,7 @@ class ElectricidadTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		electricidad = new Electricidad(400);
+		electricidad = new Electricidad("Electricidad", 400);
 		carga = mock(BlBasico.class);
 		contenedor2 = new Reefer("tata", 1234567, 5.00, 5.00, 10.00, 75.00, 10, carga);
 		contenedor = new Reefer("pepe", 7654321, 2.00, 2.00, 10.00, 75.00, 20, carga);
@@ -45,27 +42,8 @@ class ElectricidadTest {
 		
 	}
 	
-
 	@Test
-	void test001_UnServicioDeElectricidadConoceSuPrecioBaseFijo() {
-		assertEquals(electricidad.getPrecioFijo(), 400);
-	}
-	
-	@Test
-	void test002_UnServicioDeElectricidadNoPuedeTenerSuPrecioBaseFijoEnNegativo() {
-		assertThrows(IllegalArgumentException.class, () -> new Electricidad(-500));
-	}
-	
-	@Test
-	void test003_ElServicioDeElectricidadPuedeCambiarDePrecio() {
-		
-		electricidad.setPrecioFijo(500);
-		assertEquals(electricidad.getPrecioFijo(), 500);
-		
-	}
-	
-	@Test
-	void test004_ElServicioDeElectricidadCobraSuPrecioFijoEnBaseALaCantidadDeHorasPorConsumoTotalDeKwDeUnContenedor() {
+	void test001_ElServicioDeElectricidadCobraSuPrecioFijoEnBaseALaCantidadDeHorasPorConsumoTotalDeKwDeUnContenedor() {
 		
 		ArrayList<Servicio> listaDeServicios = new ArrayList<Servicio>();
 		listaDeServicios.add(electricidad);

@@ -9,20 +9,20 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import cliente.Cliente;
 import contenedor.*;
 import coordenada.Coordenada;
-import empresa_naviera.BuqueViaje;
-import empresa_naviera.CircuitoMaritimo;
-import empresa_naviera.Tramo;
+import empresa_naviera.*;
+import empresa_transportista.*;
+import orden.*;
+import servicio.*;
 import terminal_portuaria.*;
 
 class BuqueTest {
 	
 	Buque buque;
-	Contenedor contenedorDry;
-	Contenedor contenedorReefer;
-	Contenedor contenedorTanque;
-	TerminalPortuaria terminalA, terminalB, terminalC, terminalD;
+	Contenedor contenedorDry, contenedorReefer, contenedorTanque;
+	TerminalPortuaria terminalA, terminalB, terminalC, terminalD, terminalBSpy;
 	Tramo tramoAB, tramoBC, tramoCA, tramoDB;
 	BuqueViaje viaje;
 	
@@ -37,10 +37,11 @@ class BuqueTest {
 		terminalB = new TerminalPortuaria("Terminal B", new Coordenada(102, 5));
 		terminalC = new TerminalPortuaria("Terminal C", new Coordenada(0, 33));
 		terminalD = new TerminalPortuaria("Terminal D", new Coordenada(56, 73));
+		terminalBSpy= spy(terminalB);
+		when(terminalBSpy.getNombre()).thenReturn("Terminal B");
 		
-		
-		tramoAB = new Tramo(terminalA, terminalB, 10000.0);
-		tramoBC = new Tramo(terminalB, terminalC, 10000.0);
+		tramoAB = new Tramo(terminalA, terminalBSpy, 10000.0);
+		tramoBC = new Tramo(terminalBSpy, terminalC, 10000.0);
 		tramoCA = new Tramo(terminalC, terminalA, 10000.0);
 		tramoDB = new Tramo(terminalD, terminalB, 10000.0);
 		
@@ -220,14 +221,61 @@ class BuqueTest {
 	void test015_SiUnBuqueEstaEnDepartingYSeAlejaEn50Km_ElEstadoDeUnBuqueCambiaOutBoundYElTramoDelViajeDelBuqueCambia() {
 	//se setea en la misma coordenada
 	buque.setEstado(new Working());
-			assertInstanceOf(Working.class, buque.getEstado());
-			terminalB.PonerEnDeparting(buque);
-			assertInstanceOf(Departing.class, buque.getEstado());
+	assertInstanceOf(Working.class, buque.getEstado());
+	terminalB.PonerEnDeparting(buque);
+	assertInstanceOf(Departing.class, buque.getEstado());
 			
 	//setear distancia hacia 51 KM
 	Coordenada cor= new Coordenada(51,5);
 	buque.getGPS().setCoordenadaGPS(cor);
 	assertInstanceOf(OutOfBound.class, buque.getEstado());
+	}
+	
+	@Test
+	void test016_CuandoUnBuqueEntraEnFaseDeInBound_NotificaALaTerminalParaQueAviseALosClientesQueRealizanUnaImportacionConElViajeActual() {
+
+		Cliente pepe= new Cliente("Pepe", 12345678, "pepe24@gmail.com");
+		Camion camion= mock(Camion.class);
+		Chofer chofer= mock(Chofer.class);
+		ArrayList<Servicio> listaDeServicios= new ArrayList<Servicio>();
+		OrdenImportacion orden= new OrdenImportacion(pepe, contenedorDry, camion, chofer,
+				                          listaDeServicios, viaje, terminalA.getNombre(), terminalBSpy.getNombre());
+		terminalBSpy.registrarOrden(orden);
+		// El destino es terminalB con Coordenada (102,5)
+		//seteo la distancia en 49km
+		//entra en estado inbound
+		Coordenada cor= new Coordenada(53, 5); 
+		buque.getGPS().setCoordenadaGPS(cor);
+		
+		verify(terminalBSpy).notificarImportaciones(viaje);
+		verify(terminalBSpy).notificarImportacionA(orden);	
+	}
+	
+	@Test
+	void test017_CuandoUnBuqueEntraEnFaseDeOutBound_NotificaALaTerminalParaQueAviseALosShippersQueSuCargaSalió() {
+
+		Cliente pepe= new Cliente("Pepe", 12345678, "pepe24@gmail.com");
+		Camion camion= mock(Camion.class);
+		Chofer chofer= mock(Chofer.class);
+		Servicio lavado = new Lavado("Lavado", 400);
+		ArrayList<Servicio> listaDeServicios= new ArrayList<Servicio>();
+		listaDeServicios.add(lavado);
+		OrdenExportacion orden= new OrdenExportacion(pepe, contenedorDry, camion, chofer,
+				                          listaDeServicios, viaje, terminalBSpy.getNombre(), terminalC.getNombre() );
+		terminalBSpy.registrarOrden(orden);
+		
+		//se setea en arrived y cambia a departing al final
+		buque.setEstado(new Arrived());
+		buque.getGPS().setCoordenadaGPS(terminalBSpy.getCoordenada());
+		terminalBSpy.ponerEnWorking(buque);
+		terminalBSpy.PonerEnDeparting(buque);
+				
+		//setea el estado en out of bound
+		buque.getGPS().setCoordenadaGPS(new Coordenada(51,5));
+		
+		//se verifica que al pasar de departing a outbound se envian las notificaciones
+		verify(terminalBSpy).notificarExportaciones(viaje);
+		verify(terminalBSpy).notificarExportacionA(orden);	
 	}
 	
 	

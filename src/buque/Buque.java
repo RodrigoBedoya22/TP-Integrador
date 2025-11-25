@@ -90,6 +90,11 @@ public class Buque {
 	public void setViaje(BuqueViaje viaje ) {
 		this.viajeActual = viaje;
 	}
+	
+	/**
+	 * Retorna la distancia en kilometros hacia el destino del tramo actual.
+	 * @return Double- La distancia en kilometros hacia el destino actual del viaje.
+	 */
 	public Double distanciaHaciaDestinoActual() {
 		return this.coordenada.distanciaHaciaCoordenada(this.viajeActual.getTramoActual().getTerminalDestino().getCoordenada());
 	}

@@ -11,13 +11,10 @@ import org.junit.jupiter.api.Test;
 
 import bl.BlBasico;
 import cliente.Cliente;
-import contenedor.Contenedor;
-import contenedor.Dry;
+import contenedor.*;
 import empresa_naviera.BuqueViaje;
-import empresa_transportista.Camion;
-import empresa_transportista.Chofer;
-import servicio.Lavado;
-import servicio.Servicio;
+import empresa_transportista.*;
+import servicio.*;
 
 class OrdenDeImportacionTest {
 	
@@ -28,7 +25,7 @@ class OrdenDeImportacionTest {
 	Chofer chofer;
 	ArrayList<Servicio> servicios;
 	BuqueViaje viaje;
-	Lavado servicioDeLavado;
+	Servicio servicioDeLavado;
 	String nombreDeTerminalOrigen;
 	String nombreDeTerminalDestino;
 	Contenedor contenedor;
@@ -74,7 +71,7 @@ class OrdenDeImportacionTest {
 	@Test
 	void test005_UnaOrdenDeImportacionConoceLosServiciosContratadosPorElCliente() {
 		
-		servicioDeLavado = new Lavado(10000);
+		servicioDeLavado = new Lavado("Lavado", 10000);
 		servicios.add(servicioDeLavado);
 		assertEquals(orden.getServicios(), servicios);
 	}

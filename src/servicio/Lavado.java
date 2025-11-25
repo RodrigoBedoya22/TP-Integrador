@@ -2,36 +2,13 @@ package servicio;
 
 import orden.Orden;
 
-public class Lavado implements Servicio {
+public class Lavado extends Servicio {
 	
-	private double precioFijo;
-	
-	public Lavado(double precioFijo) {
-		this.asertarValorPositivo(precioFijo);
-		this.precioFijo = precioFijo;
+	public Lavado(String nombre, double precioFijo) {
 		
+		super(nombre, precioFijo);		
 	}
 	
-	/**
-	 * Verifica si el precio fijo del servicio de lavado es un valor positivo mayor a 0., en caso contrario 
-	 * levanta una excepcion 
-	 */
-	
-	private boolean asertarValorPositivo(double precioFijo) {
-		if(precioFijo <= 0) {
-			throw new IllegalArgumentException("El precio fijo del servicio de lavado no puede ser 0 o negativo");
-		}
-		return true;
-	}
-
-	public double getPrecioFijo() {
-		return precioFijo;
-	}
-
-	public void setPrecioFijo(double precioFijo) {
-		this.precioFijo = precioFijo;
-	}
-
 	/**
 	 * Calcula el costo del servicio para un contenedor basandose en sus medidas.
 	 * Si los metros cubicos del contenedor son menos de 70, cobra el precio base, en caso contrario se cobra el doble del precio base.
@@ -40,11 +17,11 @@ public class Lavado implements Servicio {
 		
 		if(orden.getContenedor().metrosCubicos() < 70.00) {
 			
-			return this.precioFijo;
+			return this.getPrecioFijo();
 			
 		} else {
 			
-			return this.precioFijo * 2;
+			return this.getPrecioFijo() * 2;
 			
 		}
 		
