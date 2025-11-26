@@ -68,11 +68,16 @@ class BuscadorRutasTest {
 		buscador.setEstrategia(new EstrategiaMenorPrecio());
 		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
 	    when(viajeStub1.getPrecio()).thenReturn(400.0);
+	    when(viajeStub1.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
 	    when(viajeStub1.contieneTramoConDestino("Miami")).thenReturn(true);
+	    
 	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
+	    when(viajeStub2.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
 	    when(viajeStub2.getPrecio()).thenReturn(200.0);
 	    when(viajeStub2.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    
 	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
+	    when(viajeStub3.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
 	    when(viajeStub3.getPrecio()).thenReturn(300.0);
 	    when(viajeStub3.contieneTramoConDestino("Miami")).thenReturn(true);
 	    
@@ -102,12 +107,17 @@ class BuscadorRutasTest {
 		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
 	    when(viajeStub1.getPrecio()).thenReturn(400.0);
 	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 21));
+	    when(viajeStub1.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
 	    when(viajeStub2.getPrecio()).thenReturn(200.0);
 	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 12, 5));
+	    when(viajeStub2.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
 	    when(viajeStub3.getPrecio()).thenReturn(300.0);
 	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 12, 11));
+	    when(viajeStub3.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
 	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
 	    listaDeViajesOrdenados.add(viajeStub2);
@@ -134,12 +144,17 @@ class BuscadorRutasTest {
 		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
 	    when(viajeStub1.getPrecio()).thenReturn(400.0);
 	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 1, 21));
+	    when(viajeStub1.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
 	    when(viajeStub2.getPrecio()).thenReturn(200.0);
 	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 2, 21));
+	    when(viajeStub2.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
 	    when(viajeStub3.getPrecio()).thenReturn(300.0);
 	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2026, 3, 21));
+	    when(viajeStub3.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
 	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
 	    listaDeViajesOrdenados.add(viajeStub2);
@@ -167,18 +182,25 @@ class BuscadorRutasTest {
 	    when(viajeStub1.getPrecio()).thenReturn(400.0);
 	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 21));
 	    when(viajeStub1.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    when(viajeStub1.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
 	    when(viajeStub2.getPrecio()).thenReturn(200.0);
 	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2026, 12, 5));
 	    when(viajeStub2.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    when(viajeStub2.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
 	    when(viajeStub3.getPrecio()).thenReturn(300.0);
 	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 11));
 	    when(viajeStub3.contieneTramoConDestino("Paraguay")).thenReturn(true);
+	    when(viajeStub3.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub4 = mock(BuqueViaje.class);
 	    when(viajeStub4.getPrecio()).thenReturn(100.0);
 	    when(viajeStub4.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 10, 21));
 	    when(viajeStub4.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    when(viajeStub4.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
 	    
 	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
@@ -210,18 +232,25 @@ class BuscadorRutasTest {
 	    when(viajeStub1.getPrecio()).thenReturn(400.0);
 	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 21));
 	    when(viajeStub1.contieneTramoConDestino("LaPampa")).thenReturn(false);
+	    when(viajeStub1.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
 	    when(viajeStub2.getPrecio()).thenReturn(200.0);
 	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2026, 12, 5));
 	    when(viajeStub2.contieneTramoConDestino("LaPampa")).thenReturn(false);
+	    when(viajeStub2.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
 	    when(viajeStub3.getPrecio()).thenReturn(300.0);
 	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 11));
 	    when(viajeStub3.contieneTramoConDestino("Paraguay")).thenReturn(true);
+	    when(viajeStub3.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub4 = mock(BuqueViaje.class);
 	    when(viajeStub4.getPrecio()).thenReturn(100.0);
 	    when(viajeStub4.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 10, 21));
 	    when(viajeStub4.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    when(viajeStub4.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
 	    
 	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
@@ -253,12 +282,17 @@ class BuscadorRutasTest {
 		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
 	    when(viajeStub1.getDuracion()).thenReturn(60);
 	    when(viajeStub1.contieneTramoConDestino("Miami")).thenReturn(true);
+	    when(viajeStub1.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
 	    when(viajeStub2.getDuracion()).thenReturn(31);
 	    when(viajeStub2.contieneTramoConDestino("Miami")).thenReturn(true);
+	    when(viajeStub2.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
 	    when(viajeStub3.getDuracion()).thenReturn(30);
 	    when(viajeStub3.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    when(viajeStub3.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
 	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
 	    listaDeViajesOrdenados.add(viajeStub2);
@@ -286,12 +320,17 @@ class BuscadorRutasTest {
 		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
 	    when(viajeStub1.getDuracion()).thenReturn(40);
 	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 21));
+	    when(viajeStub1.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
 	    when(viajeStub2.getDuracion()).thenReturn(20);
 	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 12, 5));
+	    when(viajeStub2.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
 	    when(viajeStub3.getDuracion()).thenReturn(30);
 	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 11));
+	    when(viajeStub3.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
 	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
 	    listaDeViajesOrdenados.add(viajeStub2);
@@ -318,12 +357,17 @@ class BuscadorRutasTest {
 		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
 	    when(viajeStub1.getDuracion()).thenReturn(23);
 	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 1, 21));
+	    when(viajeStub1.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
 	    when(viajeStub2.getDuracion()).thenReturn(56);
 	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 2, 21));
+	    when(viajeStub2.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
 	    when(viajeStub3.getDuracion()).thenReturn(98);
 	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2026, 3, 21));
+	    when(viajeStub3.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
 	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
 	    listaDeViajesOrdenados.add(viajeStub1);
@@ -352,18 +396,25 @@ class BuscadorRutasTest {
 	    when(viajeStub1.getDuracion()).thenReturn(40);
 	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 21));
 	    when(viajeStub1.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    when(viajeStub1.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
 	    when(viajeStub2.getDuracion()).thenReturn(20);
 	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2026, 12, 5));
 	    when(viajeStub2.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    when(viajeStub2.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
 	    when(viajeStub3.getDuracion()).thenReturn(30);
 	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 11));
 	    when(viajeStub3.contieneTramoConDestino("Paraguay")).thenReturn(true);
+	    when(viajeStub3.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub4 = mock(BuqueViaje.class);
 	    when(viajeStub4.getDuracion()).thenReturn(37);
 	    when(viajeStub4.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 10, 21));
 	    when(viajeStub4.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    when(viajeStub4.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
 
 	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
@@ -395,18 +446,25 @@ class BuscadorRutasTest {
 	    when(viajeStub1.getDuracion()).thenReturn(40);
 	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2026, 11, 21));
 	    when(viajeStub1.contieneTramoConDestino("Canada")).thenReturn(true);
+	    when(viajeStub1.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
 	    when(viajeStub2.getDuracion()).thenReturn(20);
 	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2026, 12, 5));
 	    when(viajeStub2.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    when(viajeStub2.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
 	    when(viajeStub3.getDuracion()).thenReturn(30);
 	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 11));
 	    when(viajeStub3.contieneTramoConDestino("Paraguay")).thenReturn(true);
+	    when(viajeStub3.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub4 = mock(BuqueViaje.class);
 	    when(viajeStub4.getDuracion()).thenReturn(37);
 	    when(viajeStub4.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2027, 10, 21));
 	    when(viajeStub4.contieneTramoConDestino("Jamaica")).thenReturn(true);
+	    when(viajeStub4.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
 	 
 	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
@@ -437,12 +495,17 @@ class BuscadorRutasTest {
 		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
 	    when(viajeStub1.cantidadDeTramos()).thenReturn(6);
 	    when(viajeStub1.contieneTramoConDestino("Miami")).thenReturn(true);
+	    when(viajeStub1.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
 	    when(viajeStub2.cantidadDeTramos()).thenReturn(9);
 	    when(viajeStub2.contieneTramoConDestino("Miami")).thenReturn(true);
+	    when(viajeStub2.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
 	    when(viajeStub3.cantidadDeTramos()).thenReturn(8);
 	    when(viajeStub3.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    when(viajeStub3.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
 	    
 	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
@@ -471,12 +534,17 @@ class BuscadorRutasTest {
 		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
 	    when(viajeStub1.cantidadDeTramos()).thenReturn(14);
 	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 21));
+	    when(viajeStub1.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
 	    when(viajeStub2.cantidadDeTramos()).thenReturn(7);
 	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 12, 5));
+	    when(viajeStub2.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
 	    when(viajeStub3.cantidadDeTramos()).thenReturn(9);
 	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 11));
+	    when(viajeStub3.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
 	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
 	    listaDeViajesOrdenados.add(viajeStub2);
@@ -503,12 +571,17 @@ class BuscadorRutasTest {
 		BuqueViaje viajeStub1 = mock(BuqueViaje.class);
 	    when(viajeStub1.cantidadDeTramos()).thenReturn(5);
 	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 1, 21));
+	    when(viajeStub1.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
 	    when(viajeStub2.cantidadDeTramos()).thenReturn(9);
 	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 2, 21));
+	    when(viajeStub2.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
 	    when(viajeStub3.cantidadDeTramos()).thenReturn(7);
 	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2026, 3, 21));
+	    when(viajeStub3.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
 	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
 	    listaDeViajesOrdenados.add(viajeStub1);
@@ -537,18 +610,25 @@ class BuscadorRutasTest {
 	    when(viajeStub1.cantidadDeTramos()).thenReturn(4);
 	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 21));
 	    when(viajeStub1.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    when(viajeStub1.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
 	    when(viajeStub2.cantidadDeTramos()).thenReturn(1);
 	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2026, 12, 5));
 	    when(viajeStub2.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    when(viajeStub2.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
 	    when(viajeStub3.cantidadDeTramos()).thenReturn(3);
 	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 11));
 	    when(viajeStub3.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    when(viajeStub3.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub4 = mock(BuqueViaje.class);
 	    when(viajeStub4.cantidadDeTramos()).thenReturn(7);
 	    when(viajeStub4.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 10, 21));
 	    when(viajeStub4.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    when(viajeStub4.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
 	    
 	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();
@@ -581,18 +661,25 @@ class BuscadorRutasTest {
 	    when(viajeStub1.cantidadDeTramos()).thenReturn(4);
 	    when(viajeStub1.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 21));
 	    when(viajeStub1.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    when(viajeStub1.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub2 = mock(BuqueViaje.class);
 	    when(viajeStub2.cantidadDeTramos()).thenReturn(1);
 	    when(viajeStub2.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2026, 12, 5));
 	    when(viajeStub2.contieneTramoConDestino("LaPampa")).thenReturn(false);
+	    when(viajeStub2.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub3 = mock(BuqueViaje.class);
 	    when(viajeStub3.cantidadDeTramos()).thenReturn(3);
 	    when(viajeStub3.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 11, 11));
 	    when(viajeStub3.contieneTramoConDestino("LaPampa")).thenReturn(true);
+	    when(viajeStub3.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
+	    
 	    BuqueViaje viajeStub4 = mock(BuqueViaje.class);
 	    when(viajeStub4.cantidadDeTramos()).thenReturn(7);
 	    when(viajeStub4.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2025, 10, 21));
 	    when(viajeStub4.contieneTramoConDestino("LaPampa")).thenReturn(false);
+	    when(viajeStub4.contieneTramoConDestino(terminal.getNombre())).thenReturn(true);
 	    
 	    
 	    ArrayList<BuqueViaje> listaDeViajesOrdenados = new ArrayList<BuqueViaje>();

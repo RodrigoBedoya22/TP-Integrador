@@ -63,5 +63,7 @@ public abstract class Contenedor {
 	
 	public abstract Bl getCarga();
 	public abstract double getConsumoDeEnergía();
+
+	public abstract String getTipo();
 	
 }

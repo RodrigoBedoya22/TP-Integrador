@@ -63,8 +63,13 @@ class DryTest {
 	}
 	
 	@Test
-	void test008_UnContenedorDryTieneUnConsumoDeEnergiaCero() {
+	void test007_UnContenedorDryTieneUnConsumoDeEnergiaCero() {
 		assertEquals(contenedorDry.getConsumoDeEnergía(), 0);
+	}
+	
+	@Test
+	void test008_UnContenedorDrySabeSuTipo() {
+		assertEquals(contenedorDry.getTipo(), "Dry");
 	}
 
 }

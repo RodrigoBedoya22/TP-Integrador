@@ -73,5 +73,11 @@ class TanqueTest {
 	void test008_UnContenedorTanqueNoConsumeEnergia() {
 		assertEquals(contenedorTanque.getConsumoDeEnergía(), 0);
 	}
+	
+
+	@Test
+	void test009_UnContenedorTanqueSabeSuTipo() {
+		assertEquals(contenedorTanque.getTipo(), "Tanque");
+	}
 
 }

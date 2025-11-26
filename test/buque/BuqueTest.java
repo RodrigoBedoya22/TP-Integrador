@@ -15,6 +15,7 @@ import coordenada.Coordenada;
 import empresa_naviera.*;
 import empresa_transportista.*;
 import orden.*;
+import reportes.ReporteAduana;
 import servicio.*;
 import terminal_portuaria.*;
 
@@ -294,19 +295,18 @@ class BuqueTest {
 		listaDeServicios.add(lavado);
 		Arrived arrived= new Arrived();
 		OrdenExportacion orden= new OrdenExportacion(pepe, contenedorDry, camion, chofer,
-				                          listaDeServicios, viaje, terminalBSpy.getNombre(), terminalC.getNombre());
+				                          listaDeServicios, viaje, terminalB.getNombre(), terminalC.getNombre());
 		
 		
-		terminalBSpy.registrarOrden(orden);
+		terminalB.registrarOrden(orden);
 		
 		//se setea en arrived y cambia a working al final
 		
 		Arrived arrivedSpy = spy(arrived);
 		buque.setEstado(arrivedSpy);
-		buque.getGPS().setCoordenadaGPS(terminalBSpy.getCoordenada());
-		terminalBSpy.ponerEnWorking(buque);
+		buque.getGPS().setCoordenadaGPS(terminalB.getCoordenada());
+		terminalB.ponerEnWorking(buque);
 		
-		verify(arrivedSpy).operarOrdenes(buque);
 		assertEquals(1,buque.getOrdenes().size());
 	}
 	
@@ -321,21 +321,29 @@ class BuqueTest {
 		listaDeServicios.add(lavado);
 		Arrived arrived= new Arrived();
 		OrdenExportacion orden= new OrdenExportacion(pepe, contenedorDry, camion, chofer,
-				                          listaDeServicios, viaje, terminalA.getNombre(), terminalBSpy.getNombre());
+				                          listaDeServicios, viaje, terminalA.getNombre(), terminalB.getNombre());
 		
 		
-		terminalBSpy.registrarOrden(orden);
+		terminalB.registrarOrden(orden);
 		
 		//se setea en arrived y cambia a working al final
 		
 		Arrived arrivedSpy = spy(arrived);
 		buque.setEstado(arrivedSpy);
-		buque.getGPS().setCoordenadaGPS(terminalBSpy.getCoordenada());
-		terminalBSpy.ponerEnWorking(buque);
+		buque.getGPS().setCoordenadaGPS(terminalB.getCoordenada());
+		terminalB.ponerEnWorking(buque);
 		
-		verify(arrivedSpy).operarOrdenes(buque);
 		assertEquals(0,buque.getOrdenes().size());
 		
+	}
+	
+	@Test
+	void test020_SiUnBuquePermiteElAccesoDeUnReporte_ElReporteLoVisitaráParaObtenerSusDatos() {
+		ReporteAduana reporte = new ReporteAduana();
+		ReporteAduana reporteSpy= spy(reporte);
+		
+		buque.aceptar(reporteSpy);
+		verify(reporteSpy).visitarBuque(buque);
 	}
 	
 	

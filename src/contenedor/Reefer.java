@@ -29,5 +29,10 @@ public class Reefer extends Contenedor {
 		return this.carga;
 	}
 
+	@Override
+	public String getTipo() {
+		return "Reefer";
+	}
+
 
 }

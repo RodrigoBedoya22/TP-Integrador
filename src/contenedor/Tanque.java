@@ -27,5 +27,11 @@ public class Tanque extends Contenedor {
 	public double getConsumoDeEnergía() {
 		return 0;
 	}
+
+	@Override
+	public String getTipo() {
+		
+		return "Tanque";
+	}
 	
 }

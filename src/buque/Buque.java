@@ -2,13 +2,12 @@ package buque;
 
 import java.util.ArrayList;
 
-import contenedor.Contenedor;
 import coordenada.Coordenada;
-import empresa_naviera.BuqueViaje;
-import empresa_naviera.GPS;
+import empresa_naviera.*;
 import orden.*;
+import reportes.*;
 
-public class Buque {
+public class Buque implements Reportable{
 	
 	private String nombre;
 	private Coordenada coordenada;
@@ -100,6 +99,14 @@ public class Buque {
 		return this.coordenada.distanciaHaciaCoordenada(this.viajeActual.getTramoActual().getTerminalDestino().getCoordenada());
 	}
 	
+	/**
+	 * Indica al visitante dado que puede acceder a su información.
+	 * @param visitor - El visitante al cual se le informará el acceso a los datos de la terminal.
+	**/
+	@Override
+	public void aceptar(ReporteVisitor visitor) {
+        visitor.visitarBuque(this);
+    }
 
 }
 

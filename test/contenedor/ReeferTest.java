@@ -74,6 +74,12 @@ class ReeferTest {
 		
 		assertEquals(contenedorReefer.getConsumoDeEnergía(), 10);
 	}
+	
+
+	@Test
+	void test009_UnContenedorDrySabeSuTipo() {
+		assertEquals(contenedorReefer.getTipo(), "Reefer");
+	}
 
 }
 

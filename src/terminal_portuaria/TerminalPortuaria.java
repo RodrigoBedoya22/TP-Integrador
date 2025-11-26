@@ -12,9 +12,10 @@ import coordenada.Coordenada;
 import empresa_naviera.*;
 import empresa_transportista.*;
 import orden.*;
+import reportes.*;
 import servicio.*;
 
-public class TerminalPortuaria {
+public class TerminalPortuaria  implements Reportable{
 
 	private String nombre;
 	private Coordenada coordenada;
@@ -243,6 +244,7 @@ public class TerminalPortuaria {
 	 */
 	public void ponerEnWorking(Buque buque) {
 		buque.evaluarEstado();
+		this.operarOrdenes(buque);
 	}
 	
 	/**
@@ -310,9 +312,9 @@ public class TerminalPortuaria {
 	 */
 	public void notificarExportaciones(BuqueViaje viaje) {
 		
-		for (Orden orden: this.getOrdenes()) {
+		for (Orden orden: viaje.getBuque().getOrdenes() ) {
 			//si el nombre del origen coincide
-			if(orden.getNombreTerminalOrigen() == viaje.getTramoActual().getTerminalOrigen().getNombre()) {
+			if(orden.getNombreTerminalOrigen().equals(this.getNombre())) {
 				this.notificarExportacionA(orden);
 			}
 		}
@@ -340,15 +342,59 @@ public class TerminalPortuaria {
 				"Saludos"
 		);
 	}
-	/*
 	/**
 	 * Indica al visitante dado que puede acceder a su información.
 	 * @param visitor - El visitante al cual se le informará el acceso a los datos de la terminal.
-	 
-	public void aceptar(ReporteVisitor visitor) {
-        visitor.visitarTerminal(this);
-    }
 	*/
+	@Override
+	public void aceptar(ReporteVisitor reporte) {
+		reporte.visitarTerminal(this);
+    }
+	
+	public void operarOrdenes(Buque buque) {
+
+	    ArrayList<Orden> ordenesDeBuque = new ArrayList<>(
+	        buque.getViaje().getTramoActual().getTerminalDestino().getOrdenes()
+	    );
+
+	    ArrayList<Orden> ordenesEnTerminal = new ArrayList<>(this.getOrdenes());
+
+	    ArrayList<Orden> ordenesImportadas = new ArrayList<>();
+	    ArrayList<Orden> ordenesExportadas = new ArrayList<>();
+
+	    //IMPORTACIONES
+	    for (Orden orden : ordenesDeBuque) {
+	        if (orden.getNombreTerminalDestino().equals(this.getNombre())) {
+
+	            buque.sacarOrden(orden);
+	            this.registrarOrden(orden);
+	            ordenesImportadas.add(orden);
+	        }
+	    }
+
+	    //EXPORTACIONES
+	    for (Orden orden : ordenesEnTerminal) {
+	        if (orden.getNombreTerminalOrigen().equals(this.getNombre()) &&
+	            orden.getViaje() == buque.getViaje()) {
+	            buque.agregarOrden(orden);
+	            this.eliminarOrden(orden);
+
+	            ordenesExportadas.add(orden);
+	        }
+	    }
+
+	    this.aceptar(new ReporteMuelle());
+	}
+	
+
+	/**
+	 * Elimina una orden de la lista de ordenes registradas
+	 * @param orden
+	 */
+	private void eliminarOrden(Orden orden) {
+		this.ordenesRegistradas.remove(orden);
+		
+	}
 
 
 	

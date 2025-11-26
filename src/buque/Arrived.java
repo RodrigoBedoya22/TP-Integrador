@@ -1,8 +1,6 @@
 package buque;
 
-import java.util.ArrayList;
-
-import orden.*;
+import reportes.ReporteBuque;
 
 public class Arrived implements EstadoBuque {
 	
@@ -13,26 +11,9 @@ public class Arrived implements EstadoBuque {
 	public void evaluarCambioDeEstado(Buque buque) {
 		
 		buque.setEstado(new Working());	
-		operarOrdenes(buque);
+		buque.aceptar(new ReporteBuque());
 	}
 
-	public void operarOrdenes(Buque buque) {
-		
-		ArrayList<Orden> ordenesAOperar = buque.getViaje().getTramoActual().getTerminalDestino().getOrdenes();
-		ArrayList<Orden> ordenesExportados = new ArrayList<Orden>();
-		ArrayList<Orden> ordenesImportados = new ArrayList<Orden>();;
-		
-		for(Orden orden : ordenesAOperar) {
-			if(orden.getNombreTerminalOrigen() == buque.getViaje().getTramoActual().getTerminalDestino().getNombre()) {
-				buque.listaDeOrdenes.add(orden);
-				ordenesExportados.add(orden);
-			} else if(orden.getNombreTerminalDestino() == buque.getViaje().getTramoActual().getTerminalDestino().getNombre()){
-				ordenesImportados.add(orden);
-			    buque.listaDeOrdenes.remove(orden);
-			}
-			
-		}
-			   
-	}
+	
 
 }
