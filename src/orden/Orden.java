@@ -15,7 +15,7 @@ public abstract class Orden {
 	Contenedor contenedor;
 	Camion camion;
 	Chofer chofer;
-	ArrayList<Servicio> servicios;
+	ArrayList<Servicio> serviciosRecibidos;
 	BuqueViaje viaje;
 	String nombreTerminalOrigen;
 	String nombreTerminalDestino;
@@ -26,7 +26,7 @@ public abstract class Orden {
 		this.contenedor = contenedor;
 		this.camion = camion;
 		this.chofer = chofer;
-		this.servicios = servicios;
+		this.serviciosRecibidos = servicios;
 		this.viaje = viaje;
 		this.nombreTerminalOrigen = nombreTerminalOrigen;
 		this.nombreTerminalDestino = nombreTerminalDestino;
@@ -60,7 +60,7 @@ public abstract class Orden {
 	 * @return - La lista de servicios contratados
 	 */
 	public ArrayList<Servicio> getServicios() {
-		return this.servicios;
+		return this.serviciosRecibidos;
 	} 
 	
 	/**

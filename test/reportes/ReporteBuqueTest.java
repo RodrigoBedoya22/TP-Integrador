@@ -57,7 +57,7 @@ class ReporteBuqueTest {
 	}
 
 	@Test
-	void test001_SiElReporteAduanaAccedeAUnBuque_ObtieneSusDatos() {
+	void test001_SiElReporteBuqueAccedeAUnBuque_ObtieneSusDatos() {
 		
 		ReporteBuque reporteSpy = spy(reporte);
 		reporteSpy.visitarBuque(buque);
@@ -66,23 +66,12 @@ class ReporteBuqueTest {
 	}
 	
 	@Test
-	void test002_SiSeLePideAUnReporteAduanaImprimirse_SeImprimeEnConsola() {
+	void test002_SiSeLePideAUnReporteBuqueImprimirse_SeImprimeEnConsola() {
 		
 		ReporteBuque reporteSpy = spy(reporte);
 		reporteSpy.visitarBuque(buque);
 		reporteSpy.print();
 		verify(reporteSpy).print();
 	}
-	
-	/*
-	@Test
-	void test002_SiSeLePideAUnReporteAduanaImprimirse_SeImprimeEnConsola() {
-		
-		ReporteAduana reporteSpy = spy(reporte);
-		reporteSpy.visitarBuque(buque);
-		reporteSpy.print();
-		verify(reporteSpy).print();
-	}
-	*/
 
 }

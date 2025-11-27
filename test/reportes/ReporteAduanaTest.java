@@ -69,7 +69,7 @@ class ReporteAduanaTest {
 		verify(reporteSpy).print();
 	}
 	
-	/*
+/*	
 	@Test
 	void test003_SiSeLePideAUnReporteAduanaVisitarUnaTerminal_NoHaceNada() {
 		
@@ -77,6 +77,6 @@ class ReporteAduanaTest {
 		reporteSpy.visitarTerminal(terminal);
 		verifyNoInteractions(terminal);
 	}
-	*/
+*/	
 
 }

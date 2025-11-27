@@ -21,7 +21,7 @@ public class TerminalPortuaria  implements Reportable{
 	private Coordenada coordenada;
 	private ArrayList<EmpresaNaviera> navieras;
 	private ArrayList<EmpresaTransportista> empresasTransportistas;
-	private Map<Camion, LocalDate> camiones;
+	private Map<Camion, LocalDate> camionesRegistrados;
 	private ArrayList<Orden> ordenesRegistradas;
 	private Map<Contenedor, LocalDate> contenedoresRegistrados;
 	private ArrayList<Cliente> shippersRegistrados;
@@ -38,7 +38,7 @@ public class TerminalPortuaria  implements Reportable{
 		this.coordenada = coordenada;
 		this.navieras = new ArrayList<EmpresaNaviera>();
 		this.empresasTransportistas = new ArrayList<EmpresaTransportista>();
-		this.camiones = new HashMap<>();
+		this.camionesRegistrados = new HashMap<>();
 		this.ordenesRegistradas = new ArrayList<Orden>();
 		this.contenedoresRegistrados = new HashMap<>();
 		this.shippersRegistrados = new ArrayList<Cliente>();
@@ -87,7 +87,7 @@ public class TerminalPortuaria  implements Reportable{
 	 */
 	public Map<Camion, LocalDate> getCamiones() {
 			
-			return this.camiones;
+			return this.camionesRegistrados;
 	}
 	
 	/**
@@ -151,7 +151,7 @@ public class TerminalPortuaria  implements Reportable{
 			throw new IllegalArgumentException("El camion ya se encuentra registrado en la lista de camiones en la terminal");
 		}
 		else {
-			this.camiones.put(camion, fecha);
+			this.camionesRegistrados.put(camion, fecha);
 		}
 		
 	}
@@ -162,7 +162,7 @@ public class TerminalPortuaria  implements Reportable{
 	 */
 	public void eliminarCamion(Camion camion) {
 		
-		this.camiones.remove(camion);
+		this.camionesRegistrados.remove(camion);
 		
 	}
 	
@@ -396,6 +396,4 @@ public class TerminalPortuaria  implements Reportable{
 		
 	}
 
-
-	
 }

@@ -18,8 +18,8 @@ import orden.*;
 import terminal_portuaria.TerminalPortuaria;
 
 class ReporteMuelleTest {
-/*
-	ReporteAduana reporte;
+
+	ReporteMuelle reporte;
 	BuqueViaje viaje;
 	Buque buque;
 	Orden orden1, orden2;
@@ -31,7 +31,7 @@ class ReporteMuelleTest {
 	void setUp() throws Exception {
 
 		terminal= mock(TerminalPortuaria.class);
-		reporte = new ReporteAduana();
+		reporte = new ReporteMuelle();
 		viaje= mock(BuqueViaje.class);
 		when(viaje.getTramoActual()).thenReturn(new Tramo(terminal, terminal, 2.0));
 		when(viaje.getFechaDeLlegadaA(terminal.getNombre())).thenReturn(LocalDate.of(2020, 12, 2));
@@ -52,19 +52,19 @@ class ReporteMuelleTest {
 		buque.agregarOrden(orden2);
 	}
 
-	@Test
-	void test001_SiElReporteAduanaAccedeAUnaTerminal_ObtieneSusDatos() {
+/*	@Test
+	void test001_SiElReporteMuelleAccedeAUnaTerminal_ObtieneSusDatos() {
 		
-		ReporteAduana reporteSpy = spy(reporte);
+		ReporteMuelle reporteSpy = spy(reporte);
 		reporteSpy.visitarBuque(buque);
 		
 		verify(reporteSpy).setDatos(any());;
 	}
 	
 	@Test
-	void test002_SiSeLePideAUnReporteAduanaImprimirse_SeImprimeEnConsola() {
+	void test002_SiSeLePideAUnReporteMuelleImprimirse_SeImprimeEnConsola() {
 		
-		ReporteAduana reporteSpy = spy(reporte);
+		ReporteMuelle reporteSpy = spy(reporte);
 		reporteSpy.visitarBuque(buque);
 		reporteSpy.print();
 		verify(reporteSpy).print();

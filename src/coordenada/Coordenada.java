@@ -13,12 +13,12 @@ public class Coordenada {
 		
 	}
 	
-	public Double getX() {
+	public double getX() {
 		
 		return coordenadaX;
 	}
 	 
-	public Double getY() {
+	public double getY() {
 			
 		return coordenadaY;
 	}

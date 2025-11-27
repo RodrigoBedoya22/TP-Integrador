@@ -124,14 +124,5 @@ public class BuqueViaje {
 		}
 		
 	}
-  
-
-	/*
-	public LocalDate fechaDeSalidaDesde(String nombreDeTerminal) {
-		return this.fechaDeSalida.plusDays(this.getCircuito().getTramos().get(0).
-				                           getTerminalOrigen().distanciaHastaTerminal(nombreDeTerminal));
-	}
-	*/
-  
 
 }

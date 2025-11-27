@@ -16,13 +16,13 @@ public class Tanque extends Contenedor {
 
 	@Override
 	public Bl getCarga() {
-		// TODO Auto-generated method stub
 		return this.carga;
 	}
 
 	/**
 	 * Un contenedor tanque no consume energia, retorna 0.
 	 */
+	
 	@Override
 	public double getConsumoDeEnergía() {
 		return 0;
